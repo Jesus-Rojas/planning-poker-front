@@ -1,5 +1,6 @@
 @use 'colors' as colors;
 @use 'typographies' as typographies;
+@use 'border-radius' as borderRadius;
 
 p {
   margin: 0;
@@ -11,18 +12,44 @@ p {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.section-logo {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+
+  .text-logo {
+    @include typographies.pds-font-heading-05-semibold;
+    color: colors.$pds-color-white-50;
+  }
+}
+
+.section-title {
+  @include typographies.pds-font-heading-04-bold;
+  color: colors.$pds-color-white-50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-player {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  justify-content: flex-end;
+}
+
 .player-logo {
-  @include typographies.pds-font-heading-03-bold;
-  width: 60px;
-  height: 60px;
+  @include typographies.pds-font-paragraph-03-bold;
+  width: 36px;
+  height: 36px;
   background-color: colors.$pds-color-primary-indigo-main;
-  border-radius: 50%;
+  border-radius: borderRadius.$pds-border-radius-full;
   color: colors.$pds-color-primary-purple-700;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* .invite-players {
-
-} */
+.hidden {
+  visibility: hidden;
+}

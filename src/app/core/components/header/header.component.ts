@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HeaderStatus } from '../../types/header-status.enum';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
+  status: HeaderStatus = HeaderStatus.InsideTheGame;
+  HeaderStatus = HeaderStatus;
 }

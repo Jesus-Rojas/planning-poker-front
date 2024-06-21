@@ -1,10 +1,41 @@
 <div class="container">
-  <app-poker-chip />
-  <div class="section-title"></div>
-  <div class="section-player">
-    <div class="player-logo">
+  <div class="section-logo">
+    <app-poker-chip />
+    <div
+      class="text-logo"
+      [ngClass]="{
+        'hidden': [HeaderStatus.CreatePlayerOrViewGame, HeaderStatus.InsideTheGame].includes(status),
+      }"
+    >
+      Crear partida
+    </div>
+  </div>
+
+  <div
+    class="section-title"
+    [ngClass]="{
+      'hidden': [HeaderStatus.CreatePlayerOrViewGame, HeaderStatus.CreateGame].includes(status),
+    }"
+  >
+    Sprint 32
+  </div>
+
+  <div
+    class="section-player"
+    [ngClass]="{
+      'hidden': status === HeaderStatus.CreateGame,
+    }"
+  >
+    <div
+      class="player-logo"
+      [ngClass]="{
+        'hidden': status === HeaderStatus.CreatePlayerOrViewGame,
+      }"
+    >
       LU
     </div>
-    <div class="invite-players"></div>
+    <app-button-field>
+      {{ status === HeaderStatus.CreatePlayerOrViewGame ? 'Compartir' : 'Invitar jugadores' }}
+    </app-button-field>
   </div>
 </div>

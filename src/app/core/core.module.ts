@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageComponent } from './components/page/page.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { DesignSystemModule } from '../design-system/design-system.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     LoaderComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DesignSystemModule,
   ],
   exports: [
     HeaderComponent,

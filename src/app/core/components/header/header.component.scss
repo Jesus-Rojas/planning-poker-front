@@ -1,0 +1,23 @@
+@use 'colors.scss' as *;
+
+p {
+  margin: 0;
+}
+
+.container {
+  padding: 35px 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.player-logo {
+  width: 60px;
+  height: 60px;
+  background-color: $pds-color-primary-indigo-main;
+  border-radius: 50%;
+  color: $pds-color-primary-purple-700;
+}
+
+/* .invite-players {
+
+} */

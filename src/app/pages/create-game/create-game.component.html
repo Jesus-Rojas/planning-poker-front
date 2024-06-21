@@ -1,5 +1,7 @@
-<app-page>
-  <p *ngIf="!showLoader">create-game-page works!!!!!!!!!</p>
-  <app-loader *ngIf="showLoader"></app-loader>
+<app-page [showHeader]="!showLoader">
+  @if(showLoader) {
+    <app-loader />
+  } @else {
+    <!-- <p>create-game-page works!!!!!!!!!</p> -->
+  }
 </app-page>
-

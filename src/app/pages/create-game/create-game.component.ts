@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './create-game.component.scss'
 })
 export class CreateGameComponent {
-  showLoader = true;
+  showLoader = false;
 
   ngOnInit() {
-    setTimeout(() => (this.showLoader = false), 3000);
+    // setTimeout(() => (this.showLoader = !this.showLoader), 3000);
   }
 }

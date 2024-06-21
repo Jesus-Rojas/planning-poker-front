@@ -31,6 +31,9 @@
                 "input": "public"
               }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/app/core/styles"]
+            },
             "styles": [
               "src/styles.scss"
             ],

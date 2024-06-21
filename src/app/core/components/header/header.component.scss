@@ -1,4 +1,5 @@
-@use 'colors.scss' as *;
+@use 'colors' as colors;
+@use 'typographies' as typographies;
 
 p {
   margin: 0;
@@ -11,11 +12,15 @@ p {
 }
 
 .player-logo {
+  @include typographies.pds-font-heading-03-bold;
   width: 60px;
   height: 60px;
-  background-color: $pds-color-primary-indigo-main;
+  background-color: colors.$pds-color-primary-indigo-main;
   border-radius: 50%;
-  color: $pds-color-primary-purple-700;
+  color: colors.$pds-color-primary-purple-700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .invite-players {

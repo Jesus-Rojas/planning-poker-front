@@ -1,0 +1,215 @@
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+@mixin create-typography($font-size, $font-weight, $line-height) {
+  font-family: 'Poppins', sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+}
+
+/* Display 01 - 72px */
+@mixin create-pds-font-display-01($font-weight) {
+  @include create-typography(72px, $font-weight, 76px);
+}
+@mixin pds-font-display-01-regular {
+  @include create-pds-font-display-01($font-weight-regular);
+}
+@mixin pds-font-display-01-semibold {
+  @include create-pds-font-display-01($font-weight-semibold);
+}
+@mixin pds-font-display-01-bold {
+  @include create-pds-font-display-01($font-weight-bold);
+}
+
+/* Display 02 - 60px */
+@mixin create-pds-font-display-02($font-weight) {
+  @include create-typography(60px, $font-weight, 64px);
+}
+@mixin pds-font-display-02-regular {
+  @include create-pds-font-display-02($font-weight-regular);
+}
+@mixin pds-font-display-02-semibold {
+  @include create-pds-font-display-02($font-weight-semibold);
+}
+@mixin pds-font-display-02-bold {
+  @include create-pds-font-display-02($font-weight-bold);
+}
+
+/* Heading 01 - 46px */
+@mixin create-pds-font-heading-01($font-weight) {
+  @include create-typography(46px, $font-weight, 50px);
+}
+@mixin pds-font-heading-01-regular {
+  @include create-pds-font-heading-01($font-weight-regular);
+}
+@mixin pds-font-heading-01-semibold {
+  @include create-pds-font-heading-01($font-weight-semibold);
+}
+@mixin pds-font-heading-01-bold {
+  @include create-pds-font-heading-01($font-weight-bold);
+}
+
+/* Heading 02 - 36px */
+@mixin create-pds-font-heading-02($font-weight) {
+  @include create-typography(36px, $font-weight, 40px);
+}
+@mixin pds-font-heading-02-regular {
+  @include create-pds-font-heading-02($font-weight-regular);
+}
+@mixin pds-font-heading-02-semibold {
+  @include create-pds-font-heading-02($font-weight-semibold);
+}
+@mixin pds-font-heading-02-bold {
+  @include create-pds-font-heading-02($font-weight-bold);
+}
+
+/* Heading 03 - 30px */
+@mixin create-pds-font-heading-03($font-weight) {
+  @include create-typography(30px, $font-weight, 34px);
+}
+@mixin pds-font-heading-03-regular {
+  @include create-pds-font-heading-03($font-weight-regular);
+}
+@mixin pds-font-heading-03-semibold {
+  @include create-pds-font-heading-03($font-weight-semibold);
+}
+@mixin pds-font-heading-03-bold {
+  @include create-pds-font-heading-03($font-weight-bold);
+}
+
+/* Heading 04 - 26px */
+@mixin create-pds-font-heading-04($font-weight) {
+  @include create-typography(26px, $font-weight, 30px);
+}
+@mixin pds-font-heading-04-regular {
+  @include create-pds-font-heading-04($font-weight-regular);
+}
+@mixin pds-font-heading-04-semibold {
+  @include create-pds-font-heading-04($font-weight-semibold);
+}
+@mixin pds-font-heading-04-bold {
+  @include create-pds-font-heading-04($font-weight-bold);
+}
+
+/* Heading 05 - 21px */
+@mixin create-pds-font-heading-05($font-weight) {
+  @include create-typography(21px, $font-weight, 25px);
+}
+@mixin pds-font-heading-05-regular {
+  @include create-pds-font-heading-05($font-weight-regular);
+}
+@mixin pds-font-heading-05-semibold {
+  @include create-pds-font-heading-05($font-weight-semibold);
+}
+@mixin pds-font-heading-05-bold {
+  @include create-pds-font-heading-05($font-weight-bold);
+}
+
+/* Heading 06 - 16px */
+@mixin create-pds-font-heading-06($font-weight) {
+  @include create-typography(16px, $font-weight, 20px);
+}
+@mixin pds-font-heading-06-regular {
+  @include create-pds-font-heading-06($font-weight-regular);
+}
+@mixin pds-font-heading-06-semibold {
+  @include create-pds-font-heading-06($font-weight-semibold);
+}
+@mixin pds-font-heading-06-bold {
+  @include create-pds-font-heading-06($font-weight-bold);
+}
+
+/* Subheading - 30px */
+@mixin create-pds-font-subheading($font-weight) {
+  @include create-typography(30px, $font-weight, 34px);
+}
+@mixin pds-font-subheading-regular {
+  @include create-pds-font-subheading($font-weight-regular);
+}
+@mixin pds-font-subheading-bold {
+  @include create-pds-font-subheading($font-weight-bold);
+}
+@mixin pds-font-subheading-regular-underline {
+  @include create-pds-font-subheading($font-weight-regular);
+  text-decoration: underline;
+}
+
+/* Paragraph 01 - 21px */
+@mixin create-pds-font-paragraph-01($font-weight) {
+  @include create-typography(21px, $font-weight, 25px);
+}
+@mixin pds-font-paragraph-01-regular {
+  @include create-pds-font-paragraph-01($font-weight-regular);
+}
+@mixin pds-font-paragraph-01-bold {
+  @include create-pds-font-paragraph-01($font-weight-bold);
+}
+@mixin pds-font-paragraph-01-regular-underline {
+  @include create-pds-font-paragraph-01($font-weight-regular);
+  text-decoration: underline;
+}
+
+/* Paragraph 02 - 16px */
+@mixin create-pds-font-paragraph-02($font-weight) {
+  @include create-typography(16px, $font-weight, 20px);
+}
+@mixin pds-font-paragraph-02-regular {
+  @include create-pds-font-paragraph-02($font-weight-regular);
+}
+@mixin pds-font-paragraph-02-bold {
+  @include create-pds-font-paragraph-02($font-weight-bold);
+}
+@mixin pds-font-paragraph-02-regular-underline {
+  @include create-pds-font-paragraph-02($font-weight-regular);
+  text-decoration: underline;
+}
+
+/* Paragraph 03 - 14px */
+@mixin create-pds-font-paragraph-03($font-weight) {
+  @include create-typography(14px, $font-weight, 18px);
+}
+@mixin pds-font-paragraph-03-regular {
+  @include create-pds-font-paragraph-03($font-weight-regular);
+}
+@mixin pds-font-paragraph-03-bold {
+  @include create-pds-font-paragraph-03($font-weight-bold);
+}
+@mixin pds-font-paragraph-03-semibold {
+  @include create-pds-font-paragraph-03($font-weight-semibold);
+}
+@mixin pds-font-paragraph-03-regular-underline {
+  @include create-pds-font-paragraph-03($font-weight-regular);
+  text-decoration: underline;
+}
+
+/* Caption - 12px */
+@mixin create-pds-font-caption($font-weight) {
+  @include create-typography(12px, $font-weight, 16px);
+}
+@mixin pds-font-caption-regular {
+  @include create-pds-font-caption($font-weight-regular);
+}
+@mixin pds-font-caption-bold {
+  @include create-pds-font-caption($font-weight-bold);
+}
+@mixin pds-font-caption-regular-uppercase {
+  @include create-pds-font-caption($font-weight-regular);
+  text-transform: uppercase;
+}
+
+/* Footer - 10px */
+@mixin create-pds-font-footer($font-weight) {
+  @include create-typography(10px, $font-weight, 14px);
+}
+@mixin pds-font-footer-regular {
+  @include create-pds-font-footer($font-weight-regular);
+}
+@mixin pds-font-footer-bold {
+  @include create-pds-font-footer($font-weight-bold);
+}
+@mixin pds-font-footer-regular-uppercase {
+  @include create-pds-font-footer($font-weight-regular);
+  text-transform: uppercase;
+}

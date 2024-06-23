@@ -4,7 +4,7 @@
     <div
       class="text-logo"
       [ngClass]="{
-        'hidden': [HeaderStatus.CreatePlayerOrViewGame, HeaderStatus.InsideTheGame].includes(status),
+        'hidden': [HeaderStatusEnum.CreatePlayerOrViewGame, HeaderStatusEnum.InsideTheGame].includes(status),
       }"
     >
       Crear partida
@@ -14,7 +14,7 @@
   <div
     class="section-title"
     [ngClass]="{
-      'hidden': [HeaderStatus.CreatePlayerOrViewGame, HeaderStatus.CreateGame].includes(status),
+      'hidden': [HeaderStatusEnum.CreatePlayerOrViewGame, HeaderStatusEnum.CreateGame].includes(status),
     }"
   >
     Sprint 32
@@ -23,20 +23,23 @@
   <div
     class="section-player"
     [ngClass]="{
-      'hidden': status === HeaderStatus.CreateGame,
+      'hidden': status === HeaderStatusEnum.CreateGame,
     }"
   >
     <div
       class="player-logo"
       [ngClass]="{
-        'hidden': status === HeaderStatus.CreatePlayerOrViewGame,
+        'hidden': status === HeaderStatusEnum.CreatePlayerOrViewGame,
       }"
     >
       LU
     </div>
 
-    <app-button-field [color]="ButtonFieldColor.DarkWhite" [variant]="ButtonFieldVariant.Secondary">
-      {{ status === HeaderStatus.CreatePlayerOrViewGame ? 'Compartir' : 'Invitar jugadores' }}
+    <app-button-field
+      [color]="ButtonFieldColorEnum.DarkWhite"
+      [variant]="ButtonFieldVariantEnum.Secondary"
+    >
+      {{ status === HeaderStatusEnum.CreatePlayerOrViewGame ? 'Compartir' : 'Invitar jugadores' }}
     </app-button-field>
   </div>
 </div>

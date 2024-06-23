@@ -1,24 +1,26 @@
 import { Component, Input } from '@angular/core';
-import { ButtonFieldSize } from '../../types/button-field-size.enum';
-import { ButtonFieldVariant } from '../../types/button-field-variant.enum';
-import { ButtonFieldIcon } from '../../types/button-field-icon.enum';
-import { ButtonFieldColor } from '../../types/button-field-color.enum';
+import {
+  ButtonFieldSizeEnum,
+  ButtonFieldVariantEnum,
+  ButtonFieldIconEnum,
+  ButtonFieldColorEnum,
+} from './types';
 
 @Component({
   selector: 'app-button-field',
   templateUrl: './button-field.component.html',
-  styleUrl: './button-field.component.scss'
+  styleUrl: './button-field.component.scss',
 })
 export class ButtonFieldComponent {
   @Input() disabled: HTMLButtonElement['disabled'] = false;
   @Input() type: HTMLButtonElement['type'] = 'button';
-  @Input() size: ButtonFieldSize = ButtonFieldSize.Medium;
-  @Input() variant: ButtonFieldVariant = ButtonFieldVariant.Primary;
-  @Input() icon: ButtonFieldIcon = ButtonFieldIcon.None;
-  @Input() color: ButtonFieldColor = ButtonFieldColor.DarkPurple;
+  @Input() size: ButtonFieldSizeEnum = ButtonFieldSizeEnum.Medium;
+  @Input() variant: ButtonFieldVariantEnum = ButtonFieldVariantEnum.Primary;
+  @Input() icon: ButtonFieldIconEnum = ButtonFieldIconEnum.None;
+  @Input() color: ButtonFieldColorEnum = ButtonFieldColorEnum.DarkPurple;
 
-  ButtonFieldSize = ButtonFieldSize;
-  ButtonFieldVariant = ButtonFieldVariant;
-  ButtonFieldIcon = ButtonFieldIcon;
-  ButtonFieldColor = ButtonFieldColor;
+  ButtonFieldSizeEnum = ButtonFieldSizeEnum;
+  ButtonFieldVariantEnum = ButtonFieldVariantEnum;
+  ButtonFieldIconEnum = ButtonFieldIconEnum;
+  ButtonFieldColorEnum = ButtonFieldColorEnum;
 }

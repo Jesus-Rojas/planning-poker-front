@@ -2,20 +2,20 @@
   [type]="type"
   [disabled]="disabled"
   [class]="{
-    'color-dark-purple': color === ButtonFieldColor.DarkPurple,
-    'color-dark-white': color === ButtonFieldColor.DarkWhite,
-    'color-ligth-purple': color === ButtonFieldColor.LigthPurple,
+    'color-dark-purple': color === ButtonFieldColorEnum.DarkPurple,
+    'color-dark-white': color === ButtonFieldColorEnum.DarkWhite,
+    'color-ligth-purple': color === ButtonFieldColorEnum.LigthPurple,
 
-    'size-medium': size === ButtonFieldSize.Medium,
-    'size-small': size === ButtonFieldSize.Small,
+    'size-medium': size === ButtonFieldSizeEnum.Medium,
+    'size-small': size === ButtonFieldSizeEnum.Small,
 
-    'variant-primary': variant === ButtonFieldVariant.Primary,
-    'variant-secondary': variant === ButtonFieldVariant.Secondary,
-    'variant-tertiary': variant === ButtonFieldVariant.Tertiary,
+    'variant-primary': variant === ButtonFieldVariantEnum.Primary,
+    'variant-secondary': variant === ButtonFieldVariantEnum.Secondary,
+    'variant-tertiary': variant === ButtonFieldVariantEnum.Tertiary,
 
-    'icon-none': icon === ButtonFieldIcon.None,
-    'icon-left': icon === ButtonFieldIcon.Left,
-    'icon-right': icon === ButtonFieldIcon.Right,
+    'icon-none': icon === ButtonFieldIconEnum.None,
+    'icon-left': icon === ButtonFieldIconEnum.Left,
+    'icon-right': icon === ButtonFieldIconEnum.Right,
   }"
 >
   <ng-content></ng-content>

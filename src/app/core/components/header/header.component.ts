@@ -12,8 +12,8 @@ import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '../../../design-sys
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  headerStatus: HeaderStatusEnum = HeaderStatusEnum.InsideTheGame;
-  avatarFieldVariant: AvatarFieldVariantEnum = AvatarFieldVariantEnum.Icon;
+  headerStatus: HeaderStatusEnum = HeaderStatusEnum.CreateGame;
+  avatarFieldVariant: AvatarFieldVariantEnum = AvatarFieldVariantEnum.TextPurpleLigth;
   avatarFieldSize: AvatarFieldSizeEnum = AvatarFieldSizeEnum.ExtraLarge;
 
   ButtonFieldColorEnum = ButtonFieldColorEnum;

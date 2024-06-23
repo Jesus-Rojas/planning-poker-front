@@ -11,7 +11,7 @@ export class AvatarFieldComponent {
   @Input() variant: AvatarFieldVariantEnum = AvatarFieldVariantEnum.TextPurple;
   @Input() text = 'LU';
   @Input() urlImage = '/images/avatar.jpeg';
-  icon = '/svgs/clock.svg';
+  @Input() icon = '/svgs/clock.svg';
 
   AvatarFieldSizeEnum = AvatarFieldSizeEnum;
   AvatarFieldVariantEnum = AvatarFieldVariantEnum;

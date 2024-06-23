@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '../avatar-field/types';
 
 @Component({
   selector: 'app-poker-chip',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './poker-chip.component.scss'
 })
 export class PokerChipComponent {
-
+  AvatarFieldSizeEnum = AvatarFieldSizeEnum;
+  AvatarFieldVariantEnum = AvatarFieldVariantEnum;
 }

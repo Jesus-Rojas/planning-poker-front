@@ -26,10 +26,9 @@
       'hidden': headerStatus === HeaderStatusEnum.CreateGame,
     }"
   >
-    @if (headerStatus !== HeaderStatusEnum.CreatePlayerOrViewGame) {
-    <!-- @if (headerStatus === HeaderStatusEnum.CreatePlayerOrViewGame) { -->
+    @if (headerStatus === HeaderStatusEnum.CreatePlayerOrViewGame) {
       <app-avatar-field
-        text="JREA"
+        text="LU"
         [variant]="avatarFieldVariant"
         [size]="avatarFieldSize"
       />

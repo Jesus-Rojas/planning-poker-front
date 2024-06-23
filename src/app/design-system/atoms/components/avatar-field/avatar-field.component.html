@@ -29,7 +29,7 @@
   }
 
   @if (variant === AvatarFieldVariantEnum.Icon) {
-    <img
+    <div
       class="icon"
       [ngClass]="{
         'size-small': size === AvatarFieldSizeEnum.Small,
@@ -37,8 +37,7 @@
         'size-large': size === AvatarFieldSizeEnum.Large,
         'size-extra-large': size === AvatarFieldSizeEnum.ExtraLarge,
       }"
-      [src]="icon"
-      alt="Not found icon"
-    >
+      [style.background-image]="'url(' + icon + ')'"
+    ></div>
   }
 </div>

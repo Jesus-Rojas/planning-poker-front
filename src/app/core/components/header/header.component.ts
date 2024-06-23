@@ -4,6 +4,7 @@ import {
   ButtonFieldColorEnum,
   ButtonFieldVariantEnum,
 } from '../../../design-system/atoms/components/button-field/types';
+import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '../../../design-system/atoms/components/avatar-field/types';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,13 @@ import {
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  status: HeaderStatusEnum = HeaderStatusEnum.InsideTheGame;
+  headerStatus: HeaderStatusEnum = HeaderStatusEnum.InsideTheGame;
+  avatarFieldVariant: AvatarFieldVariantEnum = AvatarFieldVariantEnum.Icon;
+  avatarFieldSize: AvatarFieldSizeEnum = AvatarFieldSizeEnum.ExtraLarge;
+
   ButtonFieldColorEnum = ButtonFieldColorEnum;
   ButtonFieldVariantEnum = ButtonFieldVariantEnum;
   HeaderStatusEnum = HeaderStatusEnum;
+  AvatarFieldVariantEnum = AvatarFieldVariantEnum;
+  AvatarFieldSizeEnum = AvatarFieldSizeEnum;
 }

@@ -1,0 +1,90 @@
+@use 'colors' as colors;
+@use 'typographies' as typographies;
+@use 'border-radius' as borderRadius;
+
+.avatar {
+  border-radius: borderRadius.$pds-border-radius-full;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+
+}
+
+.size-small {
+  @include typographies.pds-font-footer-bold;
+  width: 28px;
+  height: 28px;
+}
+
+.size-medium {
+  @include typographies.pds-font-paragraph-03-bold;
+  width: 36px;
+  height: 36px;
+}
+
+.size-large {
+  @include typographies.pds-font-heading-05-bold;
+  width: 56px;
+  height: 56px;
+}
+
+.size-extra-large {
+  @include typographies.pds-font-heading-04-bold;
+  width: 64px;
+  height: 64px;
+}
+
+.variant-icon {
+  background-size: cover;
+  position: relative;
+
+  .icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+
+    &.size-small {
+      width: 12px;
+      height: 12px;
+    }
+
+    &.size-medium {
+      width: 15.43px;
+      height: 15.43px;
+    }
+
+    &.size-large {
+      width: 24px;
+      height: 24px;
+    }
+
+    &.size-extra-large {
+      width: 27.43px;
+      height: 27.43px;
+    }
+  }
+}
+
+.variant-image {
+  background-size: cover;
+  box-shadow:
+    0px 12px 24px 0px colors.$pds-color-primary-purple-500-opacity-400,
+    0px 4px 24px 0px colors.$pds-color-primary-purple-500-opacity-240;
+}
+
+.variant-text-purple {
+  background-color: colors.$pds-color-primary-purple-500;
+  color: colors.$pds-color-white-50;
+}
+
+.variant-text-white {
+  background-color: colors.$pds-color-gray-50;
+  color: colors.$pds-color-primary-purple-700;
+}
+
+.variant-text-purple-ligth {
+  background-color: colors.$pds-color-primary-indigo-500;
+  color: colors.$pds-color-primary-purple-700;
+}

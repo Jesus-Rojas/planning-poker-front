@@ -1,0 +1,44 @@
+<div
+  class="avatar"
+  [ngClass]="{
+    'size-small': size === AvatarFieldSizeEnum.Small,
+    'size-medium': size === AvatarFieldSizeEnum.Medium,
+    'size-large': size === AvatarFieldSizeEnum.Large,
+    'size-extra-large': size === AvatarFieldSizeEnum.ExtraLarge,
+
+    'variant-icon': variant === AvatarFieldVariantEnum.Icon,
+    'variant-image': variant === AvatarFieldVariantEnum.Image,
+    'variant-text-purple': variant === AvatarFieldVariantEnum.TextPurple,
+    'variant-text-white': variant === AvatarFieldVariantEnum.TextWhite,
+    'variant-text-purple-ligth': variant === AvatarFieldVariantEnum.TextPurpleLigth,
+  }"
+  [style.background-image]="
+    [AvatarFieldVariantEnum.Icon, AvatarFieldVariantEnum.Image].includes(variant)
+      ? 'url(' + urlImage + ')'
+      : ''
+  "
+>
+  @if (
+    [
+      AvatarFieldVariantEnum.TextPurple,
+      AvatarFieldVariantEnum.TextWhite,
+      AvatarFieldVariantEnum.TextPurpleLigth,
+    ].includes(variant)
+  ) {
+    {{ text | slice: 0:2 }}
+  }
+
+  @if (variant === AvatarFieldVariantEnum.Icon) {
+    <img
+      class="icon"
+      [ngClass]="{
+        'size-small': size === AvatarFieldSizeEnum.Small,
+        'size-medium': size === AvatarFieldSizeEnum.Medium,
+        'size-large': size === AvatarFieldSizeEnum.Large,
+        'size-extra-large': size === AvatarFieldSizeEnum.ExtraLarge,
+      }"
+      [src]="icon"
+      alt="Not found icon"
+    >
+  }
+</div>

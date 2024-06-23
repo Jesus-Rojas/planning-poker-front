@@ -10,9 +10,15 @@ import { ButtonFieldColor } from '../../types/button-field-color.enum';
   styleUrl: './button-field.component.scss'
 })
 export class ButtonFieldComponent {
+  @Input() disabled: HTMLButtonElement['disabled'] = false;
   @Input() type: HTMLButtonElement['type'] = 'button';
   @Input() size: ButtonFieldSize = ButtonFieldSize.Medium;
   @Input() variant: ButtonFieldVariant = ButtonFieldVariant.Primary;
   @Input() icon: ButtonFieldIcon = ButtonFieldIcon.None;
   @Input() color: ButtonFieldColor = ButtonFieldColor.DarkPurple;
+
+  ButtonFieldSize = ButtonFieldSize;
+  ButtonFieldVariant = ButtonFieldVariant;
+  ButtonFieldIcon = ButtonFieldIcon;
+  ButtonFieldColor = ButtonFieldColor;
 }

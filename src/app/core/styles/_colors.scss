@@ -5,6 +5,7 @@ $pds-color-primary-purple-500: #6429CD;
 $pds-color-primary-purple-700: #330072;
 $pds-color-primary-purple-900: #1F0D3F;
 $pds-color-primary-purple-main: $pds-color-primary-purple-500;
+$pds-color-primary-purple-500-opacity-300: rgba($pds-color-primary-purple-500, 0.3);
 
 $pds-color-primary-gray-50: #D8D8D6;
 $pds-color-primary-gray-300: #75756D;
@@ -19,6 +20,7 @@ $pds-color-primary-indigo-500: #BDBDFF;
 $pds-color-primary-indigo-700: #8A8AFF;
 $pds-color-primary-indigo-900: #4646FF;
 $pds-color-primary-indigo-main: $pds-color-primary-indigo-500;
+$pds-color-primary-indigo-500-opacity-200: rgba($pds-color-primary-indigo-500, 0.2);
 
 /* Secondary Palette */
 $pds-color-secondary-fuchsia-50: #FDF9FF;
@@ -28,12 +30,12 @@ $pds-color-secondary-fuchsia-700: #DD52DD;
 $pds-color-secondary-fuchsia-900: #7500A0;
 $pds-color-secondary-fuchsia-main: $pds-color-secondary-fuchsia-500;
 
-$pds-color-secondary-purpel-50: #F0DCFF;
-$pds-color-secondary-purpel-300: #BB65FF;
-$pds-color-secondary-purpel-500: #9610FF;
-$pds-color-secondary-purpel-700: #440099;
-$pds-color-secondary-purpel-900: #150030;
-$pds-color-secondary-purpel-main: $pds-color-secondary-purpel-500;
+$pds-color-secondary-purple-50: #F0DCFF;
+$pds-color-secondary-purple-300: #BB65FF;
+$pds-color-secondary-purple-500: #9610FF;
+$pds-color-secondary-purple-700: #440099;
+$pds-color-secondary-purple-900: #150030;
+$pds-color-secondary-purple-main: $pds-color-secondary-purple-500;
 
 /* Tertiary Palette */
 $pds-color-tertiary-yellow-50: #FDECD0;
@@ -54,6 +56,10 @@ $pds-color-gray-600: #666669;
 $pds-color-gray-700: #4D4D4F;
 $pds-color-gray-800: #282829;
 $pds-color-gray-900: #0C0C0D;
+$pds-color-gray-50-opacity-200: rgba($pds-color-gray-50, 0.2);
+$pds-color-gray-50-opacity-800: rgba($pds-color-gray-50, 0.8);
+$pds-color-gray-400-opacity-300: rgba($pds-color-gray-400, 0.3);
+$pds-color-gray-400-opacity-600: rgba($pds-color-gray-400, 0.6);
 
 /* Success Action Colors */
 $pds-color-success-50: #D3F5EB;
@@ -82,3 +88,4 @@ $pds-color-error-main: $pds-color-error-500;
 /* Basic shades */
 $pds-color-white-50: #FFFFFF;
 $pds-color-black-300: #000000;
+$pds-color-transparent: transparent;

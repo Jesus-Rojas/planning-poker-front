@@ -3,10 +3,211 @@
 @use 'typographies' as typographies;
 
 button {
-  @include typographies.pds-font-paragraph-03-semibold;
-  border-radius: borderRadius.$pds-border-radius-full;
-  background-color: colors.$pds-color-primary-purple-500;
-  color: colors.$pds-color-gray-50;
-  padding: 12px 16px;
   border: none;
+  border-radius: borderRadius.$pds-border-radius-full;
+  padding: 12px 16px;
+  user-select: none;
+}
+
+.size-small {
+  @include typographies.pds-font-paragraph-03-semibold;
+}
+
+.size-medium {
+  @include typographies.pds-font-heading-06-semibold;
+}
+
+.variant-primary-disabled {
+  &:disabled {
+    background-color: colors.$pds-color-gray-400-opacity-300;
+    color: colors.$pds-color-gray-500;
+  }
+}
+
+.variant-secondary-disabled {
+  &:disabled {
+    border-color: colors.$pds-color-gray-400-opacity-600;
+    color: colors.$pds-color-gray-500;
+  }
+}
+
+.variant-tertiary-disabled {
+  &:disabled {
+    color: colors.$pds-color-gray-500;
+  }
+}
+
+.box-shadow-dark-purple {
+  box-shadow:
+    0px 0px 20px 0px colors.$pds-color-primary-indigo-500-opacity-200 inset,
+    0px 0px 15px 0px colors.$pds-color-primary-purple-500;
+}
+
+.color-dark-purple {
+  &.variant-primary {
+    background-color: colors.$pds-color-primary-purple-500;
+    color: colors.$pds-color-gray-50;
+
+    &:hover:not(:disabled) {
+      @extend .box-shadow-dark-purple;
+    }
+
+    &:active:not(:disabled) {
+      @extend .box-shadow-dark-purple;
+      background-color: colors.$pds-color-secondary-purple-700;
+    }
+
+    @extend .variant-primary-disabled;
+  }
+
+  &.variant-secondary {
+    background-color: colors.$pds-color-transparent;
+    border: 1px solid colors.$pds-color-primary-purple-500;
+    color: colors.$pds-color-gray-50;
+
+    &:hover:not(:disabled) {
+      @extend .box-shadow-dark-purple;
+      background-color: colors.$pds-color-primary-purple-700;
+    }
+
+    &:active:not(:disabled) {
+      @extend .box-shadow-dark-purple;
+      background-color: colors.$pds-color-primary-purple-500;
+    }
+
+    @extend .variant-secondary-disabled;
+  }
+
+  &.variant-tertiary {
+    background-color: colors.$pds-color-transparent;
+    color: colors.$pds-color-gray-50;
+
+    &:hover:not(:disabled) {
+      background-color: colors.$pds-color-primary-purple-700;
+    }
+
+    &:active:not(:disabled) {
+      background-color: colors.$pds-color-primary-purple-500;
+    }
+
+    @extend .variant-tertiary-disabled;
+  }
+}
+
+.box-shadow-dark-white {
+  box-shadow:
+    0px 0px 20px 0px colors.$pds-color-gray-50-opacity-200 inset,
+    0px 0px 15px 0px colors.$pds-color-gray-50-opacity-800;
+}
+
+.color-dark-white {
+  &.variant-primary {
+    background-color: colors.$pds-color-gray-50;
+    color: colors.$pds-color-primary-purple-500;
+
+    &:hover:not(:disabled) {
+      @extend .box-shadow-dark-white;
+    }
+
+    &:active:not(:disabled) {
+      @extend .box-shadow-dark-white;
+      background-color: colors.$pds-color-primary-indigo-500;
+    }
+
+    @extend .variant-primary-disabled;
+  }
+
+  &.variant-secondary {
+    background-color: colors.$pds-color-transparent;
+    border: 1px solid colors.$pds-color-gray-50;
+    color: colors.$pds-color-gray-50;
+
+    &:hover:not(:disabled) {
+      @extend .box-shadow-dark-white;
+      background-color: colors.$pds-color-gray-400-opacity-300;
+    }
+
+    &:active:not(:disabled) {
+      @extend .box-shadow-dark-white;
+      background-color: colors.$pds-color-white-50;
+      color: colors.$pds-color-primary-purple-500;
+    }
+
+    @extend .variant-secondary-disabled;
+  }
+
+  &.variant-tertiary {
+    background-color: colors.$pds-color-transparent;
+    color: colors.$pds-color-gray-50;
+
+    &:hover:not(:disabled) {
+      background-color: colors.$pds-color-gray-400-opacity-300;
+    }
+
+    &:active:not(:disabled) {
+      background-color: colors.$pds-color-gray-50;
+      color: colors.$pds-color-primary-purple-500;
+    }
+
+    @extend .variant-tertiary-disabled;
+  }
+}
+
+.box-shadow-ligth-purple {
+  box-shadow:
+    0px 0px 20px 0px colors.$pds-color-primary-indigo-500-opacity-200 inset,
+    0px 0px 15px 0px colors.$pds-color-primary-purple-500;
+}
+
+.color-ligth-purple {
+  &.variant-primary {
+    background-color: colors.$pds-color-primary-purple-500;
+    color: colors.$pds-color-gray-50;
+
+    &:hover:not(:disabled) {
+      @extend .box-shadow-ligth-purple;
+    }
+
+    &:active:not(:disabled) {
+      @extend .box-shadow-ligth-purple;
+      background-color: colors.$pds-color-secondary-purple-700;
+    }
+
+    @extend .variant-primary-disabled;
+  }
+
+  &.variant-secondary {
+    background-color: colors.$pds-color-transparent;
+    border: 1px solid colors.$pds-color-primary-purple-500;
+    color: colors.$pds-color-primary-purple-500;
+
+    &:hover:not(:disabled) {
+      @extend .box-shadow-ligth-purple;
+      background-color: colors.$pds-color-primary-purple-500-opacity-300;
+    }
+
+    &:active:not(:disabled) {
+      @extend .box-shadow-ligth-purple;
+      background-color: colors.$pds-color-primary-purple-500;
+      color: colors.$pds-color-white-50;
+    }
+
+    @extend .variant-secondary-disabled;
+  }
+
+  &.variant-tertiary {
+    background-color: colors.$pds-color-transparent;
+    color: colors.$pds-color-primary-purple-500;
+
+    &:hover:not(:disabled) {
+      background-color: colors.$pds-color-primary-purple-500-opacity-300;
+    }
+
+    &:active:not(:disabled) {
+      background-color: colors.$pds-color-primary-purple-500;
+      color: colors.$pds-color-white-50;
+    }
+
+    @extend .variant-tertiary-disabled;
+  }
 }

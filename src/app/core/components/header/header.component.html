@@ -34,7 +34,8 @@
     >
       LU
     </div>
-    <app-button-field>
+
+    <app-button-field [color]="ButtonFieldColor.DarkWhite" [variant]="ButtonFieldVariant.Secondary">
       {{ status === HeaderStatus.CreatePlayerOrViewGame ? 'Compartir' : 'Invitar jugadores' }}
     </app-button-field>
   </div>

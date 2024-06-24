@@ -1,0 +1,128 @@
+@use 'colors' as colors;
+@use 'typographies' as typographies;
+@use 'border-radius' as borderRadius;
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 292px;
+  row-gap: 8px;
+
+  .header-text {
+    @include typographies.pds-font-paragraph-03-bold;
+    color: colors.$pds-color-white-50;
+
+    &.disabled {
+      color: colors.$pds-color-gray-500;
+    }
+  }
+
+  .input-wrapper {
+    position: relative;
+
+    input {
+      @include typographies.pds-font-paragraph-03-regular;
+      background-color: colors.$pds-color-primary-purple-500-opacity-40;
+      border: 1px solid colors.$pds-color-primary-purple-500;
+      border-radius: borderRadius.$pds-border-radius-full;
+      color: colors.$pds-color-white-50;
+      width: 100%;
+      height: 40px;
+      padding: 8px 15px;
+      outline: none;
+
+      &::placeholder {
+        color: colors.$pds-color-gray-500;
+      }
+
+      &:focus {
+        box-shadow:
+          0px 0px 20px 0px colors.$pds-color-primary-indigo-500-opacity-200 inset,
+          0px 0px 15px 0px colors.$pds-color-primary-purple-500;
+      }
+
+      &:disabled {
+        background-color: colors.$pds-color-gray-400-opacity-80;
+        border-color: colors.$pds-color-gray-400-opacity-600;
+        color: colors.$pds-color-gray-500;
+      }
+
+      &:not([disabled]).is-invalid {
+        border-color: colors.$pds-color-error-500;
+        box-shadow: 0px 0px 10px 0px colors.$pds-color-error-500 inset;
+        background-color: colors.$pds-color-error-500-opacity-80;
+      }
+
+      &:not([disabled]).is-valid {
+        border-color: colors.$pds-color-success-500;
+        box-shadow: 0px 0px 10px 0px colors.$pds-color-success-500 inset;
+        background-color: colors.$pds-color-success-500-opacity-80;
+      }
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 4px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .description-text {
+    @include typographies.pds-font-footer-regular;
+    color: colors.$pds-color-white-50;
+    display: flex;
+
+    &.disabled {
+      color: colors.$pds-color-gray-500;
+
+      i-feather {
+        display: none;
+      }
+    }
+
+    &:not(.disabled).is-invalid {
+      color: colors.$pds-color-error-300;
+    }
+
+    &:not(.is-invalid) {
+      .icon-is-invalid {
+        display: none;
+      }
+    }
+
+    &:not(.disabled).is-valid {
+      color: colors.$pds-color-success-500;
+    }
+
+    &:not(.is-valid) {
+      .icon-is-valid {
+        display: none;
+      }
+    }
+
+    .icon-is-valid {
+      border: 1px solid currentColor;
+      border-radius: borderRadius.$pds-border-radius-full;
+      padding: 2px;
+      display: inline-flex;
+    }
+
+
+    i-feather {
+      width: 14px;
+      height: 14px;
+      margin-right: 8px;
+    }
+
+    span {
+      padding-top: 1px;
+      display: block;
+    }
+  }
+}

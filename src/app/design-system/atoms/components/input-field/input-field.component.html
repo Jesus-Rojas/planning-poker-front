@@ -1,0 +1,36 @@
+<div class="container">
+  @if (headerText) {
+    <div class="header-text" [ngClass]="{ disabled }">{{ headerText }}</div>
+  }
+
+  <div class="input-wrapper">
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [value]="value"
+      [disabled]="disabled"
+      [ngClass]="{
+        'is-invalid': isInvalid,
+        'is-valid': isValid,
+      }"
+      (input)="onInput($event)"
+    >
+
+    <div class="input-icon"></div>
+  </div>
+
+  @if (descriptionText) {
+    <div
+      class="description-text"
+      [ngClass]="{
+        disabled,
+        'is-invalid': isInvalid,
+        'is-valid': isValid
+      }"
+    >
+      <i-feather name="alert-triangle" class="icon-is-invalid" />
+      <i-feather name="check" class="icon-is-valid" />
+      <span>{{ descriptionText }}</span>
+    </div>
+  }
+</div>

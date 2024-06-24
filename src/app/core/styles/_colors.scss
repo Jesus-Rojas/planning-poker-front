@@ -5,6 +5,7 @@ $pds-color-primary-purple-500: #6429CD;
 $pds-color-primary-purple-700: #330072;
 $pds-color-primary-purple-900: #1F0D3F;
 $pds-color-primary-purple-main: $pds-color-primary-purple-500;
+$pds-color-primary-purple-500-opacity-40: rgba($pds-color-primary-purple-500, 0.04);
 $pds-color-primary-purple-500-opacity-240: rgba($pds-color-primary-purple-500, 0.24);
 $pds-color-primary-purple-500-opacity-300: rgba($pds-color-primary-purple-500, 0.3);
 $pds-color-primary-purple-500-opacity-400: rgba($pds-color-primary-purple-500, 0.4);
@@ -60,7 +61,9 @@ $pds-color-gray-800: #282829;
 $pds-color-gray-900: #0C0C0D;
 $pds-color-gray-50-opacity-200: rgba($pds-color-gray-50, 0.2);
 $pds-color-gray-50-opacity-800: rgba($pds-color-gray-50, 0.8);
+$pds-color-gray-400-opacity-80: rgba($pds-color-gray-400, 0.08);
 $pds-color-gray-400-opacity-300: rgba($pds-color-gray-400, 0.3);
+$pds-color-gray-400-opacity-400: rgba($pds-color-gray-400, 0.4);
 $pds-color-gray-400-opacity-600: rgba($pds-color-gray-400, 0.6);
 
 /* Success Action Colors */
@@ -70,6 +73,7 @@ $pds-color-success-500: #00ECA5;
 $pds-color-success-700: #00B880;
 $pds-color-success-900: #006B4B;
 $pds-color-success-main: $pds-color-success-500;
+$pds-color-success-500-opacity-80: rgba($pds-color-success-500, 0.08);
 
 /* Warning Action Colors */
 $pds-color-warning-50: #FFEEB3;
@@ -86,6 +90,7 @@ $pds-color-error-500: #ED0039;
 $pds-color-error-700: #B8002C;
 $pds-color-error-900: #660019;
 $pds-color-error-main: $pds-color-error-500;
+$pds-color-error-500-opacity-80: rgba($pds-color-error-500, 0.08);
 
 /* Basic shades */
 $pds-color-white-50: #FFFFFF;

@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class CreateGameComponent {
   showLoader = false;
+  gameName: string | null = '';
 
   ngOnInit() {
     // setTimeout(() => (this.showLoader = !this.showLoader), 3000);

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-page',
@@ -6,5 +7,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './page.component.scss'
 })
 export class PageComponent {
-  @Input() showHeader = true;
+  constructor(
+    private loaderService: LoaderService
+  ) { }
+
+  $isLoading = this.loaderService.$isLoading;
 }

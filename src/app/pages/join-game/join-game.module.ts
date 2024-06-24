@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { JoinGameRoutingModule } from './join-game-routing.module';
 import { JoinGameComponent } from './join-game.component';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { JoinGameComponent } from './join-game.component';
   ],
   imports: [
     CommonModule,
+    CoreModule,
     JoinGameRoutingModule,
   ]
 })

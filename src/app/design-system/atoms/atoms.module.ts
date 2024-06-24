@@ -9,8 +9,8 @@ import { PokerChipComponent } from './components/poker-chip/poker-chip.component
 import { SelectFieldComponent } from './components/select-field/select-field.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
 
-const featherIconsFiltered = (['AlertTriangle', 'Check'] as (keyof typeof allIcons)[])
-  .reduce((acc, curr) => ({ ...acc, [curr]: allIcons[curr] }), { });
+const iconNames: (keyof typeof allIcons)[] = ['AlertTriangle', 'Check'];
+const iconsFiltered = iconNames.reduce((acc, iconName) => ({ ...acc, [iconName]: allIcons[iconName] }), { });
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ const featherIconsFiltered = (['AlertTriangle', 'Check'] as (keyof typeof allIco
   ],
   imports: [
     CommonModule,
-    FeatherModule.pick(featherIconsFiltered)
+    FeatherModule.pick(iconsFiltered)
   ],
   exports: [
     AvatarFieldComponent,

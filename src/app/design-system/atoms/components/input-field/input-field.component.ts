@@ -9,15 +9,14 @@ import { InputFieldVariantEnum } from './types';
 export class InputFieldComponent {
   @Input() headerText = '';
   @Input() placeholder = '';
-  @Input() value: string | null = '';
+  @Input() value = '';
   @Input() type = 'text';
   @Input() disabled = false;
   @Input() descriptionText = '';
   @Input() variant: InputFieldVariantEnum.Dark = InputFieldVariantEnum.Dark;
-  @Output() valueChange = new EventEmitter<string | null>();
-
-  isInvalid = false;
-  isValid = false;
+  @Input() isInvalid = false;
+  @Input() isValid = false;
+  @Output() valueChange = new EventEmitter<string>();
 
   onInput(event: Event) {
     this.value = (event.target as HTMLInputElement).value;

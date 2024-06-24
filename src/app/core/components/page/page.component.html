@@ -1,4 +1,10 @@
 <div class="container">
-  <app-header *ngIf="showHeader"></app-header>
-  <ng-content></ng-content>
+  @if ($isLoading | async) {
+    <app-loader />
+  }
+
+  @if (!($isLoading | async)) {
+    <app-header />
+    <ng-content></ng-content>
+  }
 </div>

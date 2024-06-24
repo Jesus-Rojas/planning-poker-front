@@ -4,7 +4,7 @@ import { JoinGameComponent } from './join-game.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':gameUuid',
     component: JoinGameComponent,
   },
 ];

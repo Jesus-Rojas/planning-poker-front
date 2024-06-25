@@ -76,6 +76,8 @@ $pds-color-success-700: #00B880;
 $pds-color-success-900: #006B4B;
 $pds-color-success-main: $pds-color-success-500;
 $pds-color-success-500-opacity-80: rgba($pds-color-success-500, 0.08);
+$pds-color-success-500-opacity-400: rgba($pds-color-success-500, 0.4);
+$pds-color-success-500-opacity-600: rgba($pds-color-success-500, 0.6);
 
 /* Warning Action Colors */
 $pds-color-warning-50: #FFEEB3;
@@ -84,6 +86,8 @@ $pds-color-warning-500: #FFCA10;
 $pds-color-warning-700: #DBAB00;
 $pds-color-warning-900: #997700;
 $pds-color-warning-main: $pds-color-warning-500;
+$pds-color-warning-500-opacity-400: rgba($pds-color-warning-500, 0.4);
+$pds-color-warning-500-opacity-600: rgba($pds-color-warning-500, 0.6);
 
 /* Error Action Colors */
 $pds-color-error-50: #FFB8C9;
@@ -93,6 +97,8 @@ $pds-color-error-700: #B8002C;
 $pds-color-error-900: #660019;
 $pds-color-error-main: $pds-color-error-500;
 $pds-color-error-500-opacity-80: rgba($pds-color-error-500, 0.08);
+$pds-color-error-300-opacity-400: rgba($pds-color-error-300, 0.4);
+$pds-color-error-300-opacity-600: rgba($pds-color-error-300, 0.6);
 
 /* Basic shades */
 $pds-color-white-50: #FFFFFF;

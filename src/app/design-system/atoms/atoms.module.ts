@@ -1,7 +1,6 @@
-import { NgModule, forwardRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
-import { allIcons } from 'angular-feather/icons';
 
 import { AvatarFieldComponent } from './components/avatar-field/avatar-field.component';
 import { ButtonFieldComponent } from './components/button-field/button-field.component';
@@ -10,9 +9,7 @@ import { SelectFieldComponent } from './components/select-field/select-field.com
 import { InputFieldComponent } from './components/input-field/input-field.component';
 import { RadioButtonFieldComponent } from './components/radio-button-field/radio-button-field.component';
 import { FormsModule } from '@angular/forms';
-
-const iconNames: (keyof typeof allIcons)[] = ['AlertTriangle', 'Check'];
-const iconsFiltered = iconNames.reduce((acc, iconName) => ({ ...acc, [iconName]: allIcons[iconName] }), { });
+import { getFeatherIcons } from '@shared/utils';
 
 @NgModule({
   declarations: [
@@ -25,7 +22,7 @@ const iconsFiltered = iconNames.reduce((acc, iconName) => ({ ...acc, [iconName]:
   ],
   imports: [
     CommonModule,
-    FeatherModule.pick(iconsFiltered),
+    FeatherModule.pick(getFeatherIcons(['AlertTriangle', 'Check'])),
     FormsModule,
   ],
   exports: [

@@ -1,0 +1,10 @@
+<label class="radio-container">
+  <input
+    type="radio"
+    [name]="name"
+    [value]="value"
+    (change)="onOptionChange()"
+    [(ngModel)]="selectedOption"
+  >
+  <span class="checkmark"></span>
+</label>

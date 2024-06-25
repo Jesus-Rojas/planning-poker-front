@@ -6,6 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageComponent } from './components/page/page.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderService } from './services/loader.service';
+import { HeaderService } from './services/header.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoaderService } from './services/loader.service';
   ],
   providers: [
     LoaderService,
+    HeaderService,
   ],
   exports: [
     HeaderComponent,

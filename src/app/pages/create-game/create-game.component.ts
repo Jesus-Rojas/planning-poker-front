@@ -21,8 +21,9 @@ export class CreateGameComponent implements OnDestroy {
     private localStorageService: LocalStorageService
   ) { }
 
+  private subscription = new Subscription();
+
   isLoading = false;
-  subscriptions = new Subscription();
   gameName = '';
   ButtonFieldColorEnum = ButtonFieldColorEnum;
 
@@ -42,7 +43,7 @@ export class CreateGameComponent implements OnDestroy {
       }
     );
 
-    this.subscriptions.add(subscriptionGameService);
+    this.subscription.add(subscriptionGameService);
   }
 
   get validateGameName() {
@@ -61,13 +62,13 @@ export class CreateGameComponent implements OnDestroy {
 
   ngOnInit() {
     const subscriptionIsLoading = this.loaderService
-      .$isLoading
+      .isLoading$
       .subscribe((isLoading) => (this.isLoading = isLoading));
 
-    this.subscriptions.add(subscriptionIsLoading);
+    this.subscription.add(subscriptionIsLoading);
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

@@ -1,9 +1,9 @@
 <div class="container">
-  @if ($isLoading | async) {
+  @if (loaderService.isLoading$ | async) {
     <app-loader />
   }
 
-  @if (!($isLoading | async)) {
+  @if (!(loaderService.isLoading$ | async)) {
     <app-header />
     <ng-content></ng-content>
   }

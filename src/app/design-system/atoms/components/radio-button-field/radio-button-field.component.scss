@@ -1,0 +1,83 @@
+@use 'border-radius' as borderRadius;
+@use 'colors' as colors;
+
+.box-shadow {
+  box-shadow:
+    0px 0px 6px 0px colors.$pds-color-primary-indigo-500-opacity-600 inset,
+    0px 5px 10px 0px colors.$pds-color-primary-purple-500-opacity-600,
+    0px 4px 4px 0px colors.$pds-color-primary-purple-500-opacity-240;
+}
+
+.border-radius {
+  border-radius: borderRadius.$pds-border-radius-full;
+}
+
+.radio-container {
+  --size-input: 24px;
+  display: inline-block;
+  position: relative;
+  padding-left: var(--size-input);
+  font-size: 16px;
+  user-select: none;
+  display: flex;
+  width: var(--size-input);
+  height: var(--size-input);
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    margin: 0;
+    width: calc(var(--size-input) - 1);
+    height: calc(var(--size-input) - 1);
+    @extend .border-radius;
+
+    &:checked ~ .checkmark {
+      &:after {
+        display: block;
+      }
+    }
+
+    &:disabled ~ .checkmark {
+      background-color: colors.$pds-color-gray-400-opacity-300;
+      border-color: colors.$pds-color-gray-400-opacity-600;
+      cursor: default;
+
+      &:after {
+        background-color: colors.$pds-color-gray-400-opacity-600;
+        box-shadow: none;
+      }
+    }
+
+    &:not(:disabled):hover ~ .checkmark {
+      @extend .box-shadow;
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--size-input);
+    height: var(--size-input);
+    background-color: colors.$pds-color-primary-purple-500-opacity-300;
+    border: 1px solid colors.$pds-color-primary-purple-500;
+    cursor: pointer;
+    @extend .border-radius;
+
+    &:after {
+      --size-circle-checked: calc(var(--size-input) / 2);
+      display: none;
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: var(--size-circle-checked);
+      height: var(--size-circle-checked);
+      background-color: colors.$pds-color-primary-purple-500;
+      @extend .box-shadow;
+      @extend .border-radius;
+    }
+  }
+}

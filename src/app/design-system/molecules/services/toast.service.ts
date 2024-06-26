@@ -1,26 +1,30 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ToastMessage, ToastType, ToastVariant } from '../components/toast/types';
+import { getId } from '@shared/utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastService {
-  private toastId = 0;
+
   private messagesSubject = new BehaviorSubject<ToastMessage[]>([]);
+  private timeouts = new Map<string, NodeJS.Timeout>();
   messages$ = this.messagesSubject.asObservable();
 
   showToast(optionsToast: Omit<ToastMessage, 'id'>) {
-    const toastId = ++this.toastId;
+    const toastId = getId();
     this.messagesSubject.next([
       ...this.messagesSubject.value,
-      { ...optionsToast, id: toastId }
+      { ...optionsToast, id: toastId },
     ]);
-
-    setTimeout(() => (this.removeToast(toastId)), 3000);
+    const timeout = setTimeout(() => this.removeToast(toastId), 3000);
+    this.timeouts.set(toastId, timeout);
   }
 
-  removeToast(toastId: number) {
+  removeToast(toastId: ToastMessage['id']) {
+    clearTimeout(this.timeouts.get(toastId));
+    this.timeouts.delete(toastId);
     this.messagesSubject.next(
       this.messagesSubject.value.filter((messageSubject) => (messageSubject.id !== toastId))
     );

@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { RoutePathEnum } from '../types/route-path.enum';
+import { ToastService } from '@design-system/molecules/services/toast.service';
 
 @Component({
   selector: 'app-create-game',
@@ -18,8 +19,10 @@ export class CreateGameComponent implements OnDestroy {
     private loaderService: LoaderService,
     private gameService: GameService,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private toastService: ToastService,
   ) { }
+
 
   private subscription = new Subscription();
 
@@ -38,7 +41,10 @@ export class CreateGameComponent implements OnDestroy {
           this.localStorageService.updateGame(gameUuid);
           this.router.navigate([RoutePathEnum.JoinGame, gameUuid]);
         },
-        error: () => (this.loaderService.hideLoader()),
+        error: () => {
+          this.toastService.showErrorToast('Error', 'An error occurred while creating the game.');
+          this.loaderService.hideLoader();
+        },
         complete: () => (this.loaderService.hideLoader()),
       }
     );

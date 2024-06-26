@@ -1,5 +1,5 @@
 <div class="container">
-  @for (toastMessage of toastMessages; track toastMessage) {
+  @for (toastMessage of toastService.messages$ | async; track toastMessage.id) {
     <div
       class="toast"
       [ngClass]="{
@@ -85,7 +85,7 @@
           'alert': toastMessage.variant === ToastVariant.Alert,
           'information': toastMessage.variant === ToastVariant.Information,
         }"
-        (click)="removeToast(toastMessage.id)"
+        (click)="toastService.removeToast(toastMessage.id)"
       />
     </div>
   }

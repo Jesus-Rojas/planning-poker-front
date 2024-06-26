@@ -1,10 +1,19 @@
+@use 'colors' as colors;
+
 .container {
   width: 100%;
   height: 100vh;
   z-index: 100;
   position: fixed;
+  top: 0;
+  left: 0;
   display: grid;
   place-content: center;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    colors.$pds-color-primary-purple-700 0%,
+    colors.$pds-color-primary-purple-900-opacity-980 100%
+  );
 
   .content {
     display: flex;
@@ -15,4 +24,3 @@
     pointer-events: none;
   }
 }
-

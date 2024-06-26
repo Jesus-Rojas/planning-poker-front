@@ -34,6 +34,7 @@ export class CreateGameComponent implements OnDestroy {
     if (!this.isValidGameName) return;
 
     this.loaderService.showLoader();
+
     const subscriptionGameService = this.gameService
       .createGame(this.gameName)
       .subscribe({

@@ -7,6 +7,7 @@ import {
 import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atoms/components/avatar-field/types';
 import { HeaderService } from '@core/services/header.service';
 import { Subscription } from 'rxjs';
+import { LoaderService } from '@core/services/loader.service';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ import { Subscription } from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private headerService: HeaderService,
+    public loaderService: LoaderService,
   ) { }
 
   private subscription: Subscription = new Subscription();
@@ -29,7 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   HeaderStatusEnum = HeaderStatusEnum;
   AvatarFieldVariantEnum = AvatarFieldVariantEnum;
   AvatarFieldSizeEnum = AvatarFieldSizeEnum;
-
 
   ngOnInit(): void {
     const headerStatusSubscription = this.headerService

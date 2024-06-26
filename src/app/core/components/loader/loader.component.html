@@ -1,6 +1,8 @@
-<div class="container">
-  <div class="content">
-    <app-poker-chip />
-    <img src="/svgs/pragma-logo.svg" alt="">
+@if(loaderService.isLoading$ | async) {
+  <div class="container">
+    <div class="content">
+      <app-poker-chip />
+      <img src="/svgs/pragma-logo.svg" alt="">
+    </div>
   </div>
-</div>
+}

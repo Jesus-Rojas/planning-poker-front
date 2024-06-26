@@ -6,6 +6,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class HeaderService {
-  headerStatusSubject = new BehaviorSubject<HeaderStatusEnum>(HeaderStatusEnum.CreateGame);
+  private headerStatusSubject = new BehaviorSubject<HeaderStatusEnum>(HeaderStatusEnum.CreateGame);
   headerStatus$ = this.headerStatusSubject.asObservable();
+
+  updateHeaderStatus(headerStatus: HeaderStatusEnum) {
+    this.headerStatusSubject.next(headerStatus);
+  }
 }

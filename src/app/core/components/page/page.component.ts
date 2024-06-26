@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-page',
@@ -7,5 +6,4 @@ import { LoaderService } from '../../services/loader.service';
   styleUrl: './page.component.scss'
 })
 export class PageComponent {
-  constructor(public loaderService: LoaderService) { }
 }

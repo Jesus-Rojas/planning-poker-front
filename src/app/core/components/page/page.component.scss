@@ -1,9 +1,15 @@
+@use 'colors' as colors;
+
 .container {
   min-width: 100%;
   min-height: 100vh;
   background: radial-gradient(
     50% 50% at 50% 50%,
-    #330072 0%,
-    rgba(31, 13, 63, 0.98) 100%
+    colors.$pds-color-primary-purple-700 0%,
+    colors.$pds-color-primary-purple-900-opacity-980 100%
   );
+}
+
+.hidden {
+  visibility: hidden;
 }

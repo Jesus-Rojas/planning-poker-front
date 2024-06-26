@@ -1,13 +1,6 @@
 <div class="container">
-  @if (loaderService.isLoading$ | async) {
-    <app-loader />
-  }
-
-  @if (!(loaderService.isLoading$ | async)) {
-    <app-header />
-  }
-
+  <app-loader />
+  <app-header />
   <app-toast />
-
   <router-outlet />
 </div>

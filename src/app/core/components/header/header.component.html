@@ -1,4 +1,7 @@
-<div class="container">
+<div
+  class="container"
+  [ngClass]="{ hidden: (loaderService.isLoading$ | async) }"
+>
   <div class="section-logo">
     <app-poker-chip />
     <div

@@ -64,7 +64,7 @@ export class JoinGameComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.headerService.headerStatusSubject.next(HeaderStatusEnum.CreatePlayerOrViewGame);
+    this.headerService.updateHeaderStatus(HeaderStatusEnum.CreatePlayerOrViewGame);
     this.localStorageService.removeGame();
 
     const paramMapSubscription = this.activatedRoute.paramMap.subscribe((params) => {

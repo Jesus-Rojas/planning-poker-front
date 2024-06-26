@@ -1,8 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
 
 import { ToastService } from '@design-system/molecules/services/toast.service';
-import { ToastMessage, ToastType, ToastVariant } from './types';
+import { ToastType, ToastVariant } from './types';
 
 @Component({
   selector: 'app-toast',

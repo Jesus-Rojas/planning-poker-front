@@ -7,7 +7,6 @@ import { getId } from '@shared/utils';
   providedIn: 'root'
 })
 export class ToastService {
-
   private messagesSubject = new BehaviorSubject<ToastMessage[]>([]);
   private timeouts = new Map<string, NodeJS.Timeout>();
   messages$ = this.messagesSubject.asObservable();

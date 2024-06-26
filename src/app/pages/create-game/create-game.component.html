@@ -1,16 +1,13 @@
-<app-page>
-  <div class="container">
-    <app-input-field
-      headerText="Nombra la partida"
-      [(value)]="gameName"
-      [isValid]="isValidGameName"
-      [isInvalid]="isInvalidGameName"
-    />
-    <app-button-field
-      [disabled]="!gameName || isLoading"
-      [color]="ButtonFieldColorEnum.DarkWhite"
-      (click)="createGame()"
-    >Crear partida</app-button-field>
-    <app-toast />
-  </div>
-</app-page>
+<div class="container">
+  <app-input-field
+    headerText="Nombra la partida"
+    [(value)]="gameName"
+    [isValid]="isValidGameName"
+    [isInvalid]="isInvalidGameName"
+  />
+  <app-button-field
+    [disabled]="!gameName || isLoading"
+    [color]="ButtonFieldColorEnum.DarkWhite"
+    (click)="createGame()"
+  >Crear partida</app-button-field>
+</div>

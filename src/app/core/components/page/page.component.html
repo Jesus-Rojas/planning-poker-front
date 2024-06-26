@@ -5,6 +5,9 @@
 
   @if (!(loaderService.isLoading$ | async)) {
     <app-header />
-    <ng-content></ng-content>
   }
+
+  <app-toast />
+
+  <router-outlet />
 </div>

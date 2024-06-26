@@ -7,6 +7,7 @@ import { PageComponent } from './components/page/page.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderService } from './services/loader.service';
 import { HeaderService } from './services/header.service';
+import { RouterOutlet } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HeaderService } from './services/header.service';
   imports: [
     CommonModule,
     DesignSystemModule,
+    RouterOutlet,
   ],
   providers: [
     LoaderService,

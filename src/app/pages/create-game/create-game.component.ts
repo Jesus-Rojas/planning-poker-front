@@ -6,7 +6,7 @@ import { GameService } from '@shared/services/game.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '@shared/services/local-storage.service';
-import { RoutePathEnum } from '../types/route-path.enum';
+import { RoutePathEnum } from '../../shared/types/route-path.enum';
 import { ToastService } from '@design-system/molecules/services/toast.service';
 
 @Component({

@@ -1,12 +1,12 @@
 <div class="container">
   <div class="top">
-    @for (pokerCard of pokerCards.top; track pokerCard.value) {
+    @for (pokerCard of tablePositionCard[TablePosition.TOP]; track pokerCard.id) {
       <app-poker-card />
     }
   </div>
 
   <div class="left">
-    @for (pokerCard of pokerCards.left; track pokerCard.value) {
+    @for (pokerCard of tablePositionCard[TablePosition.LEFT]; track pokerCard.id) {
       <app-poker-card />
     }
   </div>
@@ -20,13 +20,13 @@
   </div>
 
   <div class="right">
-    @for (pokerCard of pokerCards.right; track pokerCard.value) {
+    @for (pokerCard of tablePositionCard[TablePosition.RIGHT]; track pokerCard.id) {
       <app-poker-card />
     }
   </div>
 
   <div class="bottom">
-    @for (pokerCard of pokerCards.bottom; track pokerCard.value) {
+    @for (pokerCard of tablePositionCard[TablePosition.BOTTOM]; track pokerCard.id) {
       <app-poker-card />
     }
   </div>

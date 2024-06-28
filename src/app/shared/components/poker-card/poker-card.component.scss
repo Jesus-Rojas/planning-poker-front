@@ -1,0 +1,25 @@
+@use 'border-radius' as borderRadius;
+@use 'colors' as colors;
+
+.container {
+  display: inline-flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+  max-width: 40px;
+
+  .card {
+    width: 35px;
+    height: 60px;
+    border: 1px solid colors.$pds-color-secondary-purple-300;
+    border-radius: borderRadius.$pds-border-radius-m;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow:
+        0px 0px 6px 0px colors.$pds-color-primary-indigo-500-opacity-600 inset,
+        0px 5px 10px 0px colors.$pds-color-primary-purple-500-opacity-600;
+    }
+  }
+}

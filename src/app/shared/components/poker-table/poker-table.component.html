@@ -1,6 +1,16 @@
 <div class="container">
-  <div class="top">Top</div>
-  <div class="left">Left</div>
+  <div class="top">
+    @for (pokerCard of pokerCards.top; track pokerCard.value) {
+      <app-poker-card />
+    }
+  </div>
+
+  <div class="left">
+    @for (pokerCard of pokerCards.left; track pokerCard.value) {
+      <app-poker-card />
+    }
+  </div>
+
   <div class="center">
     <div class="container-poker-table">
       <div class="poker-table">
@@ -8,6 +18,16 @@
       </div>
     </div>
   </div>
-  <div class="right">Right</div>
-  <div class="bottom">Bottom</div>
+
+  <div class="right">
+    @for (pokerCard of pokerCards.right; track pokerCard.value) {
+      <app-poker-card />
+    }
+  </div>
+
+  <div class="bottom">
+    @for (pokerCard of pokerCards.bottom; track pokerCard.value) {
+      <app-poker-card />
+    }
+  </div>
 </div>

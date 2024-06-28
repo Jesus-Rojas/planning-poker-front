@@ -9,8 +9,11 @@ import { ToastType, ToastVariant } from './types';
 })
 export class ToastComponent {
   private _variant = ToastVariant.Success;
+  private _type = ToastType.Standard;
+
   classVariant = '';
   toastIcon = '';
+  isTypeStandardWithActions = false;
 
   @Input()
   set variant(variant: ToastVariant) {
@@ -38,13 +41,19 @@ export class ToastComponent {
     return this._variant;
   }
 
+  @Input()
+  set type(type: ToastType) {
+    this._type = type;
+    this.isTypeStandardWithActions = type === ToastType.StandardWithActions;
+  }
+
+  get type() {
+    return this._type;
+  }
+
   @Input() body = '';
   @Input() title = '';
-  @Input() type = ToastType.Standard;
   @Output() close = new EventEmitter<void>();
-
-  ToastVariant = ToastVariant;
-  ToastType = ToastType;
 
   closeToast() {
     this.close.emit();

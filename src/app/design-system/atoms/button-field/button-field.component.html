@@ -1,22 +1,7 @@
 <button
   [type]="type"
   [disabled]="disabled"
-  [ngClass]="{
-    'color-dark-purple': color === ButtonFieldColorEnum.DarkPurple,
-    'color-dark-white': color === ButtonFieldColorEnum.DarkWhite,
-    'color-ligth-purple': color === ButtonFieldColorEnum.LigthPurple,
-
-    'size-medium': size === ButtonFieldSizeEnum.Medium,
-    'size-small': size === ButtonFieldSizeEnum.Small,
-
-    'variant-primary': variant === ButtonFieldVariantEnum.Primary,
-    'variant-secondary': variant === ButtonFieldVariantEnum.Secondary,
-    'variant-tertiary': variant === ButtonFieldVariantEnum.Tertiary,
-
-    'icon-none': icon === ButtonFieldIconEnum.None,
-    'icon-left': icon === ButtonFieldIconEnum.Left,
-    'icon-right': icon === ButtonFieldIconEnum.Right,
-  }"
+  [ngClass]="[classColor, classSize, classVariant, classIcon]"
 >
   <ng-content></ng-content>
 </button>

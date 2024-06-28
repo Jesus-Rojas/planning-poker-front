@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from './types';
 
 @Component({
@@ -6,11 +6,12 @@ import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from './types';
   templateUrl: './avatar-field.component.html',
   styleUrl: './avatar-field.component.scss'
 })
-export class AvatarFieldComponent {
-  private _variant = AvatarFieldVariantEnum.TextPurple;
-  private _size = AvatarFieldSizeEnum.Small;
-  private _urlImage = '/images/avatar.jpeg';
-  private _icon = '/svgs/clock.svg';
+export class AvatarFieldComponent implements OnInit, OnChanges {
+  @Input() variant = AvatarFieldVariantEnum.TextPurple;
+  @Input() size = AvatarFieldSizeEnum.Small;
+  @Input() icon = '/svgs/clock.svg';
+  @Input() urlImage = '/images/avatar.jpeg';
+  @Input() text = 'LU';
 
   classVariant = '';
   classSize = '';
@@ -19,10 +20,7 @@ export class AvatarFieldComponent {
   isVariantText = false;
   isVariantIcon = false;
 
-  @Input()
-  set variant(variant: AvatarFieldVariantEnum) {
-    this._variant = variant;
-
+  updateClassVariant() {
     const classes = {
       [AvatarFieldVariantEnum.Icon]: 'variant-icon',
       [AvatarFieldVariantEnum.Image]: 'variant-image',
@@ -30,60 +28,68 @@ export class AvatarFieldComponent {
       [AvatarFieldVariantEnum.TextWhite]: 'variant-text-white',
       [AvatarFieldVariantEnum.TextPurpleLigth]: 'variant-text-purple-ligth',
     };
-    this.classVariant = classes[variant];
+    this.classVariant = classes[this.variant];
+  }
 
+  updateIsVariantIcon() {
+    this.isVariantIcon = this.variant === AvatarFieldVariantEnum.Icon;
+  }
+
+  updateIsVariantText() {
     this.isVariantText = [
       AvatarFieldVariantEnum.TextPurple,
       AvatarFieldVariantEnum.TextWhite,
       AvatarFieldVariantEnum.TextPurpleLigth,
-    ].includes(variant)
-
-    this.isVariantIcon = variant === AvatarFieldVariantEnum.Icon;
+    ].includes(this.variant)
   }
 
-  get variant() {
-    return this._variant;
-  }
-
-  @Input()
-  set size(size: AvatarFieldSizeEnum) {
-    this._size = size;
+  updateClassSize() {
     const classes = {
       [AvatarFieldSizeEnum.Small]: 'size-small',
       [AvatarFieldSizeEnum.Medium]: 'size-medium',
       [AvatarFieldSizeEnum.Large]: 'size-large',
       [AvatarFieldSizeEnum.ExtraLarge]: 'size-extra-large',
     };
-    this.classSize = classes[size];
+    this.classSize = classes[this.size];
   }
 
-  get size() {
-    return this._size;
+  updateBackgroundImageIcon() {
+    this.backgroundImageIcon = `url(${this.icon})`;
   }
 
-  @Input()
-  set urlImage(urlImage: string) {
-    this._urlImage = urlImage;
-    if ([AvatarFieldVariantEnum.Icon, AvatarFieldVariantEnum.Image].includes(this.variant)) {
-      this.backgroundImageAvatar = 'url(' + urlImage + ')';
+  updateBackgroundImageAvatar() {
+    this.backgroundImageAvatar = [
+      AvatarFieldVariantEnum.Icon,
+      AvatarFieldVariantEnum.Image
+    ].includes(this.variant) ? 'url(' + this.urlImage + ')' : '';
+  }
+
+  ngOnInit(): void {
+    this.updateBackgroundImageAvatar();
+    this.updateBackgroundImageIcon();
+    this.updateClassSize();
+    this.updateIsVariantText();
+    this.updateIsVariantIcon();
+    this.updateClassVariant();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['icon']) {
+      this.updateBackgroundImageIcon();
+    }
+
+    if (changes['size']) {
+      this.updateClassSize();
+    }
+
+    if (changes['variant']) {
+      this.updateIsVariantText();
+      this.updateIsVariantIcon();
+      this.updateClassVariant();
+    }
+
+    if (changes['variant'] || changes['urlImage']) {
+      this.updateBackgroundImageAvatar();
     }
   }
-
-  get urlImage() {
-    return this._urlImage;
-  }
-
-  @Input()
-  set icon(icon: string) {
-    this._icon = icon;
-    this.backgroundImageIcon = `url(${icon})`;
-  }
-
-  get icon() {
-    return this._icon;
-  }
-
-  @Input() text = 'LU';
-
-  AvatarFieldVariantEnum = AvatarFieldVariantEnum;
 }

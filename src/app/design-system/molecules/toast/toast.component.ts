@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 import { ToastType, ToastVariant } from './types';
 
@@ -7,26 +7,28 @@ import { ToastType, ToastVariant } from './types';
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss'
 })
-export class ToastComponent {
-  private _variant = ToastVariant.Success;
-  private _type = ToastType.Standard;
+export class ToastComponent implements OnInit, OnChanges {
+  @Input() variant = ToastVariant.Success;
+  @Input() type = ToastType.Standard;
+  @Input() body = '';
+  @Input() title = '';
+  @Output() close = new EventEmitter<void>();
 
   classVariant = '';
   toastIcon = '';
   isTypeStandardWithActions = false;
 
-  @Input()
-  set variant(variant: ToastVariant) {
-    this._variant = variant;
-
+  updateClassVariant() {
     const classes = {
       [ToastVariant.Success]: 'success',
       [ToastVariant.Information]: 'info',
       [ToastVariant.Error]: 'error',
       [ToastVariant.Alert]: 'alert',
     };
-    this.classVariant = classes[variant];
+    this.classVariant = classes[this.variant];
+  }
 
+  updateToastIcon() {
     const icons = {
       [ToastVariant.Success]: 'check',
       [ToastVariant.Information]: 'info',
@@ -34,28 +36,31 @@ export class ToastComponent {
       [ToastVariant.Alert]: 'alert-triangle',
     };
 
-    this.toastIcon = icons[variant];
-  };
-
-  get variant() {
-    return this._variant;
+    this.toastIcon = icons[this.variant];
   }
 
-  @Input()
-  set type(type: ToastType) {
-    this._type = type;
-    this.isTypeStandardWithActions = type === ToastType.StandardWithActions;
+  updateIsTypeStandardWithActions() {
+    this.isTypeStandardWithActions = this.type === ToastType.StandardWithActions;
   }
-
-  get type() {
-    return this._type;
-  }
-
-  @Input() body = '';
-  @Input() title = '';
-  @Output() close = new EventEmitter<void>();
 
   closeToast() {
     this.close.emit();
+  }
+
+  ngOnInit(): void {
+    this.updateIsTypeStandardWithActions();
+    this.updateToastIcon();
+    this.updateClassVariant();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['type']) {
+      this.updateIsTypeStandardWithActions();
+    }
+
+    if (changes['variant']) {
+      this.updateToastIcon();
+      this.updateClassVariant();
+    }
   }
 }

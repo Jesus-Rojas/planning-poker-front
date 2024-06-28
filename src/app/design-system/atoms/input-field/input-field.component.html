@@ -1,6 +1,6 @@
 <div class="container">
   @if (headerText) {
-    <div class="header-text" [ngClass]="{ disabled }">{{ headerText }}</div>
+    <div class="header-text" [ngClass]="classDisabled">{{ headerText }}</div>
   }
 
   <div class="input-wrapper">
@@ -9,10 +9,7 @@
       [placeholder]="placeholder"
       [value]="value"
       [disabled]="disabled"
-      [ngClass]="{
-        'is-invalid': isInvalid,
-        'is-valid': isValid,
-      }"
+      [ngClass]="[classIsInvalid, classIsValid]"
       (input)="onInput($event)"
     >
 
@@ -22,11 +19,7 @@
   @if (descriptionText) {
     <div
       class="description-text"
-      [ngClass]="{
-        disabled,
-        'is-invalid': isInvalid,
-        'is-valid': isValid
-      }"
+      [ngClass]="[classDisabled, classIsInvalid, classIsValid]"
     >
       <i-feather name="alert-triangle" class="icon-is-invalid" />
       <i-feather name="check" class="icon-is-valid" />

@@ -1,6 +1,8 @@
 @use 'border-radius' as borderRadius;
 @use 'colors' as colors;
 
+$size-input: 24px;
+
 .box-shadow {
   box-shadow:
     0px 0px 6px 0px colors.$pds-color-primary-indigo-500-opacity-600 inset,
@@ -13,15 +15,14 @@
 }
 
 .radio-container {
-  --size-input: 24px;
   display: inline-block;
   position: relative;
-  padding-left: var(--size-input);
+  padding-left: $size-input;
   font-size: 16px;
   user-select: none;
   display: flex;
-  width: var(--size-input);
-  height: var(--size-input);
+  width: $size-input;
+  height: $size-input;
 
   input {
     position: absolute;
@@ -29,8 +30,8 @@
     left: 0;
     opacity: 0;
     margin: 0;
-    width: calc(var(--size-input) - 1);
-    height: calc(var(--size-input) - 1);
+    width: calc($size-input - 1);
+    height: calc($size-input - 1);
     @extend .border-radius;
 
     &:checked ~ .checkmark {
@@ -59,15 +60,15 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: var(--size-input);
-    height: var(--size-input);
+    width: $size-input;
+    height: $size-input;
     background-color: colors.$pds-color-primary-purple-500-opacity-300;
     border: 1px solid colors.$pds-color-primary-purple-500;
     cursor: pointer;
     @extend .border-radius;
 
     &:after {
-      --size-circle-checked: calc(var(--size-input) / 2);
+      --size-circle-checked: calc($size-input / 2);
       display: none;
       content: "";
       position: absolute;

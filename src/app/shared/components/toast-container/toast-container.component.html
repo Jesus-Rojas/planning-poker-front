@@ -1,0 +1,11 @@
+<div class="container">
+  @for (toastMessage of toastService.messages$ | async; track toastMessage.id) {
+    <app-toast
+      [body]="toastMessage.body"
+      [title]="toastMessage.title"
+      [type]="toastMessage.type"
+      [variant]="toastMessage.variant"
+      (close)="toastService.removeToast(toastMessage.id)"
+    />
+  }
+</div>

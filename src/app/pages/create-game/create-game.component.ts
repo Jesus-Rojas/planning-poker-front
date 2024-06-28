@@ -1,13 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ButtonFieldColorEnum } from '@design-system/atoms/components/button-field/types';
+import { Router } from '@angular/router';
 import { LoaderService } from '@core/services/loader.service';
+import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
 import { isValidName } from '@shared/utils';
 import { GameService } from '@shared/services/game.service';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { LocalStorageService } from '@shared/services/local-storage.service';
-import { RoutePathEnum } from '../../shared/types/route-path.enum';
-import { ToastService } from '@design-system/molecules/services/toast.service';
+import { ToastService } from '@shared/services/toast.service';
+import { RoutePathEnum } from '@shared/types';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-game',

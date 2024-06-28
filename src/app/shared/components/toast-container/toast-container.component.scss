@@ -1,0 +1,15 @@
+$toast-spacing: 8px;
+
+.container {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  position: fixed;
+  z-index: 110;
+  bottom: 0;
+  right: 0;
+  flex-direction: column-reverse;
+  padding-right: $toast-spacing;
+  padding-bottom: calc($toast-spacing + 4px);
+  row-gap: $toast-spacing;
+}

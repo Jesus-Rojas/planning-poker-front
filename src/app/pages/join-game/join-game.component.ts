@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HeaderService } from '@core/services/header.service';
 import { LoaderService } from '@core/services/loader.service';
 import { HeaderStatusEnum } from '@core/types/header-status.enum';
-import { ButtonFieldColorEnum } from '@design-system/atoms/components/button-field/types';
+import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { RoleEnum } from '@shared/types';

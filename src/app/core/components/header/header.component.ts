@@ -3,8 +3,8 @@ import { HeaderStatusEnum } from '../../types/header-status.enum';
 import {
   ButtonFieldColorEnum,
   ButtonFieldVariantEnum,
-} from '@design-system/atoms/components/button-field/types';
-import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atoms/components/avatar-field/types';
+} from '@design-system/atoms/button-field/types';
+import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atoms/avatar-field/types';
 import { HeaderService } from '@core/services/header.service';
 import { Subscription } from 'rxjs';
 import { LoaderService } from '@core/services/loader.service';

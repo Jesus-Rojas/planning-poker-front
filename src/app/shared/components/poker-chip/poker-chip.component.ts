@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '../avatar-field/types';
+import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atoms/avatar-field/types';
 
 @Component({
   selector: 'app-poker-chip',

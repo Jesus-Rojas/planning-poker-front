@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameService } from './services/game.service';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { LocalStorageService } from './services/local-storage.service';
+import { PokerChipComponent } from './components/poker-chip/poker-chip.component';
+import { ToastContainerComponent } from './components/toast-container/toast-container.component';
+import { DesignSystemModule } from '@design-system/design-system.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    DesignSystemModule,
   ],
-  providers: [
-    GameService,
-    LocalStorageService,
-    provideHttpClient(withInterceptorsFromDi()),
+  declarations: [
+    PokerChipComponent,
+    ToastContainerComponent,
+  ],
+  exports: [
+    PokerChipComponent,
+    ToastContainerComponent,
   ],
 })
 export class SharedModule { }

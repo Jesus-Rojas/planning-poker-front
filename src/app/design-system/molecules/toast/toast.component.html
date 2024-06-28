@@ -1,0 +1,19 @@
+<div class="toast" [ngClass]="classVariant">
+  @if(type === ToastType.StandardWithActions) {
+    <i-feather [name]="toastIcon" class="icon-variant" [ngClass]="classVariant" />
+  }
+
+  <div class="content">
+    <div class="title-text" [class]="classVariant">{{ title }}</div>
+    <div class="body-text" [ngClass]="classVariant">{{ body }}</div>
+
+    @if(type === ToastType.StandardWithActions) {
+      <div class="actions">
+        <button class="action-primary" [ngClass]="classVariant">Button</button>
+        <button class="action-secondary" [ngClass]="classVariant">Button</button>
+      </div>
+    }
+  </div>
+
+  <i-feather name="x" class="icon-close" [ngClass]="classVariant" (click)="closeToast()" />
+</div>

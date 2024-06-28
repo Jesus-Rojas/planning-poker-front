@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AvatarFieldComponent } from './components/avatar-field/avatar-field.component';
-import { ButtonFieldComponent } from './components/button-field/button-field.component';
-import { PokerChipComponent } from './components/poker-chip/poker-chip.component';
-import { SelectFieldComponent } from './components/select-field/select-field.component';
-import { InputFieldComponent } from './components/input-field/input-field.component';
-import { RadioButtonFieldComponent } from './components/radio-button-field/radio-button-field.component';
+import { AvatarFieldComponent } from './avatar-field/avatar-field.component';
+import { ButtonFieldComponent } from './button-field/button-field.component';
+import { SelectFieldComponent } from './select-field/select-field.component';
+import { InputFieldComponent } from './input-field/input-field.component';
+import { RadioButtonFieldComponent } from './radio-button-field/radio-button-field.component';
 import { FormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
 
@@ -15,7 +14,6 @@ import { FeatherModule } from 'angular-feather';
     AvatarFieldComponent,
     ButtonFieldComponent,
     InputFieldComponent,
-    PokerChipComponent,
     RadioButtonFieldComponent,
     SelectFieldComponent,
   ],
@@ -28,7 +26,6 @@ import { FeatherModule } from 'angular-feather';
     AvatarFieldComponent,
     ButtonFieldComponent,
     InputFieldComponent,
-    PokerChipComponent,
     RadioButtonFieldComponent,
     SelectFieldComponent,
   ],

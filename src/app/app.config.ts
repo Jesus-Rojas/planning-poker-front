@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { FeatherModule } from 'angular-feather';
 import { getFeatherIcons } from '@shared/utils';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,6 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(FeatherModule.pick(getFeatherIcons(
       ['AlertTriangle', 'Check', 'X', 'Info']
-    )))
+    ))),
+    provideHttpClient(withInterceptorsFromDi()),
   ]
 };

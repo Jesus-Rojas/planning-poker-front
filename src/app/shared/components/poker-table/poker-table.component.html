@@ -1,33 +1,35 @@
-<div class="container">
-  <div class="top">
-    @for (pokerCard of tablePositionCard[TablePosition.TOP]; track pokerCard.id) {
-      <app-poker-card />
-    }
-  </div>
+@if (pokerTableService.tablePositionCard$ | async; as tablePositionCard) {
+  <div class="container">
+    <div class="top">
+      @for (pokerCard of tablePositionCard[TablePosition.Top]; track pokerCard.id) {
+        <app-poker-card [text]="pokerCard.name" />
+      }
+    </div>
 
-  <div class="left">
-    @for (pokerCard of tablePositionCard[TablePosition.LEFT]; track pokerCard.id) {
-      <app-poker-card />
-    }
-  </div>
+    <div class="left">
+      @for (pokerCard of tablePositionCard[TablePosition.Left]; track pokerCard.id) {
+        <app-poker-card [text]="pokerCard.name" />
+      }
+    </div>
 
-  <div class="center">
-    <div class="container-poker-table">
-      <div class="poker-table">
-        Start Game
+    <div class="center">
+      <div class="container-poker-table">
+        <div class="poker-table">
+          Start Game
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="right">
-    @for (pokerCard of tablePositionCard[TablePosition.RIGHT]; track pokerCard.id) {
-      <app-poker-card />
-    }
-  </div>
+    <div class="right">
+      @for (pokerCard of tablePositionCard[TablePosition.Right]; track pokerCard.id) {
+        <app-poker-card [text]="pokerCard.name" />
+      }
+    </div>
 
-  <div class="bottom">
-    @for (pokerCard of tablePositionCard[TablePosition.BOTTOM]; track pokerCard.id) {
-      <app-poker-card />
-    }
+    <div class="bottom">
+      @for (pokerCard of tablePositionCard[TablePosition.Bottom]; track pokerCard.id) {
+        <app-poker-card [text]="pokerCard.name" />
+      }
+    </div>
   </div>
-</div>
+}

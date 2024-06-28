@@ -6,6 +6,7 @@ import { HeaderStatusEnum } from '@core/types/header-status.enum';
 import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
+import { PokerTableService } from '@shared/services/poker-table.service';
 import { RoleEnum, RoutePathEnum } from '@shared/types';
 import { isValidName } from '@shared/utils';
 import { Subscription } from 'rxjs';
@@ -23,6 +24,7 @@ export class JoinGameComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     private gameService: GameService,
     private router: Router,
+    private pokerTableService: PokerTableService,
   ) { }
 
   private subscription = new Subscription();
@@ -67,6 +69,7 @@ export class JoinGameComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.headerService.updateHeaderStatus(HeaderStatusEnum.CreatePlayerOrViewGame);
+    this.pokerTableService.organizeTablePositionCard();
     this.localStorageService.removeGame();
 
     const paramMapSubscription = this.activatedRoute.paramMap.subscribe((params) => {

@@ -1,6 +1,6 @@
 export enum TablePosition {
-  TOP = 'top',
-  BOTTOM = 'bottom',
-  LEFT = 'left',
-  RIGHT = 'right',
+  Top = 'top',
+  Bottom = 'bottom',
+  Left = 'left',
+  Right = 'right',
 }

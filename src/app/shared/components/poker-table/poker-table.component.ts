@@ -53,7 +53,6 @@ export class PokerTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.users = [this.meUser];
     this.users = generateManyPokerCard(13);
     this.updatePositionCard();
   }

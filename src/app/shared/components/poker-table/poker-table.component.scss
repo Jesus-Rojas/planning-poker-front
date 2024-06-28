@@ -3,17 +3,18 @@
 
 $positioned: 10px;
 $heightGridAreaTop: 96px;
+$size-width-poker-table: 775px;
 
 .container {
   display: grid;
   max-width: 90vw;
   margin: 0 auto;
-  grid-template-columns: 1fr 2fr 2fr 1fr;
+  grid-template-columns: 1fr $size-width-poker-table 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "top top top top"
-    "left center center right"
-    "bottom bottom bottom bottom";
+    "top top top"
+    "left center right"
+    "bottom bottom bottom";
   gap: 10px;
   padding-top: 2rem;
   padding-bottom: 4rem;

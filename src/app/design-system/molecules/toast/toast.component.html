@@ -4,7 +4,7 @@
   }
 
   <div class="content">
-    <div class="title-text" [class]="classVariant">{{ title }}</div>
+    <div class="title-text" [ngClass]="classVariant">{{ title }}</div>
     <div class="body-text" [ngClass]="classVariant">{{ body }}</div>
 
     @if(isTypeStandardWithActions) {

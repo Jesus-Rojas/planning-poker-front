@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   headerStatus: HeaderStatusEnum = HeaderStatusEnum.CreateGame;
   avatarFieldVariant: AvatarFieldVariantEnum = AvatarFieldVariantEnum.TextPurpleLigth;
-  avatarFieldSize: AvatarFieldSizeEnum = AvatarFieldSizeEnum.ExtraLarge;
+  avatarFieldSize: AvatarFieldSizeEnum = AvatarFieldSizeEnum.Large;
 
   ButtonFieldColorEnum = ButtonFieldColorEnum;
   ButtonFieldVariantEnum = ButtonFieldVariantEnum;

@@ -1,0 +1,54 @@
+@use 'border-radius' as borderRadius;
+@use 'colors' as colors;
+
+$positioned: 10px;
+$padding-overlap: calc($positioned * 4);
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 80vw;
+  margin: 4rem auto;
+  padding-top: $padding-overlap;
+  padding-bottom: $padding-overlap;
+
+
+  .poker-table {
+    display: grid;
+    place-content: center;
+    position: relative;
+    z-index: 10;
+    width: 600px;
+    height: 345px;
+    margin: auto;
+    background-color: colors.$pds-color-primary-purple-900-opacity-600;
+    border: 1px solid colors.$pds-color-primary-purple-500;
+    border-radius: borderRadius.$pds-border-radius-full;
+
+    &::before, &::after {
+      content: "";
+      position: absolute;
+      border-radius: inherit;
+      user-select: none;
+      pointer-events: none;
+      border: 2px solid currentColor;
+    }
+
+    &::before {
+      z-index: -10;
+      inset: calc($positioned * -2);
+      border-color: colors.$pds-color-primary-indigo-500-opacity-600;
+      box-shadow:
+        0px 0px 2px 0px colors.$pds-color-primary-indigo-500-opacity-600 inset,
+        0px 0px 1px 0px colors.$pds-color-primary-purple-500-opacity-600;
+    }
+
+    &::after {
+      z-index: -20;
+      inset: calc($positioned * -4);
+      border-color: colors.$pds-color-primary-purple-500;
+      box-shadow:
+        0px 0px 1px 0px colors.$pds-color-primary-indigo-500-opacity-200 inset,
+        0px 0px 5px 0px colors.$pds-color-primary-purple-500;
+    }
+  }
+}

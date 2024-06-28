@@ -1,12 +1,13 @@
 @use 'typographies' as typographies;
 @use 'colors' as colors;
 
+$height-header: 126px;
+
 .container {
-  --height-header: 126px;
   display: grid;
   place-content: center;
   min-height: 100vh;
-  margin: calc(var(--height-header) * -1) auto 0 auto;
+  margin: calc($height-header * -1) auto 0 auto;
   width: fit-content;
 
   p {

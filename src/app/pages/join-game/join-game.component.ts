@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderService } from '@core/services/header.service';
 import { LoaderService } from '@core/services/loader.service';
 import { HeaderStatusEnum } from '@core/types/header-status.enum';
 import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
-import { RoleEnum } from '@shared/types';
+import { RoleEnum, RoutePathEnum } from '@shared/types';
 import { isValidName } from '@shared/utils';
 import { Subscription } from 'rxjs';
 
@@ -22,6 +22,7 @@ export class JoinGameComponent implements OnInit, OnDestroy {
     private headerService: HeaderService,
     private loaderService: LoaderService,
     private gameService: GameService,
+    private router: Router,
   ) { }
 
   private subscription = new Subscription();
@@ -54,6 +55,7 @@ export class JoinGameComponent implements OnInit, OnDestroy {
       .joinGame(this.gameUuid ?? '', this.playerName)
       .subscribe({
         next: ({ userUuid }) => {
+          this.router.navigate([RoutePathEnum.PlayingGame, this.gameUuid]);
           console.log(userUuid);
         },
         error: () => (this.loaderService.hideLoader()),

@@ -9,11 +9,6 @@
   left: 0;
   display: grid;
   place-content: center;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    colors.$pds-color-primary-purple-700 0%,
-    colors.$pds-color-primary-purple-900-opacity-980 100%
-  );
 
   .content {
     display: flex;

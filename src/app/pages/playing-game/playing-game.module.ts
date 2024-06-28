@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PlayingGameRoutingModule } from './playing-game-routing.module';
 import { PlayingGameComponent } from './playing-game.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { PlayingGameComponent } from './playing-game.component';
   ],
   imports: [
     CommonModule,
-    PlayingGameRoutingModule
+    PlayingGameRoutingModule,
+    SharedModule,
   ]
 })
 export class PlayingGameModule { }

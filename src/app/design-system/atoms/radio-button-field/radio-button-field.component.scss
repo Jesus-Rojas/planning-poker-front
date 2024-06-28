@@ -2,6 +2,7 @@
 @use 'colors' as colors;
 
 $size-input: 24px;
+$size-circle-checked: calc($size-input / 2);
 
 .box-shadow {
   box-shadow:
@@ -30,8 +31,8 @@ $size-input: 24px;
     left: 0;
     opacity: 0;
     margin: 0;
-    width: calc($size-input - 1);
-    height: calc($size-input - 1);
+    width: calc($size-input - 1px);
+    height: calc($size-input - 1px);
     @extend .border-radius;
 
     &:checked ~ .checkmark {
@@ -68,14 +69,13 @@ $size-input: 24px;
     @extend .border-radius;
 
     &:after {
-      --size-circle-checked: calc($size-input / 2);
       display: none;
       content: "";
       position: absolute;
       inset: 0;
       margin: auto;
-      width: var(--size-circle-checked);
-      height: var(--size-circle-checked);
+      width: $size-circle-checked;
+      height: $size-circle-checked;
       background-color: colors.$pds-color-primary-purple-500;
       @extend .box-shadow;
       @extend .border-radius;

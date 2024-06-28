@@ -4,7 +4,7 @@ import { PlayingGameComponent } from './playing-game.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':gameUuid',
     component: PlayingGameComponent,
   }
 ];

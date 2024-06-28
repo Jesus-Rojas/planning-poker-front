@@ -11,6 +11,7 @@ $pds-color-primary-purple-500-opacity-300: rgba($pds-color-primary-purple-500, 0
 $pds-color-primary-purple-500-opacity-400: rgba($pds-color-primary-purple-500, 0.4);
 $pds-color-primary-purple-500-opacity-600: rgba($pds-color-primary-purple-500, 0.6);
 $pds-color-primary-purple-900-opacity-980: rgba($pds-color-primary-purple-900, 0.98);
+$pds-color-primary-purple-900-opacity-600: rgba($pds-color-primary-purple-900, 0.6);
 
 $pds-color-primary-gray-50: #D8D8D6;
 $pds-color-primary-gray-300: #75756D;
@@ -104,4 +105,5 @@ $pds-color-error-300-opacity-600: rgba($pds-color-error-300, 0.6);
 /* Basic shades */
 $pds-color-white-50: #FFFFFF;
 $pds-color-black-300: #000000;
+$pds-color-black-300-opacity-60: rgba($pds-color-black-300, 0.06);
 $pds-color-transparent: transparent;

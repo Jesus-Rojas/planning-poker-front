@@ -7,6 +7,6 @@ import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atom
   styleUrl: './poker-chip.component.scss'
 })
 export class PokerChipComponent {
-  AvatarFieldSizeEnum = AvatarFieldSizeEnum;
-  AvatarFieldVariantEnum = AvatarFieldVariantEnum;
+  variant = AvatarFieldVariantEnum.Icon;
+  size = AvatarFieldSizeEnum.Large;
 }

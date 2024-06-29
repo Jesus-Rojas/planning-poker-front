@@ -2,22 +2,18 @@
 @use 'colors' as colors;
 
 $positioned: 10px;
-$heightGridAreaTop: 96px;
-$size-width-poker-table: 775px;
+$height-grid-area-top: 96px;
+$width-poker-table: 775px;
 
 .container {
   display: grid;
-  max-width: 90vw;
-  margin: 0 auto;
-  grid-template-columns: 1fr $size-width-poker-table 1fr;
+  grid-template-columns: 1fr $width-poker-table 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "top top top"
     "left center right"
     "bottom bottom bottom";
   gap: 10px;
-  padding-top: 2rem;
-  padding-bottom: 4rem;
 
   .top {
     grid-area: top;
@@ -34,8 +30,8 @@ $size-width-poker-table: 775px;
     justify-content: center;
     align-items: flex-end;
     width: 100%;
-    padding-top: $heightGridAreaTop;
-    padding-bottom: $heightGridAreaTop;
+    padding-top: $height-grid-area-top;
+    padding-bottom: $height-grid-area-top;
     row-gap: 40px;
   }
 
@@ -53,10 +49,6 @@ $size-width-poker-table: 775px;
   .bottom {
     @extend .top;
     grid-area: bottom;
-  }
-
-  .top, .left, .center, .right, .bottom {
-    border: 1px solid transparent;
   }
 
   .container-poker-table {

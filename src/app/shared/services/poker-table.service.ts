@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PokerCard, TablePosition, TablePositionCard } from '@shared/types';
-import { generateManyPokerCard, generateOnePokerCard, isEven } from '@shared/utils';
+import { generateManyPokerCard, isEven } from '@shared/utils';
 import { BehaviorSubject } from 'rxjs';
-
-const meUser = generateOnePokerCard({ name: 'Jesus' });
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +13,9 @@ export class PokerTableService {
     [TablePosition.Left]: [],
     [TablePosition.Right]: [],
   });
-  private usersSubject = new BehaviorSubject<PokerCard[]>([meUser, ...generateManyPokerCard(13)]);
-  private meUserSubject = new BehaviorSubject<PokerCard>(meUser);
+  private usersSubject = new BehaviorSubject<PokerCard[]>(generateManyPokerCard(12));
+  private meUserSubject = new BehaviorSubject<PokerCard | undefined>(undefined);
+  private maxTopBottomUsers = 10;
 
   tablePositionCard$ = this.tablePositionCardSubject.asObservable();
   users$ = this.usersSubject.asObservable();
@@ -26,7 +25,7 @@ export class PokerTableService {
     this.usersSubject.next(users);
   }
 
-  updateMeUser(meUser: PokerCard) {
+  updateMeUser(meUser?: PokerCard) {
     this.meUserSubject.next(meUser);
   }
 
@@ -36,8 +35,10 @@ export class PokerTableService {
 
   organizeTablePositionCard() {
     let unshiftOrPush: 'unshift' | 'push' = 'push';
-    const usersFiltered = this.usersSubject.value.filter((user) => user.id !== this.meUserSubject.value.id);
-
+    const meUser = this.meUserSubject.value;
+    const users = this.usersSubject.value;
+    const usersFiltered = meUser ? users.filter((user) => user.id !== meUser.id) : users;
+    const limitUsers = this.maxTopBottomUsers - 1;
     const tablePositionCard: TablePositionCard = {
       [TablePosition.Top]: [],
       [TablePosition.Bottom]: [],
@@ -45,18 +46,16 @@ export class PokerTableService {
       [TablePosition.Right]: [],
     };
 
-    const usersTopBottom = [this.meUserSubject.value, ...usersFiltered.slice(0, 9)];
+    const usersTopBottom = [...usersFiltered.slice(0, limitUsers)];
+    if (meUser) usersTopBottom.unshift(meUser);
     usersTopBottom.forEach((user, index) => {
       const isEvenIndex = isEven(index + 1);
       const position = isEvenIndex ? TablePosition.Top : TablePosition.Bottom;
       tablePositionCard[position][unshiftOrPush](user);
-
-      if (isEvenIndex) {
-        unshiftOrPush = unshiftOrPush === 'unshift' ? 'push' : 'unshift';
-      }
+      if (isEvenIndex) unshiftOrPush = unshiftOrPush === 'unshift' ? 'push' : 'unshift';
     });
 
-    const usersLeftRight = usersFiltered.slice(9);
+    const usersLeftRight = usersFiltered.slice(limitUsers);
     usersLeftRight.forEach((user, index) => {
       const isEvenIndex = isEven(index + 1);
       const position = isEvenIndex ? TablePosition.Left : TablePosition.Right;

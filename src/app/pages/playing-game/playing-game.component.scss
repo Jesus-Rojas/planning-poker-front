@@ -1,0 +1,22 @@
+@use 'media-queries' as mediaQueries;
+
+$height-header: 126px;
+
+.container {
+  display: grid;
+  place-content: center;
+  width: 100%;
+
+  @include mediaQueries.desktop-large {
+    margin-top: calc($height-header * -1);
+    min-height: 100vh;
+  }
+
+  app-poker-table {
+    transform: scale(0.8);
+
+    @include mediaQueries.desktop-large {
+      transform: scale(1);
+    }
+  }
+}

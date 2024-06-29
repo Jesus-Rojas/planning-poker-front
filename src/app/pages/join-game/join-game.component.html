@@ -1,36 +1,40 @@
-<app-modal>
-  <div class="container">
-    <app-input-field
-      headerText="Tu nombre"
-      [(value)]="playerName"
-      [isValid]="isValidPlayerName"
-      [isInvalid]="isInvalidPlayerName"
-    />
+<div class="container">
+  <app-poker-table />
 
-    <div class="roles">
-      <div class="role">
-        <span>Jugador</span>
-        <app-radio-button-field
-          [(selectedOption)]="currentRole"
-          name="role"
-          [value]="RoleEnum.Player"
-        />
+  <app-modal>
+    <div class="container-modal">
+      <app-input-field
+        headerText="Tu nombre"
+        [(value)]="playerName"
+        [isValid]="isValidPlayerName"
+        [isInvalid]="isInvalidPlayerName"
+      />
+
+      <div class="roles">
+        <div class="role">
+          <span>Jugador</span>
+          <app-radio-button-field
+            [(selectedOption)]="currentRole"
+            name="role"
+            [value]="RoleEnum.Player"
+          />
+        </div>
+
+        <div class="role">
+          <span>Espectador</span>
+          <app-radio-button-field
+            [(selectedOption)]="currentRole"
+            name="role"
+            [value]="RoleEnum.Spectator"
+          />
+        </div>
       </div>
 
-      <div class="role">
-        <span>Espectador</span>
-        <app-radio-button-field
-          [(selectedOption)]="currentRole"
-          name="role"
-          [value]="RoleEnum.Spectator"
-        />
-      </div>
+      <app-button-field
+        [disabled]="!playerName || !currentRole || isLoading"
+        [color]="ButtonFieldColorEnum.DarkWhite"
+        (click)="handleContinue()"
+      >Continuar</app-button-field>
     </div>
-
-    <app-button-field
-      [disabled]="!playerName || !currentRole || isLoading"
-      [color]="ButtonFieldColorEnum.DarkWhite"
-      (click)="handleContinue()"
-    >Continuar</app-button-field>
-  </div>
-</app-modal>
+  </app-modal>
+</div>

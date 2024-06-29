@@ -1,31 +1,42 @@
 @use 'colors' as colors;
 @use 'typographies' as typographies;
+@use 'media-queries' as mediaQueries;
+
+$height-header: 126px;
 
 .container {
   display: grid;
   place-content: center;
-  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  margin-top: calc($height-header * -1);
 
-  .roles {
-    margin-top: 18px;
-    display: flex;
-    justify-content: center;
-    column-gap: 36px;
+  .container-modal {
+    display: grid;
+    place-content: center;
+    height: 100%;
 
-    .role {
+    .roles {
+      margin-top: 18px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      column-gap: 8px;
+      column-gap: 36px;
 
-      span {
-        color: colors.$pds-color-white-50;
-        @include typographies.pds-font-paragraph-03-regular;
+      .role {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 8px;
+
+        span {
+          color: colors.$pds-color-white-50;
+          @include typographies.pds-font-paragraph-03-regular;
+        }
       }
     }
-  }
 
-  app-button-field {
-    margin: 40px auto 0 auto;
+    app-button-field {
+      margin: 40px auto 0 auto;
+    }
   }
 }

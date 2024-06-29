@@ -7,7 +7,7 @@ import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { RoleEnum, RoutePathEnum } from '@shared/types';
+import { RoleEnum, RoutePathEnum, TablePosition, TablePositionCard } from '@shared/types';
 import { isValidName } from '@shared/utils';
 import { Subscription } from 'rxjs';
 
@@ -69,6 +69,8 @@ export class JoinGameComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.headerService.updateHeaderStatus(HeaderStatusEnum.CreatePlayerOrViewGame);
+    this.pokerTableService.updateUsers([]);
+    this.pokerTableService.updateMeUser();
     this.pokerTableService.organizeTablePositionCard();
     this.localStorageService.removeGame();
 

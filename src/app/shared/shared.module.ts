@@ -5,6 +5,7 @@ import { ToastContainerComponent } from './components/toast-container/toast-cont
 import { DesignSystemModule } from '@design-system/design-system.module';
 import { PokerTableComponent } from './components/poker-table/poker-table.component';
 import { PokerCardComponent } from './components/poker-card/poker-card.component';
+import { CardPickerComponent } from './components/card-picker/card-picker.component';
 
 @NgModule({
   imports: [
@@ -16,11 +17,13 @@ import { PokerCardComponent } from './components/poker-card/poker-card.component
     ToastContainerComponent,
     PokerTableComponent,
     PokerCardComponent,
+    CardPickerComponent,
   ],
   exports: [
     PokerChipComponent,
     ToastContainerComponent,
     PokerTableComponent,
+    CardPickerComponent,
   ],
 })
 export class SharedModule { }

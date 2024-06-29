@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PokerCardSize, PokerCardVariant } from '@shared/types';
 
 @Component({
   selector: 'app-poker-card',
@@ -6,5 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrl: './poker-card.component.scss'
 })
 export class PokerCardComponent {
-  @Input() text = 'Jesus';
+  @Input() size: PokerCardSize = PokerCardSize.Small;
+  @Input() variant: PokerCardVariant = PokerCardVariant.Default;
+  @Input() isVisible = true;
+
+  PokerCardSize = PokerCardSize;
+  PokerCardVariant = PokerCardVariant;
 }

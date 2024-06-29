@@ -2,13 +2,13 @@
   <div class="container">
     <div class="top">
       @for (pokerCard of tablePositionCard[TablePosition.Top]; track pokerCard.id) {
-        <app-poker-card [text]="pokerCard.name" />
+        <app-poker-card [isVisible]="pokerCard.isVisible">{{ pokerCard.name}}</app-poker-card>
       }
     </div>
 
     <div class="left">
       @for (pokerCard of tablePositionCard[TablePosition.Left]; track pokerCard.id) {
-        <app-poker-card [text]="pokerCard.name" />
+        <app-poker-card [isVisible]="pokerCard.isVisible">{{ pokerCard.name}}</app-poker-card>
       }
     </div>
 
@@ -22,13 +22,13 @@
 
     <div class="right">
       @for (pokerCard of tablePositionCard[TablePosition.Right]; track pokerCard.id) {
-        <app-poker-card [text]="pokerCard.name" />
+        <app-poker-card [isVisible]="pokerCard.isVisible">{{ pokerCard.name}}</app-poker-card>
       }
     </div>
 
     <div class="bottom">
       @for (pokerCard of tablePositionCard[TablePosition.Bottom]; track pokerCard.id) {
-        <app-poker-card [text]="pokerCard.name" />
+        <app-poker-card [isVisible]="pokerCard.isVisible">{{ pokerCard.name}}</app-poker-card>
       }
     </div>
   </div>

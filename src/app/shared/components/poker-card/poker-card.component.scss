@@ -1,5 +1,6 @@
 @use 'border-radius' as borderRadius;
 @use 'colors' as colors;
+@use 'typographies' as typographies;
 
 .container {
   display: inline-flex;
@@ -7,19 +8,42 @@
   flex-direction: column;
   align-items: center;
   row-gap: 1rem;
-  max-width: 40px;
+
+  &.small {
+    max-width: 40px;
+  }
+
+  &.medium {
+    max-width: 50px;
+  }
+
+  &.hidden {
+    visibility: hidden;
+  }
 
   .card {
-    width: 35px;
-    height: 60px;
+    @include typographies.pds-font-heading-06-semibold;
     border: 1px solid colors.$pds-color-secondary-purple-300;
     border-radius: borderRadius.$pds-border-radius-m;
     cursor: pointer;
+    display: grid;
+    place-content: center;
+    color: colors.$pds-color-white-50;
 
     &:hover {
       box-shadow:
         0px 0px 6px 0px colors.$pds-color-primary-indigo-500-opacity-600 inset,
         0px 5px 10px 0px colors.$pds-color-primary-purple-500-opacity-600;
+    }
+
+    &.small {
+      width: 35px;
+      height: 60px;
+    }
+
+    &.medium {
+      width: 48px;
+      height: 80px;
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PokerCard, TablePosition, TablePositionCard } from '@shared/types';
-import { generateManyPokerCard, isEven } from '@shared/utils';
+import { generateManyPokerCard, generateOnePokerCard, isEven } from '@shared/utils';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class PokerTableService {
     [TablePosition.Left]: [],
     [TablePosition.Right]: [],
   });
-  private usersSubject = new BehaviorSubject<PokerCard[]>(generateManyPokerCard(12));
+  private usersSubject = new BehaviorSubject<PokerCard[]>(generateManyPokerCard(10));
   private meUserSubject = new BehaviorSubject<PokerCard | undefined>(undefined);
   private maxTopBottomUsers = 10;
 
@@ -54,6 +54,10 @@ export class PokerTableService {
       tablePositionCard[position][unshiftOrPush](user);
       if (isEvenIndex) unshiftOrPush = unshiftOrPush === 'unshift' ? 'push' : 'unshift';
     });
+
+    if (isEven(tablePositionCard[TablePosition.Bottom].length)) {
+      tablePositionCard[TablePosition.Bottom].push(generateOnePokerCard({ isVisible: false }));
+    }
 
     const usersLeftRight = usersFiltered.slice(limitUsers);
     usersLeftRight.forEach((user, index) => {

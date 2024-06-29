@@ -5,7 +5,8 @@ export function generateOnePokerCard(attributes: Partial<PokerCard> = { }): Poke
   const {
     id = getId(),
     name = 'Jesus',
-    role = RoleEnum.Player
+    role = RoleEnum.Player,
+    isVisible = true,
   } = attributes;
-  return { id, name, role };
+  return { id, name, role, isVisible };
 }

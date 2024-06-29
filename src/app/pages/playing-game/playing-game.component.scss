@@ -3,19 +3,17 @@
 $height-header: 126px;
 
 .container {
-  display: grid;
-  place-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-
-  @include mediaQueries.desktop-large {
-    margin-top: calc($height-header * -1);
-    min-height: 100vh;
-  }
+  min-height: calc(100vh - $height-header);
 
   app-poker-table {
-    transform: scale(0.8);
+    transform: scale(0.9);
 
     @include mediaQueries.desktop-large {
+      padding-top: 6rem;
       transform: scale(1);
     }
   }

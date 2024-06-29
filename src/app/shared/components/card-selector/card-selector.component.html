@@ -1,0 +1,11 @@
+<div class="container">
+  @for (card of cards; track card.id) {
+    <app-poker-card [size]="PokerCardSize.Medium">
+      @if (card.type === CardSelectorType.Text) {
+        <span slot="inside">{{ card.value }}</span>
+      } @else {
+        <img slot="inside" [src]="card.value" />
+      }
+    </app-poker-card>
+  }
+</div>

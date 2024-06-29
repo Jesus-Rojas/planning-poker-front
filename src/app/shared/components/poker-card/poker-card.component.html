@@ -1,4 +1,19 @@
-<div class="container">
-  <div class="card"></div>
-  <div class="text">{{ text }}</div>
+<div
+  class="container"
+  [ngClass]="{
+    'small': size === PokerCardSize.Small,
+    'medium': size === PokerCardSize.Medium,
+    'hidden': !isVisible,
+  }"
+>
+  <div
+    class="card"
+    [ngClass]="{
+      'small': size === PokerCardSize.Small,
+      'medium': size === PokerCardSize.Medium,
+    }"
+  >
+    <ng-content select="[slot='inside']"></ng-content>
+  </div>
+  <ng-content></ng-content>
 </div>

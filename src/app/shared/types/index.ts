@@ -7,3 +7,7 @@ export * from './response-join-game.interface';
 export * from './poker-card.interface';
 export * from './table-card-position.interface';
 export * from './table-position.enum';
+export * from './card-selector-type.enum';
+export * from './card-selector.interface';
+export * from './poker-card-size.enum';
+export * from './poker-card-variant.enum';

@@ -25,4 +25,14 @@ export class GameService {
     const route = `${this.baseUrl}/join/${gameUuid}`;
     return this.httpClient.post<ResponseJoinGame>(route, body);
   }
+
+  getGame(gameUuid: string) {
+    return this.httpClient.get(this.baseUrl + `/${gameUuid}`);
+  }
+
+  getUser(gameUuid: string, userUuid: string) {
+    console.log(this.baseUrl + `/${gameUuid}/users/${userUuid}`);
+
+    return this.httpClient.get(this.baseUrl + `/${gameUuid}/users/${userUuid}`);
+  }
 }

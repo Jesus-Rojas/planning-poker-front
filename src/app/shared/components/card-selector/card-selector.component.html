@@ -1,11 +1,20 @@
 <div class="container">
-  @for (card of cards; track card.id) {
-    <app-poker-card [size]="PokerCardSize.Medium">
-      @if (card.type === CardSelectorType.Text) {
-        <span slot="inside">{{ card.value }}</span>
-      } @else {
-        <img slot="inside" [src]="card.value" />
-      }
-    </app-poker-card>
-  }
+  <h2>Elige una carta 👇</h2>
+
+  <div class="container-cards">
+    @for (card of cards; track card.id) {
+      <app-poker-card
+        [size]="PokerCardSize.Medium"
+        [variant]="PokerCardVariant.Picker"
+        [isSelected]="card.id === meUser?.cardId"
+        (click)="handlePokerCard(card.id)"
+      >
+        @if (card.type === CardSelectorType.Text) {
+          <span slot="inside">{{ card.value }}</span>
+        } @else {
+          <img slot="inside" [src]="card.value" />
+        }
+      </app-poker-card>
+    }
+  </div>
 </div>

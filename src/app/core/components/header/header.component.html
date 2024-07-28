@@ -40,8 +40,13 @@
     <app-button-field
       [color]="ButtonFieldColorEnum.DarkWhite"
       [variant]="ButtonFieldVariantEnum.Secondary"
+      (click)="showInvitePlayers = true"
     >
       {{ headerStatus === HeaderStatusEnum.CreatePlayerOrViewGame ? 'Compartir' : 'Invitar jugadores' }}
     </app-button-field>
   </div>
+
+  @if (showInvitePlayers) {
+    <app-invite-players (close)="showInvitePlayers = false" />
+  }
 </div>

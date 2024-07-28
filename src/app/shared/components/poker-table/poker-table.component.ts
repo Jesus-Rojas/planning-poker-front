@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atoms/avatar-field/types';
 import { PokerTableService } from '@shared/services/poker-table.service';
 import { TablePosition } from '@shared/types';
 
@@ -13,4 +14,6 @@ export class PokerTableComponent {
   ) { }
 
   TablePosition = TablePosition;
+  AvatarFieldVariantEnum = AvatarFieldVariantEnum;
+  AvatarFieldSizeEnum = AvatarFieldSizeEnum;
 }

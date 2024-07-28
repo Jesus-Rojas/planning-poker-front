@@ -30,7 +30,7 @@
     place-content: center;
     color: colors.$pds-color-white-50;
 
-    &:hover {
+    &:not(.is-selected):hover {
       box-shadow:
         0px 0px 6px 0px colors.$pds-color-primary-indigo-500-opacity-600 inset,
         0px 5px 10px 0px colors.$pds-color-primary-purple-500-opacity-600;
@@ -45,5 +45,34 @@
       width: 48px;
       height: 80px;
     }
+
+    &.is-selected {
+      background-color: colors.$pds-color-secondary-purple-300;
+
+      &.picker {
+        position: relative;
+        top: -8px;
+      }
+    }
+
+    &.picker {
+      &:hover {
+        background-color: colors.$pds-color-gray-400-opacity-600;
+      }
+
+      &.is-selected {
+        box-shadow: none;
+        background-color: colors.$pds-color-secondary-fuchsia-500;
+        color: colors.$pds-color-primary-purple-700;
+        box-shadow:
+          0px 0px 6px 0px colors.$pds-color-primary-indigo-500-opacity-600 inset,
+          0px 5px 10px 0px colors.$pds-color-primary-purple-500-opacity-600;
+      }
+    }
   }
+}
+
+:host ::ng-deep {
+  @include typographies.pds-font-paragraph-03-regular;
+  color: colors.$pds-color-white-50;
 }

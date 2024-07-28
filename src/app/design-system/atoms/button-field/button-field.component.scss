@@ -107,7 +107,7 @@ button {
 .color-dark-white {
   &.variant-primary {
     background-color: colors.$pds-color-gray-50;
-    color: colors.$pds-color-primary-purple-500;
+    color: colors.$pds-color-primary-purple-700;
 
     &:hover:not(:disabled) {
       @extend .box-shadow-dark-white;

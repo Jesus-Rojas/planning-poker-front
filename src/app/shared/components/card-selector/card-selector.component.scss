@@ -1,8 +1,19 @@
+@use 'colors' as colors;
+@use 'typographies' as typographies;
+
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: colors.$pds-color-white-50;
+  @include typographies.pds-font-heading-06-semibold;
+}
+
+.container-cards {
   width: 100%;
   display: flex;
   justify-content: center;
   column-gap: 1rem;
-  padding-top: 2rem;
+  padding-top: 4px;
   padding-bottom: 4rem;
 }

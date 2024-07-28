@@ -10,6 +10,7 @@ export class PokerCardComponent {
   @Input() size: PokerCardSize = PokerCardSize.Small;
   @Input() variant: PokerCardVariant = PokerCardVariant.Default;
   @Input() isVisible = true;
+  @Input() isSelected = false;
 
   PokerCardSize = PokerCardSize;
   PokerCardVariant = PokerCardVariant;

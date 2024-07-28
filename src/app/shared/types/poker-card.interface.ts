@@ -5,4 +5,6 @@ export interface PokerCard {
   name: string;
   role: RoleEnum;
   isVisible: boolean;
+  isSelected: boolean;
+  cardId?: string;
 }

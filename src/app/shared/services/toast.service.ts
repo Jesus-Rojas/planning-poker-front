@@ -29,19 +29,19 @@ export class ToastService {
     );
   }
 
-  showSuccessToast(title: string, body: string) {
+  showSuccessToast(title: string, body = '') {
     this.showToast({ title, body, variant: ToastVariant.Success, type: ToastType.Standard });
   }
 
-  showErrorToast(title: string, body: string) {
+  showErrorToast(title: string, body = '') {
     this.showToast({ title, body, variant: ToastVariant.Error, type: ToastType.Standard });
   }
 
-  showInformationToast(title: string, body: string) {
+  showInformationToast(title: string, body = '') {
     this.showToast({ title, body, variant: ToastVariant.Information, type: ToastType.Standard });
   }
 
-  showAlertToast(title: string, body: string) {
+  showAlertToast(title: string, body = '') {
     this.showToast({ title, body, variant: ToastVariant.Alert, type: ToastType.Standard });
   }
 }

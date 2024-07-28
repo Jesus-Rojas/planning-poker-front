@@ -28,6 +28,7 @@
       "@core/*": ["src/app/core/*"],
       "@design-system/*": ["src/app/design-system/*"],
       "@shared/*": ["src/app/shared/*"],
+      "@auth/*": ["src/app/auth/*"],
       "@environments/*": ["src/environments/*"],
     }
   },

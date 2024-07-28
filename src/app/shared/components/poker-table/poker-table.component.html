@@ -1,35 +1,29 @@
 @if (pokerTableService.tablePositionCard$ | async; as tablePositionCard) {
   <div class="container">
     <div class="top">
-      @for (pokerCard of tablePositionCard[TablePosition.Top]; track pokerCard.id) {
-        <app-poker-card [isVisible]="pokerCard.isVisible">{{ pokerCard.name}}</app-poker-card>
-      }
+      <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Top]" />
     </div>
 
     <div class="left">
-      @for (pokerCard of tablePositionCard[TablePosition.Left]; track pokerCard.id) {
-        <app-poker-card [isVisible]="pokerCard.isVisible">{{ pokerCard.name}}</app-poker-card>
-      }
+      <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Left]" />
+    </div>
+
+    <div class="right">
+      <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Right]" />
+    </div>
+
+    <div class="bottom">
+      <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Bottom]" />
     </div>
 
     <div class="center">
       <div class="container-poker-table">
         <div class="poker-table">
-          Start Game
+          @if (pokerTableService.someUserHasSelectedOnePokerCard$ | async) {
+            <app-button-field>Revelar cartas</app-button-field>
+          }
         </div>
       </div>
-    </div>
-
-    <div class="right">
-      @for (pokerCard of tablePositionCard[TablePosition.Right]; track pokerCard.id) {
-        <app-poker-card [isVisible]="pokerCard.isVisible">{{ pokerCard.name}}</app-poker-card>
-      }
-    </div>
-
-    <div class="bottom">
-      @for (pokerCard of tablePositionCard[TablePosition.Bottom]; track pokerCard.id) {
-        <app-poker-card [isVisible]="pokerCard.isVisible">{{ pokerCard.name}}</app-poker-card>
-      }
     </div>
   </div>
 }

@@ -6,11 +6,15 @@ import { DesignSystemModule } from '@design-system/design-system.module';
 import { PokerTableComponent } from './components/poker-table/poker-table.component';
 import { PokerCardComponent } from './components/poker-card/poker-card.component';
 import { CardSelectorComponent } from './components/card-selector/card-selector.component';
+import { InvitePlayersComponent } from './components/invite-players/invite-players.component';
+import { FeatherModule } from 'angular-feather';
+import { PokerCardListComponent } from './components/poker-card-list/poker-card-list.component';
 
 @NgModule({
   imports: [
     CommonModule,
     DesignSystemModule,
+    FeatherModule,
   ],
   declarations: [
     PokerChipComponent,
@@ -18,12 +22,16 @@ import { CardSelectorComponent } from './components/card-selector/card-selector.
     PokerTableComponent,
     PokerCardComponent,
     CardSelectorComponent,
+    InvitePlayersComponent,
+    PokerCardListComponent,
   ],
   exports: [
     PokerChipComponent,
     ToastContainerComponent,
     PokerTableComponent,
     CardSelectorComponent,
+    InvitePlayersComponent,
+    PokerCardListComponent,
   ],
 })
 export class SharedModule { }

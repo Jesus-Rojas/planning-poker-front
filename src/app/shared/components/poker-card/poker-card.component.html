@@ -11,6 +11,9 @@
     [ngClass]="{
       'small': size === PokerCardSize.Small,
       'medium': size === PokerCardSize.Medium,
+      'default': variant === PokerCardVariant.Default,
+      'picker': variant === PokerCardVariant.Picker,
+      'is-selected': isSelected,
     }"
   >
     <ng-content select="[slot='inside']"></ng-content>

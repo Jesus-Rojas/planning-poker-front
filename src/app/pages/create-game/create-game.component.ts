@@ -73,6 +73,11 @@ export class CreateGameComponent implements OnDestroy {
       .subscribe((isLoading) => (this.isLoading = isLoading));
 
     this.subscription.add(subscriptionIsLoading);
+
+    const game = this.localStorageService.getGame();
+    const user = this.localStorageService.getUser();
+    if (!game && user) this.localStorageService.removeUser();
+    if (game) this.router.navigate([RoutePathEnum.JoinGame, game]);
   }
 
   ngOnDestroy(): void {

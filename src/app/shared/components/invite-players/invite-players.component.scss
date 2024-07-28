@@ -1,0 +1,76 @@
+@use 'colors' as colors;
+@use 'border-radius' as borderRadius;
+@use 'typographies' as typographies;
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(#0A090C, 0.25);
+  backdrop-filter: blur(7.5px);
+  z-index: 90;
+  display: grid;
+  place-content: center;
+
+  .container {
+    width: 100%;
+    min-width: 590px;
+    height: auto;
+    border-radius: borderRadius.$pds-border-radius-xl;
+    background-color: colors.$pds-color-primary-purple-900;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: colors.$pds-color-primary-purple-500;
+      border-top-left-radius: borderRadius.$pds-border-radius-xl;
+      border-top-right-radius: borderRadius.$pds-border-radius-xl;
+      height: 54px;
+      padding: 1rem 1.5rem;
+      border: 1px solid colors.$pds-color-primary-purple-500;
+
+      .title {
+        @include typographies.pds-font-heading-06-bold;
+        color: colors.$pds-color-white-50;
+      }
+
+      .close {
+        width: 25px;
+        cursor: pointer;
+        color: colors.$pds-color-white-50;
+      }
+    }
+
+    .content {
+      border: 1px solid colors.$pds-color-secondary-purple-500;
+      border-top: none;
+      height: 100%;
+      border-bottom-left-radius: borderRadius.$pds-border-radius-xl;
+      border-bottom-right-radius: borderRadius.$pds-border-radius-xl;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      min-height: 190px;
+    }
+
+  }
+}
+
+:host {
+  ::ng-deep {
+    app-input-field {
+      width: 100%;
+
+      .container {
+        max-width: 100%;
+      }
+    }
+  }
+}

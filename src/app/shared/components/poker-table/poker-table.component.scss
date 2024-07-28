@@ -19,20 +19,30 @@ $width-poker-table: 775px;
     grid-area: top;
     display: flex;
     width: 100%;
-    justify-content: center;
-    column-gap: 90px;
+
+    app-poker-card-list {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      column-gap: 70px;
+    }
   }
 
   .left {
     grid-area: left;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
     width: 100%;
-    padding-top: $height-grid-area-top;
-    padding-bottom: $height-grid-area-top;
-    row-gap: 40px;
+
+    app-poker-card-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      width: 100%;
+      padding-top: $height-grid-area-top;
+      padding-bottom: $height-grid-area-top;
+      row-gap: 40px;
+    }
   }
 
   .center {
@@ -43,7 +53,10 @@ $width-poker-table: 775px;
   .right {
     @extend .left;
     grid-area: right;
-    align-items: flex-start;
+
+    app-poker-card-list {
+      align-items: flex-start;
+    }
   }
 
   .bottom {
@@ -94,6 +107,18 @@ $width-poker-table: 775px;
         inset: calc($positioned * 4);
         background-color: colors.$pds-color-primary-purple-900-opacity-600;
         border: 1px solid colors.$pds-color-primary-purple-500;
+      }
+    }
+  }
+}
+
+
+:host {
+  ::ng-deep {
+    app-button-field {
+      button {
+        padding-left: 24px;
+        padding-right: 24px;
       }
     }
   }

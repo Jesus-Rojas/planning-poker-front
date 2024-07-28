@@ -6,15 +6,8 @@ $height-header: 126px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  row-gap: 50px;
   width: 100%;
   min-height: calc(100vh - $height-header);
-
-  app-poker-table {
-    transform: scale(0.9);
-
-    @include mediaQueries.desktop-large {
-      padding-top: 6rem;
-      transform: scale(1);
-    }
-  }
+  padding-top: 4rem;
 }

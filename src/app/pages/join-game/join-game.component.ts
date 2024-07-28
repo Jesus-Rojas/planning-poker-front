@@ -54,11 +54,12 @@ export class JoinGameComponent implements OnInit, OnDestroy {
     if (!this.isValidPlayerName || !this.currentRole) return;
     this.loaderService.showLoader();
     const joinGameSubscription = this.gameService
-      .joinGame(this.gameUuid ?? '', this.playerName)
+      .joinGame(this.gameUuid!, this.playerName)
       .subscribe({
         next: ({ userUuid }) => {
+          this.localStorageService.updateUser(userUuid);
+          console.log({ userUuid });
           this.router.navigate([RoutePathEnum.PlayingGame, this.gameUuid]);
-          console.log(userUuid);
         },
         error: () => (this.loaderService.hideLoader()),
         complete: () => (this.loaderService.hideLoader()),
@@ -74,11 +75,13 @@ export class JoinGameComponent implements OnInit, OnDestroy {
     this.pokerTableService.organizeTablePositionCard();
     this.localStorageService.removeGame();
 
-    const paramMapSubscription = this.activatedRoute.paramMap.subscribe((params) => {
-      const gameUuid = params.get('gameUuid') ?? '';
-      this.gameUuid = gameUuid;
-      this.localStorageService.updateGame(gameUuid);
-    });
+    const paramMapSubscription = this.activatedRoute
+      .paramMap
+      .subscribe((params) => {
+        const gameUuid = params.get('gameUuid') ?? '';
+        this.gameUuid = gameUuid;
+        this.localStorageService.updateGame(gameUuid);
+      });
     this.subscription.add(paramMapSubscription);
 
     const subscriptionIsLoading = this.loaderService

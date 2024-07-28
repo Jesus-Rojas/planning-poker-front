@@ -3,6 +3,8 @@ import { PokerCard, TablePosition, TablePositionCard } from '@shared/types';
 import { generateManyPokerCard, generateOnePokerCard, isEven } from '@shared/utils';
 import { BehaviorSubject } from 'rxjs';
 
+const meUser = generateOnePokerCard();
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,19 +15,29 @@ export class PokerTableService {
     [TablePosition.Left]: [],
     [TablePosition.Right]: [],
   });
-  private usersSubject = new BehaviorSubject<PokerCard[]>(generateManyPokerCard(10));
-  private meUserSubject = new BehaviorSubject<PokerCard | undefined>(undefined);
+  private usersSubject = new BehaviorSubject<PokerCard[]>([
+    ...generateManyPokerCard(3),
+    meUser,
+  ]);
+  private meUserSubject = new BehaviorSubject<PokerCard | undefined>(meUser);
+  private someUserHasSelectedOnePokerCardSubject = new BehaviorSubject<boolean>(false);
   private maxTopBottomUsers = 10;
 
   tablePositionCard$ = this.tablePositionCardSubject.asObservable();
   users$ = this.usersSubject.asObservable();
   meUser$ = this.meUserSubject.asObservable();
+  someUserHasSelectedOnePokerCard$ = this.someUserHasSelectedOnePokerCardSubject.asObservable();
 
   updateUsers(users: PokerCard[]) {
     this.usersSubject.next(users);
   }
 
   updateMeUser(meUser?: PokerCard) {
+    if (meUser) {
+      const users = this.usersSubject.value;
+      const usersFiltered = users.filter((user) => user.id !== meUser.id);
+      this.updateUsers([meUser, ...usersFiltered]);
+    }
     this.meUserSubject.next(meUser);
   }
 
@@ -55,7 +67,8 @@ export class PokerTableService {
       if (isEvenIndex) unshiftOrPush = unshiftOrPush === 'unshift' ? 'push' : 'unshift';
     });
 
-    if (isEven(tablePositionCard[TablePosition.Bottom].length)) {
+    const amountBottom = tablePositionCard[TablePosition.Bottom].length;
+    if (isEven(amountBottom) && amountBottom > 0) {
       tablePositionCard[TablePosition.Bottom].push(generateOnePokerCard({ isVisible: false }));
     }
 
@@ -67,5 +80,6 @@ export class PokerTableService {
     });
 
     this.updateTablePositionCard(tablePositionCard);
+    this.someUserHasSelectedOnePokerCardSubject.next(users.some((user) => user.isSelected));
   }
 }

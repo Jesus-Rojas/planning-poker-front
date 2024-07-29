@@ -11,3 +11,4 @@ export * from './card-selector-type.enum';
 export * from './card-selector.interface';
 export * from './poker-card-size.enum';
 export * from './poker-card-variant.enum';
+export * from './display-mode.enum';

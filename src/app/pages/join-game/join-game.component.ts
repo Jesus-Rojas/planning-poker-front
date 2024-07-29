@@ -7,7 +7,7 @@ import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { RoleEnum, RoutePathEnum, TablePosition, TablePositionCard } from '@shared/types';
+import { RoutePathEnum, DisplayModeEnum } from '@shared/types';
 import { isValidName } from '@shared/utils';
 import { Subscription } from 'rxjs';
 
@@ -30,10 +30,10 @@ export class JoinGameComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
   gameUuid: string | null = null;
   playerName = '';
-  currentRole = '';
+  currentDisplayMode = '';
   isLoading = false;
 
-  RoleEnum = RoleEnum;
+  DisplayModeEnum = DisplayModeEnum;
   ButtonFieldColorEnum = ButtonFieldColorEnum;
 
   get validatePlayerName() {
@@ -51,14 +51,13 @@ export class JoinGameComponent implements OnInit, OnDestroy {
   }
 
   handleContinue() {
-    if (!this.isValidPlayerName || !this.currentRole) return;
+    if (!this.isValidPlayerName || !this.currentDisplayMode) return;
     this.loaderService.showLoader();
     const joinGameSubscription = this.gameService
-      .joinGame(this.gameUuid!, this.playerName)
+      .joinGame(this.gameUuid!, this.playerName, this.currentDisplayMode as DisplayModeEnum)
       .subscribe({
         next: ({ userUuid }) => {
           this.localStorageService.updateUser(userUuid);
-          console.log({ userUuid });
           this.router.navigate([RoutePathEnum.PlayingGame, this.gameUuid]);
         },
         error: () => (this.loaderService.hideLoader()),

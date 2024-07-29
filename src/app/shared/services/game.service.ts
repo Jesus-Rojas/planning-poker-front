@@ -1,9 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '@environments/environment.development';
-import { RequestCreateGame, ResponseCreateGame } from '@shared/types';
+import { DisplayModeEnum, RequestCreateGame, ResponseCreateGame, RoutePathEnum } from '@shared/types';
 import { RequestJoinGame } from '@shared/types/request-join-game.interface';
 import { ResponseJoinGame } from '@shared/types/response-join-game.interface';
+import { catchError, throwError } from 'rxjs';
+import { ToastService } from './toast.service';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +16,10 @@ export class GameService {
   baseUrl = environment.API_URL + '/games';
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router,
+    private toastService: ToastService,
+    private localStorageService: LocalStorageService
   ) { }
 
   createGame(name: string) {
@@ -20,10 +27,20 @@ export class GameService {
     return this.httpClient.post<ResponseCreateGame>(this.baseUrl + '/create', body);
   }
 
-  joinGame(gameUuid: string, name: string) {
-    const body: RequestJoinGame = { name };
+  joinGame(gameUuid: string, name: string, displayMode: DisplayModeEnum) {
+    const body: RequestJoinGame = { name, displayMode };
     const route = `${this.baseUrl}/join/${gameUuid}`;
-    return this.httpClient.post<ResponseJoinGame>(route, body);
+    return this.httpClient.post<ResponseJoinGame>(route, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === HttpStatusCode.NotFound) {
+          this.toastService.showErrorToast(error.error.message);
+          this.localStorageService.removeGame();
+          this.router.navigate([RoutePathEnum.CreateGame]);
+        }
+
+        return throwError(() => error);
+      })
+    );
   }
 
   getGame(gameUuid: string) {
@@ -31,8 +48,6 @@ export class GameService {
   }
 
   getUser(gameUuid: string, userUuid: string) {
-    console.log(this.baseUrl + `/${gameUuid}/users/${userUuid}`);
-
     return this.httpClient.get(this.baseUrl + `/${gameUuid}/users/${userUuid}`);
   }
 }

@@ -10,28 +10,28 @@
         [isInvalid]="isInvalidPlayerName"
       />
 
-      <div class="roles">
-        <div class="role">
+      <div class="display-modes">
+        <div class="display-mode">
           <span>Jugador</span>
           <app-radio-button-field
-            [(selectedOption)]="currentRole"
-            name="role"
-            [value]="RoleEnum.Player"
+            [(selectedOption)]="currentDisplayMode"
+            name="display-mode"
+            [value]="DisplayModeEnum.Player"
           />
         </div>
 
-        <div class="role">
+        <div class="display-mode">
           <span>Espectador</span>
           <app-radio-button-field
-            [(selectedOption)]="currentRole"
-            name="role"
-            [value]="RoleEnum.Spectator"
+            [(selectedOption)]="currentDisplayMode"
+            name="display-mode"
+            [value]="DisplayModeEnum.Spectator"
           />
         </div>
       </div>
 
       <app-button-field
-        [disabled]="!playerName || !currentRole || isLoading"
+        [disabled]="!playerName || !currentDisplayMode || isLoading"
         [color]="ButtonFieldColorEnum.DarkWhite"
         (click)="handleContinue()"
       >Continuar</app-button-field>

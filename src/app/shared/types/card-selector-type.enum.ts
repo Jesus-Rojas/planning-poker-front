@@ -1,4 +1,4 @@
-export enum CardSelectorType {
+export enum CardSelectorTypeEnum {
   Text = 'text',
   Icon = 'icon',
 }

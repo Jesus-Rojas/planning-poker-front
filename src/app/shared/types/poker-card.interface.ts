@@ -8,5 +8,5 @@ export interface PokerCard {
   role: RoleEnum;
   isVisible: boolean;
   isSelected: boolean;
-  cardId?: string;
+  cardSelected: string | undefined;
 }

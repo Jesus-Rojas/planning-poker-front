@@ -1,5 +1,6 @@
 @use 'border-radius' as borderRadius;
 @use 'colors' as colors;
+@use 'typographies' as typographies;
 
 $positioned: 10px;
 $height-grid-area-top: 96px;
@@ -107,6 +108,21 @@ $width-poker-table: 775px;
         inset: calc($positioned * 4);
         background-color: colors.$pds-color-primary-purple-900-opacity-600;
         border: 1px solid colors.$pds-color-primary-purple-500;
+      }
+
+      .container-spinner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        row-gap: 30px;
+
+        .text-spinner {
+          @include typographies.pds-font-heading-06-regular;
+          color: colors.$pds-color-white-50;
+        }
       }
     }
   }

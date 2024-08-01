@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PokerCardSize, PokerCardVariant } from '@shared/types';
+import { PokerCardSizeEnum, PokerCardVariantEnum } from '@shared/types';
 
 @Component({
   selector: 'app-poker-card',
@@ -7,11 +7,11 @@ import { PokerCardSize, PokerCardVariant } from '@shared/types';
   styleUrl: './poker-card.component.scss'
 })
 export class PokerCardComponent {
-  @Input() size: PokerCardSize = PokerCardSize.Small;
-  @Input() variant: PokerCardVariant = PokerCardVariant.Default;
+  @Input() size: PokerCardSizeEnum = PokerCardSizeEnum.Small;
+  @Input() variant: PokerCardVariantEnum = PokerCardVariantEnum.Default;
   @Input() isVisible = true;
   @Input() isSelected = false;
 
-  PokerCardSize = PokerCardSize;
-  PokerCardVariant = PokerCardVariant;
+  PokerCardSize = PokerCardSizeEnum;
+  PokerCardVariant = PokerCardVariantEnum;
 }

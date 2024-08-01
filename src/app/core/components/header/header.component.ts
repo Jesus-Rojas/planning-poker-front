@@ -8,6 +8,7 @@ import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atom
 import { HeaderService } from '@core/services/header.service';
 import { Subscription } from 'rxjs';
 import { LoaderService } from '@core/services/loader.service';
+import { PokerTableService } from '@shared/services/poker-table.service';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,9 @@ import { LoaderService } from '@core/services/loader.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
-    private headerService: HeaderService,
+    public headerService: HeaderService,
     public loaderService: LoaderService,
+    public pokerTableService: PokerTableService
   ) { }
 
   private subscription: Subscription = new Subscription();

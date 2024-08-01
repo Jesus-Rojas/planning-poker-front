@@ -8,6 +8,7 @@ import { InputFieldComponent } from './input-field/input-field.component';
 import { RadioButtonFieldComponent } from './radio-button-field/radio-button-field.component';
 import { FormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
+import { SpinnerFieldComponent } from './spinner-field/spinner-field.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FeatherModule } from 'angular-feather';
     InputFieldComponent,
     RadioButtonFieldComponent,
     SelectFieldComponent,
+    SpinnerFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { FeatherModule } from 'angular-feather';
     InputFieldComponent,
     RadioButtonFieldComponent,
     SelectFieldComponent,
+    SpinnerFieldComponent,
   ],
 })
 export class AtomsModule {}

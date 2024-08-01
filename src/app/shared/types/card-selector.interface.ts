@@ -1,8 +1,8 @@
-import { CardSelectorType } from "./card-selector-type.enum";
+import { CardSelectorTypeEnum } from "./card-selector-type.enum";
 
 export interface CardSelector {
   id: string;
-  type: CardSelectorType;
+  type: CardSelectorTypeEnum;
   value: string;
   isSelected: boolean;
 }

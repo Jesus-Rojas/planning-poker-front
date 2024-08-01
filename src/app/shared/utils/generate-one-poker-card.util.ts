@@ -9,6 +9,7 @@ export function generateOnePokerCard(attributes: Partial<PokerCard> = { }): Poke
     role = RoleEnum.Player,
     isVisible = true,
     isSelected = false,
+    cardSelected = undefined,
   } = attributes;
-  return { id, name, displayMode, isVisible, isSelected, role };
+  return { id, name, displayMode, isVisible, isSelected, role, cardSelected };
 }

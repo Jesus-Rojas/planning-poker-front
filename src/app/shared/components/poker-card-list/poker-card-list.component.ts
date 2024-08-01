@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { PokerCard } from '@shared/types';
+import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atoms/avatar-field/types';
+import { DisplayModeEnum, PokerCard } from '@shared/types';
 
 @Component({
   selector: 'app-poker-card-list',
@@ -8,4 +9,8 @@ import { PokerCard } from '@shared/types';
 })
 export class PokerCardListComponent {
   @Input() pokerCards: PokerCard[] = [];
+
+  DisplayModeEnum = DisplayModeEnum;
+  AvatarFieldVariantEnum = AvatarFieldVariantEnum;
+  AvatarFieldSizeEnum = AvatarFieldSizeEnum;
 }

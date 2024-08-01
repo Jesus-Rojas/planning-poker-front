@@ -20,7 +20,7 @@
       'hidden': [HeaderStatusEnum.CreatePlayerOrViewGame, HeaderStatusEnum.CreateGame].includes(headerStatus),
     }"
   >
-    Sprint 32
+    {{ headerService.tableName$| async }}
   </div>
 
   <div
@@ -30,11 +30,13 @@
     }"
   >
     @if (headerStatus === HeaderStatusEnum.InsideTheGame) {
-      <app-avatar-field
-        text="LU"
-        [variant]="avatarFieldVariant"
-        [size]="avatarFieldSize"
-      />
+      @if (pokerTableService.meUser$ | async; as meUser) {
+        <app-avatar-field
+          [text]="meUser.name"
+          [variant]="avatarFieldVariant"
+          [size]="avatarFieldSize"
+        />
+      }
     }
 
     <app-button-field

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/h
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environment.development';
-import { DisplayModeEnum, RequestCreateGame, ResponseCreateGame, RoutePathEnum } from '@shared/types';
+import { DisplayModeEnum, Game, GameStatusEnum, RequestCreateGame, ResponseCreateGame, RoutePathEnum } from '@shared/types';
 import { RequestJoinGame } from '@shared/types/request-join-game.interface';
 import { ResponseJoinGame } from '@shared/types/response-join-game.interface';
 import { catchError, throwError } from 'rxjs';
@@ -37,17 +37,33 @@ export class GameService {
           this.localStorageService.removeGame();
           this.router.navigate([RoutePathEnum.CreateGame]);
         }
-
         return throwError(() => error);
       })
     );
   }
 
   getGame(gameUuid: string) {
-    return this.httpClient.get(this.baseUrl + `/${gameUuid}`);
+    return this.httpClient.get<Game>(this.baseUrl + `/${gameUuid}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === HttpStatusCode.NotFound) {
+          this.toastService.showErrorToast(error.error.message);
+          this.localStorageService.removeGame();
+          this.router.navigate([RoutePathEnum.CreateGame]);
+        }
+        return throwError(() => error);
+      })
+    );
   }
 
   getUser(gameUuid: string, userUuid: string) {
     return this.httpClient.get(this.baseUrl + `/${gameUuid}/users/${userUuid}`);
+  }
+
+  updateMeCardSelected(gameUuid: string, userUuid: string, cardSelected: string) {
+    return this.httpClient.put<void>(this.baseUrl + `/${gameUuid}/users/${userUuid}`, { cardSelected });
+  }
+
+  updateStatus(gameUuid: string, status: GameStatusEnum) {
+    return this.httpClient.put<void>(this.baseUrl + `/${gameUuid}/status`, { status });
   }
 }

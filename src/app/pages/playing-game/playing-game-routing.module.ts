@@ -10,6 +10,7 @@ const routes: Routes = [
     path: ':gameUuid',
     component: PlayingGameComponent,
     // canActivate: [CheckGameGuard, CheckUserGuard],
+    // canActivate: [CheckGameGuard],
   },
   {
     path: '**',

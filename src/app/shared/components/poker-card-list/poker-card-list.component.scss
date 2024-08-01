@@ -1,0 +1,12 @@
+@use 'colors' as colors;
+@use 'typographies' as typographies;
+
+.spectator {
+  @include typographies.pds-font-paragraph-03-regular;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: colors.$pds-color-white-50;
+}

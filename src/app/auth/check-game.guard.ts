@@ -30,6 +30,8 @@ export class CheckGameGuard implements CanActivate {
       map(() => {
         this.localStorageService.updateGame(gameUuid);
         const userUuid = this.localStorageService.getUser();
+        console.log(userUuid);
+
         if (!userUuid) return true;
         return this.router.createUrlTree([RoutePathEnum.PlayingGame, gameUuid]);
       }),

@@ -1,32 +1,38 @@
 import { Injectable } from '@angular/core';
-import { PokerCard, TablePosition, TablePositionCard } from '@shared/types';
-import { generateManyPokerCard, generateOnePokerCard, isEven } from '@shared/utils';
+import { PokerCard, TablePositionEnum, TablePositionCard, GameStatusEnum } from '@shared/types';
+import { generateOnePokerCard, isEven } from '@shared/utils';
 import { BehaviorSubject } from 'rxjs';
-
-const meUser = generateOnePokerCard();
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokerTableService {
   private tablePositionCardSubject = new BehaviorSubject<TablePositionCard>({
-    [TablePosition.Top]: [],
-    [TablePosition.Bottom]: [],
-    [TablePosition.Left]: [],
-    [TablePosition.Right]: [],
+    [TablePositionEnum.Top]: [],
+    [TablePositionEnum.Bottom]: [],
+    [TablePositionEnum.Left]: [],
+    [TablePositionEnum.Right]: [],
   });
-  private usersSubject = new BehaviorSubject<PokerCard[]>([
-    ...generateManyPokerCard(3),
-    meUser,
-  ]);
-  private meUserSubject = new BehaviorSubject<PokerCard | undefined>(meUser);
-  private someUserHasSelectedOnePokerCardSubject = new BehaviorSubject<boolean>(false);
+  private usersSubject = new BehaviorSubject<PokerCard[]>([]);
+  private meUserSubject = new BehaviorSubject<PokerCard | undefined>(undefined);
+  private someUserHasSelectedOnePokerCardSubject = new BehaviorSubject(false);
+  private gameStatusSubject = new BehaviorSubject<GameStatusEnum>(GameStatusEnum.Reveal);
   private maxTopBottomUsers = 10;
 
   tablePositionCard$ = this.tablePositionCardSubject.asObservable();
   users$ = this.usersSubject.asObservable();
   meUser$ = this.meUserSubject.asObservable();
+  gameStatus$ = this.gameStatusSubject.asObservable();
   someUserHasSelectedOnePokerCard$ = this.someUserHasSelectedOnePokerCardSubject.asObservable();
+
+  constructor(
+    private localStorageService: LocalStorageService,
+  ) { }
+
+  updateGameStatus(gameStatus: GameStatusEnum) {
+    this.gameStatusSubject.next(GameStatusEnum.Loading ?? gameStatus);
+  }
 
   updateUsers(users: PokerCard[]) {
     this.usersSubject.next(users);
@@ -52,34 +58,46 @@ export class PokerTableService {
     const usersFiltered = meUser ? users.filter((user) => user.id !== meUser.id) : users;
     const limitUsers = this.maxTopBottomUsers - 1;
     const tablePositionCard: TablePositionCard = {
-      [TablePosition.Top]: [],
-      [TablePosition.Bottom]: [],
-      [TablePosition.Left]: [],
-      [TablePosition.Right]: [],
+      [TablePositionEnum.Top]: [],
+      [TablePositionEnum.Bottom]: [],
+      [TablePositionEnum.Left]: [],
+      [TablePositionEnum.Right]: [],
     };
 
     const usersTopBottom = [...usersFiltered.slice(0, limitUsers)];
     if (meUser) usersTopBottom.unshift(meUser);
     usersTopBottom.forEach((user, index) => {
       const isEvenIndex = isEven(index + 1);
-      const position = isEvenIndex ? TablePosition.Top : TablePosition.Bottom;
+      const position = isEvenIndex ? TablePositionEnum.Top : TablePositionEnum.Bottom;
       tablePositionCard[position][unshiftOrPush](user);
       if (isEvenIndex) unshiftOrPush = unshiftOrPush === 'unshift' ? 'push' : 'unshift';
     });
 
-    const amountBottom = tablePositionCard[TablePosition.Bottom].length;
+    const amountBottom = tablePositionCard[TablePositionEnum.Bottom].length;
     if (isEven(amountBottom) && amountBottom > 0) {
-      tablePositionCard[TablePosition.Bottom].push(generateOnePokerCard({ isVisible: false }));
+      tablePositionCard[TablePositionEnum.Bottom].push(generateOnePokerCard({ isVisible: false }));
     }
 
     const usersLeftRight = usersFiltered.slice(limitUsers);
     usersLeftRight.forEach((user, index) => {
       const isEvenIndex = isEven(index + 1);
-      const position = isEvenIndex ? TablePosition.Left : TablePosition.Right;
+      const position = isEvenIndex ? TablePositionEnum.Left : TablePositionEnum.Right;
       tablePositionCard[position].push(user);
     });
 
     this.updateTablePositionCard(tablePositionCard);
     this.someUserHasSelectedOnePokerCardSubject.next(users.some((user) => user.isSelected));
+  }
+
+  resetGame() {
+    const users = this.usersSubject.value.map((user) => ({ ...user, cardSelected: undefined, isSelected: false }));
+    const userUuid = this.localStorageService.getUser() ?? '';
+    const meUser = users.find((user) => user.id === userUuid);
+    console.log(meUser?.cardSelected);
+
+    this.updateGameStatus(GameStatusEnum.Reveal);
+    this.updateUsers(users);
+    this.updateMeUser(meUser);
+    this.organizeTablePositionCard();
   }
 }

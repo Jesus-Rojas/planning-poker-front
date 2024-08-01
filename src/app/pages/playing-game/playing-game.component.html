@@ -1,4 +1,17 @@
 <div class="container">
   <app-poker-table />
-  <app-card-selector />
+
+  @if (pokerTableService.meUser$ | async; as meUser) {
+    @if (meUser.displayMode === DisplayModeEnum.Player) {
+      @if (pokerTableService.gameStatus$ | async; as gameStatus) {
+        @if ([GameStatusEnum.Reveal, GameStatusEnum.Loading].includes(gameStatus)) {
+          <app-card-selector
+            [style]="{
+              pointerEvents: gameStatus === GameStatusEnum.Loading ? 'none' : 'auto',
+            }"
+          />
+        }
+      }
+    }
+  }
 </div>

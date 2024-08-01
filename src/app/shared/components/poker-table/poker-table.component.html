@@ -20,7 +20,26 @@
       <div class="container-poker-table">
         <div class="poker-table">
           @if (pokerTableService.someUserHasSelectedOnePokerCard$ | async) {
-            <app-button-field>Revelar cartas</app-button-field>
+            @if (pokerTableService.meUser$ | async; as meUser) {
+              @if (pokerTableService.gameStatus$ | async; as gameStatus) {
+                @if (gameStatus === GameStatusEnum.Loading) {
+                  <div class="container-spinner">
+                    <app-spinner-field></app-spinner-field>
+                    <span class="text-spinner">Contando votos</span>
+                  </div>
+                }
+
+                @if (meUser.role === RoleEnum.Admin) {
+                  @if (gameStatus === GameStatusEnum.Reveal) {
+                    <app-button-field (click)="revealCards()">Revelar cartas</app-button-field>
+                  }
+
+                  @if (gameStatus === GameStatusEnum.Reset) {
+                    <app-button-field (click)="resetGame()">Nueva Votacion</app-button-field>
+                  }
+                }
+              }
+            }
           }
         </div>
       </div>

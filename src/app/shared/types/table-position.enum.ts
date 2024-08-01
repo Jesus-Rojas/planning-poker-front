@@ -1,4 +1,4 @@
-export enum TablePosition {
+export enum TablePositionEnum {
   Top = 'top',
   Bottom = 'bottom',
   Left = 'left',

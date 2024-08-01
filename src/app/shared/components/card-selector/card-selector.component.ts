@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CardSelectorService } from '@shared/services/card-selector.service';
+import { GameService } from '@shared/services/game.service';
+import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { CardSelector, CardSelectorType, PokerCard, PokerCardSize, PokerCardVariant } from '@shared/types';
+import { CardSelector, CardSelectorTypeEnum, PokerCard, PokerCardSizeEnum, PokerCardVariantEnum } from '@shared/types';
 import { getId } from '@shared/utils';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
@@ -14,27 +16,36 @@ export class CardSelectorComponent implements OnInit, OnDestroy {
   constructor(
     private pokerTableService: PokerTableService,
     public cardSelectorService: CardSelectorService,
+    private gameService: GameService,
+    private localStorageService: LocalStorageService
   ) { }
 
   cards: CardSelector[] = [];
   meUser: PokerCard | undefined = undefined;
   subscriptions = new Subscription();
 
-  CardSelectorType = CardSelectorType;
-  PokerCardSize = PokerCardSize;
-  PokerCardVariant = PokerCardVariant;
+  CardSelectorType = CardSelectorTypeEnum;
+  PokerCardSize = PokerCardSizeEnum;
+  PokerCardVariant = PokerCardVariantEnum;
 
-  handlePokerCard(cardId: string) {
+  handlePokerCard(cardSelected: string) {
     const someCardIsSelected = this.cards.some((card) => card.isSelected);
     if (someCardIsSelected) return;
     if (!this.meUser) return;
-    this.pokerTableService.updateMeUser({ ...this.meUser, isSelected: true, cardId });
+    const gameUuid = this.localStorageService.getGame() ?? '';
+    const userUuid = this.localStorageService.getUser() ?? '';
+
+    const updateMeCardSelectedSubscription =
+      this.gameService.updateMeCardSelected(gameUuid, userUuid, cardSelected).subscribe();
+    this.subscriptions.add(updateMeCardSelectedSubscription);
+
+    this.pokerTableService.updateMeUser({ ...this.meUser, isSelected: true, cardSelected });
     this.pokerTableService.organizeTablePositionCard();
   }
 
-  generateCard(type: CardSelectorType, value: string) {
+  generateCard(type: CardSelectorTypeEnum, value: string) {
     return {
-      id: getId(),
+      id: value,
       type,
       value,
       isSelected: false,
@@ -43,10 +54,10 @@ export class CardSelectorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const cardsText = ['0', '1', '3', '5', '8', '13', '21', '34', '55', '89', '?']
-      .map((value) => this.generateCard(CardSelectorType.Text, value));
+      .map((value) => this.generateCard(CardSelectorTypeEnum.Text, value));
 
     const cardsIcon = ['/images/coffe.png']
-      .map((value) => this.generateCard(CardSelectorType.Icon, value));
+      .map((value) => this.generateCard(CardSelectorTypeEnum.Icon, value));
 
     this.cardSelectorService.updateCards([...cardsText, ...cardsIcon]);
 
@@ -59,9 +70,11 @@ export class CardSelectorComponent implements OnInit, OnDestroy {
     const meUserSubscription = this.pokerTableService
       .meUser$
       .subscribe((meUser) => {
+        console.log(meUser);
+
         this.meUser = meUser;
         this.cardSelectorService.updateCards(
-          this.cards.map((card) => ({ ...card, isSelected: card.id === meUser?.cardId }))
+          this.cards.map((card) => ({ ...card, isSelected: card.id === meUser?.cardSelected }))
         );
       });
 

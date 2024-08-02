@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PokerCard, TablePositionEnum, TablePositionCard, GameStatusEnum, ScoreCard } from '@shared/types';
+import { PokerCard, TablePositionEnum, TablePositionCard, GameStatusEnum, ScoreCard, DisplayModeEnum } from '@shared/types';
 import { generateOnePokerCard, isEven } from '@shared/utils';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
@@ -113,5 +113,19 @@ export class PokerTableService {
     this.organizeTablePositionCard();
     const gameUuid = this.localStorageService.getGame() ?? '';
     this.gameService.resetGame(gameUuid).subscribe();
+  }
+
+  toggleDisplayMode() {
+    const meUser = this.meUserSubject.value;
+    if (meUser) {
+      const displayMode = meUser.displayMode === DisplayModeEnum.Player
+        ? DisplayModeEnum.Spectator
+        : DisplayModeEnum.Player;
+
+      this.updateMeUser({ ...meUser, displayMode });
+      const gameUuid = this.localStorageService.getGame() ?? '';
+      this.gameService.updateDisplayMode(gameUuid, meUser.id).subscribe();
+      this.organizeTablePositionCard();
+    }
   }
 }

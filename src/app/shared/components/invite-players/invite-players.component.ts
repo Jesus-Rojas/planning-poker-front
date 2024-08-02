@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
 import { ToastService } from '@shared/services/toast.service';
 
@@ -7,7 +7,7 @@ import { ToastService } from '@shared/services/toast.service';
   templateUrl: './invite-players.component.html',
   styleUrl: './invite-players.component.scss'
 })
-export class InvitePlayersComponent {
+export class InvitePlayersComponent implements OnInit {
   constructor(
     private toastService: ToastService,
   ) { }
@@ -16,7 +16,7 @@ export class InvitePlayersComponent {
 
   ButtonFieldColorEnum = ButtonFieldColorEnum;
 
-  url = window.location.href;
+  url = '';
 
   copyLink() {
     navigator.clipboard.writeText(this.url);
@@ -26,5 +26,9 @@ export class InvitePlayersComponent {
 
   onClose() {
     this.close.emit();
+  }
+
+  ngOnInit(): void {
+    this.url = window.location.href.replace('playing', 'join');
   }
 }

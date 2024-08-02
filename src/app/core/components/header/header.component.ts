@@ -9,6 +9,7 @@ import { HeaderService } from '@core/services/header.service';
 import { Subscription } from 'rxjs';
 import { LoaderService } from '@core/services/loader.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
+import { DisplayModeEnum } from '@shared/types';
 
 @Component({
   selector: 'app-header',
@@ -28,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   avatarFieldVariant: AvatarFieldVariantEnum = AvatarFieldVariantEnum.TextPurpleLigth;
   avatarFieldSize: AvatarFieldSizeEnum = AvatarFieldSizeEnum.Large;
   showInvitePlayers = false;
+  displayModes = Object.values(DisplayModeEnum);
 
   ButtonFieldColorEnum = ButtonFieldColorEnum;
   ButtonFieldVariantEnum = ButtonFieldVariantEnum;

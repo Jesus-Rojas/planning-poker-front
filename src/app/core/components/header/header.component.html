@@ -31,6 +31,12 @@
   >
     @if (headerStatus === HeaderStatusEnum.InsideTheGame) {
       @if (pokerTableService.meUser$ | async; as meUser) {
+        <app-dropdown-field
+          [selectedOption]="meUser.displayMode"
+          [options]="displayModes"
+          (selectedOptionChange)="pokerTableService.toggleDisplayMode()"
+        ></app-dropdown-field>
+
         <app-avatar-field
           [text]="meUser.name"
           [variant]="avatarFieldVariant"

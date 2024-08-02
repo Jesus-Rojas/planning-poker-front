@@ -74,4 +74,8 @@ export class GameService {
   resetGame(gameUuid: string) {
     return this.httpClient.post<ResponseRevealCards>(this.baseUrl + `/${gameUuid}/reset`, {});
   }
+
+  updateDisplayMode(gameUuid: string, userUuid: string) {
+    return this.httpClient.post<void>(this.baseUrl + `/${gameUuid}/update-display-mode/${userUuid}`, {});
+  }
 }

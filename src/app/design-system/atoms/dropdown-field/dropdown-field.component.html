@@ -1,0 +1,11 @@
+<div class="select-wrapper" (click)="toggleDropdown($event)">
+  <div class="select-placeholder">
+    <input [placeholder]="placeholder" [value]="selectedOption || ''" readonly>
+    <span class="arrow">&#9662;</span>
+  </div>
+  <ul [class.open]="dropdownOpen">
+    <li *ngFor="let option of options" (click)="selectOption(option)" [class.selected]="option === selectedOption">
+      {{ option }}
+    </li>
+  </ul>
+</div>

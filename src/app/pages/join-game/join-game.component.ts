@@ -9,7 +9,7 @@ import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
 import { RoutePathEnum, DisplayModeEnum } from '@shared/types';
 import { isValidName } from '@shared/utils';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-join-game',
@@ -21,7 +21,7 @@ export class JoinGameComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private localStorageService: LocalStorageService,
     private headerService: HeaderService,
-    private loaderService: LoaderService,
+    public loaderService: LoaderService,
     private gameService: GameService,
     private router: Router,
     private pokerTableService: PokerTableService,
@@ -76,18 +76,21 @@ export class JoinGameComponent implements OnInit, OnDestroy {
 
     const paramMapSubscription = this.activatedRoute
       .paramMap
-      .subscribe((params) => {
-        const gameUuid = params.get('gameUuid') ?? '';
-        this.gameUuid = gameUuid;
-        this.localStorageService.updateGame(gameUuid);
-      });
+      .pipe(
+        switchMap((params) => {
+          const gameUuid = params.get('gameUuid') ?? '';
+          this.gameUuid = gameUuid;
+          this.localStorageService.updateGame(gameUuid);
+          return this.gameService.getGame(gameUuid);
+        }),
+      )
+      .subscribe();
     this.subscription.add(paramMapSubscription);
 
     const subscriptionIsLoading = this.loaderService
       .isLoading$
       .subscribe((isLoading) => (this.isLoading = isLoading));
     this.subscription.add(subscriptionIsLoading);
-
   }
 
   ngOnDestroy(): void {

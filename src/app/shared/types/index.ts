@@ -15,3 +15,5 @@ export * from './display-mode.enum';
 export * from './game.interface';
 export * from './player.interface';
 export * from './game-status.enum';
+export * from './score-card.interface';
+export * from './response-reveal-cards.interface';

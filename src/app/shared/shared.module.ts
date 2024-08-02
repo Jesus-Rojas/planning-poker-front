@@ -9,6 +9,8 @@ import { CardSelectorComponent } from './components/card-selector/card-selector.
 import { InvitePlayersComponent } from './components/invite-players/invite-players.component';
 import { FeatherModule } from 'angular-feather';
 import { PokerCardListComponent } from './components/poker-card-list/poker-card-list.component';
+import { PokerScoreComponent } from './components/poker-score/poker-score.component';
+import { DecimalToCommaPipe } from './pipes/decimal-to-comma.pipe';
 
 @NgModule({
   imports: [
@@ -24,14 +26,19 @@ import { PokerCardListComponent } from './components/poker-card-list/poker-card-
     CardSelectorComponent,
     InvitePlayersComponent,
     PokerCardListComponent,
+    PokerScoreComponent,
+    DecimalToCommaPipe,
   ],
   exports: [
+    PokerScoreComponent,
+    PokerCardComponent,
     PokerChipComponent,
     ToastContainerComponent,
     PokerTableComponent,
     CardSelectorComponent,
     InvitePlayersComponent,
     PokerCardListComponent,
+    DecimalToCommaPipe,
   ],
 })
 export class SharedModule { }

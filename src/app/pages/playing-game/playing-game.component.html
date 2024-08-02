@@ -1,17 +1,28 @@
 <div class="container">
   <app-poker-table />
 
-  @if (pokerTableService.meUser$ | async; as meUser) {
-    @if (meUser.displayMode === DisplayModeEnum.Player) {
-      @if (pokerTableService.gameStatus$ | async; as gameStatus) {
-        @if ([GameStatusEnum.Reveal, GameStatusEnum.Loading].includes(gameStatus)) {
-          <app-card-selector
-            [style]="{
-              pointerEvents: gameStatus === GameStatusEnum.Loading ? 'none' : 'auto',
-            }"
-          />
-        }
-      }
+  @if (combinedObservable$ | async; as combinedObservable) {
+    @if (
+      combinedObservable.meUser?.displayMode === DisplayModeEnum.Player &&
+      [
+        GameStatusEnum.Reveal,
+        GameStatusEnum.Loading
+      ].includes(combinedObservable.gameStatus)
+    ) {
+      <app-card-selector
+        [style]="{
+          pointerEvents: (
+            combinedObservable.gameStatus === GameStatusEnum.Loading
+              ? 'none'
+              : 'auto'
+          ),
+        }"
+      />
+    }
+
+    @if (combinedObservable.gameStatus === GameStatusEnum.Reset) {
+      <app-poker-score />
     }
   }
+
 </div>

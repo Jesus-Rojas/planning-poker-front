@@ -4,8 +4,8 @@ import { HeaderStatusEnum } from '@core/types/header-status.enum';
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { DisplayModeEnum, GameStatusEnum, Player, RoleEnum } from '@shared/types';
-import { Subscription } from 'rxjs';
+import { DisplayModeEnum, GameStatusEnum, Player, PokerCardSizeEnum, RoleEnum } from '@shared/types';
+import { combineLatest, map, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-playing-game',
@@ -14,6 +14,15 @@ import { Subscription } from 'rxjs';
 })
 export class PlayingGameComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
+  combinedObservable$ = combineLatest([
+    this.pokerTableService.meUser$,
+    this.pokerTableService.gameStatus$
+  ]).pipe(
+    map(([meUser, gameStatus]) => ({
+      meUser,
+      gameStatus,
+    }))
+  );
 
   DisplayModeEnum = DisplayModeEnum;
   GameStatusEnum = GameStatusEnum;
@@ -30,7 +39,7 @@ export class PlayingGameComponent implements OnInit, OnDestroy {
     const gameUuid = this.localStorageService.getGame() ?? '';
     const getGameSubscription = this.gameService
       .getGame(gameUuid)
-      .subscribe(({ name, users, status }) => {
+      .subscribe(({ name, users, status, average, scoreCards }) => {
         const convertToPokerCard = (user: Player) => ({
           id: user.uuid,
           name: user.name,
@@ -53,6 +62,8 @@ export class PlayingGameComponent implements OnInit, OnDestroy {
         );
         if (meUser) this.pokerTableService.updateMeUser(convertToPokerCard(meUser));
         this.pokerTableService.organizeTablePositionCard();
+        this.pokerTableService.updateAverage(average);
+        this.pokerTableService.updateScoreCards(scoreCards);
       });
 
     this.subscription.add(getGameSubscription);

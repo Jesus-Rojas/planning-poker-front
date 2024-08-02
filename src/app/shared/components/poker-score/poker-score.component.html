@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="votes">
+    @for (scoreCard of pokerTableService.scoreCards$ | async; track scoreCard.id) {
+      <app-poker-card
+        [isVisible]="true"
+        [isSelected]="false"
+        [size]="PokerCardSizeEnum.Medium"
+      >
+        {{ scoreCard.amount }} Votos
+        <span slot="inside">{{ scoreCard.text }}</span>
+      </app-poker-card>
+    }
+  </div>
+
+  <div class="average">
+    <span class="average-title">Promedio:</span>
+    <span class="average-value">
+      {{ pokerTableService.average$ | async | decimalToComma }}
+    </span>
+  </div>
+</div>

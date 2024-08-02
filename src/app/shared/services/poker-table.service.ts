@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { PokerCard, TablePositionEnum, TablePositionCard, GameStatusEnum } from '@shared/types';
+import { PokerCard, TablePositionEnum, TablePositionCard, GameStatusEnum, ScoreCard } from '@shared/types';
 import { generateOnePokerCard, isEven } from '@shared/utils';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
+import { GameService } from './game.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,20 +19,33 @@ export class PokerTableService {
   private meUserSubject = new BehaviorSubject<PokerCard | undefined>(undefined);
   private someUserHasSelectedOnePokerCardSubject = new BehaviorSubject(false);
   private gameStatusSubject = new BehaviorSubject<GameStatusEnum>(GameStatusEnum.Reveal);
+  private averageSubject = new BehaviorSubject(0);
+  private scoreCardsSubject = new BehaviorSubject<ScoreCard[]>([]);
   private maxTopBottomUsers = 10;
 
   tablePositionCard$ = this.tablePositionCardSubject.asObservable();
   users$ = this.usersSubject.asObservable();
   meUser$ = this.meUserSubject.asObservable();
   gameStatus$ = this.gameStatusSubject.asObservable();
+  average$ = this.averageSubject.asObservable();
+  scoreCards$ = this.scoreCardsSubject.asObservable();
   someUserHasSelectedOnePokerCard$ = this.someUserHasSelectedOnePokerCardSubject.asObservable();
 
   constructor(
     private localStorageService: LocalStorageService,
+    private gameService: GameService,
   ) { }
 
+  updateScoreCards(scoreCards: ScoreCard[]) {
+    this.scoreCardsSubject.next(scoreCards);
+  }
+
+  updateAverage(average: number) {
+    this.averageSubject.next(average);
+  }
+
   updateGameStatus(gameStatus: GameStatusEnum) {
-    this.gameStatusSubject.next(GameStatusEnum.Loading ?? gameStatus);
+    this.gameStatusSubject.next(gameStatus);
   }
 
   updateUsers(users: PokerCard[]) {
@@ -93,11 +107,11 @@ export class PokerTableService {
     const users = this.usersSubject.value.map((user) => ({ ...user, cardSelected: undefined, isSelected: false }));
     const userUuid = this.localStorageService.getUser() ?? '';
     const meUser = users.find((user) => user.id === userUuid);
-    console.log(meUser?.cardSelected);
-
     this.updateGameStatus(GameStatusEnum.Reveal);
     this.updateUsers(users);
     this.updateMeUser(meUser);
     this.organizeTablePositionCard();
+    const gameUuid = this.localStorageService.getGame() ?? '';
+    this.gameService.resetGame(gameUuid).subscribe();
   }
 }

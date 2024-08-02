@@ -4,8 +4,7 @@ import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
 import { CardSelector, CardSelectorTypeEnum, PokerCard, PokerCardSizeEnum, PokerCardVariantEnum } from '@shared/types';
-import { getId } from '@shared/utils';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-card-selector',
@@ -70,8 +69,6 @@ export class CardSelectorComponent implements OnInit, OnDestroy {
     const meUserSubscription = this.pokerTableService
       .meUser$
       .subscribe((meUser) => {
-        console.log(meUser);
-
         this.meUser = meUser;
         this.cardSelectorService.updateCards(
           this.cards.map((card) => ({ ...card, isSelected: card.id === meUser?.cardSelected }))

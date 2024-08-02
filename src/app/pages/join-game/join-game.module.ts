@@ -17,6 +17,6 @@ import { SharedModule } from '@shared/shared.module';
     DesignSystemModule,
     JoinGameRoutingModule,
     SharedModule,
-  ]
+  ],
 })
 export class JoinGameModule { }

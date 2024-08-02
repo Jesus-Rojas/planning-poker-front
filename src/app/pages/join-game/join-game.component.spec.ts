@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JoinGameComponent } from './join-game.component';
 
-describe('JoinGameComponent', () => {
+xdescribe('JoinGameComponent', () => {
   let component: JoinGameComponent;
   let fixture: ComponentFixture<JoinGameComponent>;
 

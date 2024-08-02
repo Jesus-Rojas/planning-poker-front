@@ -4,8 +4,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "module": "CommonJs",
     "types": [
-      "jasmine",
+      "jest",
       "node"
     ]
   },

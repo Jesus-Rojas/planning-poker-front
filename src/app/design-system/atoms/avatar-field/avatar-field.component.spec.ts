@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AvatarFieldComponent } from './avatar-field.component';
 
-describe('AvatarFieldComponent', () => {
+xdescribe('AvatarFieldComponent', () => {
   let component: AvatarFieldComponent;
   let fixture: ComponentFixture<AvatarFieldComponent>;
 

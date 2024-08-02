@@ -78,4 +78,8 @@ export class GameService {
   updateDisplayMode(gameUuid: string, userUuid: string) {
     return this.httpClient.post<void>(this.baseUrl + `/${gameUuid}/update-display-mode/${userUuid}`, {});
   }
+
+  convertToAdmin(gameUuid: string, userUuid: string) {
+    return this.httpClient.post<void>(this.baseUrl + `/${gameUuid}/convert-to-admin/${userUuid}`, {});
+  }
 }

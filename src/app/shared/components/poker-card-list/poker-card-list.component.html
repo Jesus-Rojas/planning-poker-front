@@ -1,22 +1,33 @@
 @for (pokerCard of pokerCards; track pokerCard.id) {
+  <div class="container" (contextmenu)="onRightClick($event, pokerCard)">
+    @if (pokerCard.displayMode === DisplayModeEnum.Player) {
+      <app-poker-card
+        [isVisible]="pokerCard.isVisible"
+        [isSelected]="pokerCard.isSelected"
+      >{{ pokerCard.name}}</app-poker-card>
+    }
 
-  @if (pokerCard.displayMode === DisplayModeEnum.Player) {
-    <app-poker-card
-      [isVisible]="pokerCard.isVisible"
-      [isSelected]="pokerCard.isSelected"
-    >{{ pokerCard.name}}</app-poker-card>
-  }
+    @if (pokerCard.displayMode === DisplayModeEnum.Spectator) {
+      <div class="spectator">
+        <app-avatar-field
+          [text]="pokerCard.name"
+          [variant]="AvatarFieldVariantEnum.TextPurpleLigth"
+          [size]="AvatarFieldSizeEnum.Large"
+        />
 
-  @if (pokerCard.displayMode === DisplayModeEnum.Spectator) {
-    <div class="spectator">
-      <app-avatar-field
-        [text]="pokerCard.name"
-        [variant]="AvatarFieldVariantEnum.TextPurpleLigth"
-        [size]="AvatarFieldSizeEnum.Large"
-      />
-
-      <span>{{ pokerCard.name}}</span>
-    </div>
-  }
-
+        <span>{{ pokerCard.name}}</span>
+      </div>
+    }
+  </div>
 }
+
+<div
+  class="context-menu"
+  [style.top.px]="contextMenuPosition.y"
+  [style.left.px]="contextMenuPosition.x"
+  *ngIf="contextMenuVisible"
+>
+  <ul>
+    <li (click)="convertToAdmin()">Convert to Admin</li>
+  </ul>
+</div>

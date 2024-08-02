@@ -10,3 +10,33 @@
   align-items: center;
   color: colors.$pds-color-white-50;
 }
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.context-menu {
+  position: fixed;
+  background-color: #444;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.context-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.context-menu ul li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.context-menu ul li:hover {
+  background-color: #555;
+}

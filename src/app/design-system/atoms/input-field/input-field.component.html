@@ -9,20 +9,16 @@
       [placeholder]="placeholder"
       [value]="value"
       [disabled]="disabled"
-      [ngClass]="[classIsInvalid, classIsValid]"
+      [ngClass]="classInput"
       (input)="onInput($event)"
     >
-
     <div class="input-icon"></div>
   </div>
 
   @if (descriptionText) {
-    <div
-      class="description-text"
-      [ngClass]="[classDisabled, classIsInvalid, classIsValid]"
-    >
-      <i-feather name="alert-triangle" class="icon-is-invalid" />
-      <i-feather name="check" class="icon-is-valid" />
+    <div [ngClass]="classDescriptionText">
+      <i-feather name="alert-triangle" class="icon-is-invalid"></i-feather>
+      <i-feather name="check" class="icon-is-valid"></i-feather>
       <span>{{ descriptionText }}</span>
     </div>
   }

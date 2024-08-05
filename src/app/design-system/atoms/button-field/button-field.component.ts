@@ -19,10 +19,16 @@ export class ButtonFieldComponent implements OnInit, OnChanges {
   @Input() disabled: HTMLButtonElement['disabled'] = false;
   @Input() type: HTMLButtonElement['type'] = 'button';
 
+  classButton = '';
   classVariant = '';
   classSize = '';
   classColor = '';
   classIcon = '';
+
+  updateClassButton() {
+    const classesList = [this.classColor, this.classSize, this.classVariant, this.classIcon];
+    this.classButton = classesList.join(' ');
+  }
 
   updateClassIcon() {
     const classes = {
@@ -64,6 +70,7 @@ export class ButtonFieldComponent implements OnInit, OnChanges {
     this.updateClassVariant();
     this.updateClassColor();
     this.updateClassIcon();
+    this.updateClassButton();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -71,5 +78,8 @@ export class ButtonFieldComponent implements OnInit, OnChanges {
     if (changes['variant']) this.updateClassVariant();
     if (changes['color']) this.updateClassColor();
     if (changes['icon']) this.updateClassIcon();
+    if (
+      ['size', 'variant', 'color', 'icon'].some((prop) => changes[prop])
+    ) this.updateClassButton();
   }
 }

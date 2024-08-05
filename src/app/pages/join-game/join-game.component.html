@@ -1,5 +1,5 @@
 <div class="container">
-  <app-poker-table />
+  <app-poker-table></app-poker-table>
 
   <app-modal>
     <div class="container-modal">
@@ -8,7 +8,7 @@
         [(value)]="playerName"
         [isValid]="isValidPlayerName"
         [isInvalid]="isInvalidPlayerName"
-      />
+      ></app-input-field>
 
       <div class="display-modes">
         <div class="display-mode">
@@ -17,7 +17,7 @@
             [(selectedOption)]="currentDisplayMode"
             name="display-mode"
             [value]="DisplayModeEnum.Player"
-          />
+          ></app-radio-button-field>
         </div>
 
         <div class="display-mode">
@@ -26,12 +26,12 @@
             [(selectedOption)]="currentDisplayMode"
             name="display-mode"
             [value]="DisplayModeEnum.Spectator"
-          />
+          ></app-radio-button-field>
         </div>
       </div>
 
       <app-button-field
-        [disabled]="!playerName || !currentDisplayMode || isLoading"
+        [disabled]="isDisabledButtonField"
         [color]="ButtonFieldColorEnum.DarkWhite"
         (click)="handleContinue()"
       >Continuar</app-button-field>

@@ -67,6 +67,10 @@ export class CreateGameComponent implements OnDestroy {
     return !this.validateGameName;
   }
 
+  get isDisabledButtonField() {
+    return !this.gameName || this.isLoading;
+  }
+
   ngOnInit() {
     const subscriptionIsLoading = this.loaderService
       .isLoading$

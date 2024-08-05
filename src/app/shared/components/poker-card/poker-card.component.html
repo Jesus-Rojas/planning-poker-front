@@ -1,21 +1,5 @@
-<div
-  class="container"
-  [ngClass]="{
-    'small': size === PokerCardSize.Small,
-    'medium': size === PokerCardSize.Medium,
-    'hidden': !isVisible,
-  }"
->
-  <div
-    class="card"
-    [ngClass]="{
-      'small': size === PokerCardSize.Small,
-      'medium': size === PokerCardSize.Medium,
-      'default': variant === PokerCardVariant.Default,
-      'picker': variant === PokerCardVariant.Picker,
-      'is-selected': isSelected,
-    }"
-  >
+<div [ngClass]="classContainer">
+  <div [ngClass]="classCard">
     <ng-content select="[slot='inside']"></ng-content>
   </div>
   <ng-content></ng-content>

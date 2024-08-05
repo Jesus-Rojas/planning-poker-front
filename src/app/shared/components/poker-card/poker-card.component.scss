@@ -29,6 +29,8 @@
     display: grid;
     place-content: center;
     color: colors.$pds-color-white-50;
+    overflow-x: hidden;
+
 
     &:not(.is-selected):hover {
       box-shadow:

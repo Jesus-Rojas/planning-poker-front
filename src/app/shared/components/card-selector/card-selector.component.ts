@@ -55,7 +55,8 @@ export class CardSelectorComponent implements OnInit, OnDestroy {
     const cardsText = ['0', '1', '3', '5', '8', '13', '21', '34', '55', '89', '?']
       .map((value) => this.generateCard(CardSelectorTypeEnum.Text, value));
 
-    const cardsIcon = ['/images/coffe.png']
+    const cardsIcon = []
+    // const cardsIcon = ['/images/coffe.png']
       .map((value) => this.generateCard(CardSelectorTypeEnum.Icon, value));
 
     this.cardSelectorService.updateCards([...cardsText, ...cardsIcon]);

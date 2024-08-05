@@ -2,14 +2,11 @@
   <div class="container">
     <div class="header">
       <div class="title">Invitar jugadores</div>
-      <i-feather name="x" class="close" (click)="onClose()" />
+      <i-feather name="x" class="close" (click)="onClose()"></i-feather>
     </div>
 
     <div class="content">
-      <app-input-field
-        [value]="url"
-      />
-
+      <app-input-field [value]="url"></app-input-field>
       <app-button-field
         [color]="ButtonFieldColorEnum.DarkWhite"
         (click)="copyLink()"

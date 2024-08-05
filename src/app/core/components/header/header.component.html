@@ -1,48 +1,30 @@
-<div
-  class="container"
-  [ngClass]="{ hidden: (loaderService.isLoading$ | async) }"
->
+<div [ngClass]="classContainer">
   <div class="section-logo">
-    <app-poker-chip />
-    <div
-      class="text-logo"
-      [ngClass]="{
-        'hidden': [HeaderStatusEnum.CreatePlayerOrViewGame, HeaderStatusEnum.InsideTheGame].includes(headerStatus),
-      }"
-    >
-      Crear partida
-    </div>
+    <app-poker-chip></app-poker-chip>
+
+    @if (headerStatus === HeaderStatusEnum.InsideTheGame && meUser) {
+      <app-dropdown-field
+        [selectedOption]="meUser.displayMode"
+        [options]="displayModes"
+        (selectedOptionChange)="pokerTableService.toggleDisplayMode()"
+        class="dropdown-field"
+      ></app-dropdown-field>
+    }
+
+    <div [ngClass]="classTextLogo">Crear partida</div>
   </div>
 
-  <div
-    class="section-title"
-    [ngClass]="{
-      'hidden': [HeaderStatusEnum.CreatePlayerOrViewGame, HeaderStatusEnum.CreateGame].includes(headerStatus),
-    }"
-  >
+  <div [ngClass]="classSectionTitle">
     {{ headerService.tableName$| async }}
   </div>
 
-  <div
-    class="section-player"
-    [ngClass]="{
-      'hidden': headerStatus === HeaderStatusEnum.CreateGame,
-    }"
-  >
-    @if (headerStatus === HeaderStatusEnum.InsideTheGame) {
-      @if (pokerTableService.meUser$ | async; as meUser) {
-        <app-dropdown-field
-          [selectedOption]="meUser.displayMode"
-          [options]="displayModes"
-          (selectedOptionChange)="pokerTableService.toggleDisplayMode()"
-        ></app-dropdown-field>
-
-        <app-avatar-field
-          [text]="meUser.name"
-          [variant]="avatarFieldVariant"
-          [size]="avatarFieldSize"
-        />
-      }
+  <div [ngClass]="classSectionPlayer">
+    @if (headerStatus === HeaderStatusEnum.InsideTheGame && meUser) {
+      <app-avatar-field
+        [text]="meUser.name"
+        [variant]="avatarFieldVariant"
+        [size]="avatarFieldSize"
+      ></app-avatar-field>
     }
 
     <app-button-field
@@ -55,6 +37,6 @@
   </div>
 
   @if (showInvitePlayers) {
-    <app-invite-players (close)="showInvitePlayers = false" />
+    <app-invite-players (close)="showInvitePlayers = false"></app-invite-players>
   }
 </div>

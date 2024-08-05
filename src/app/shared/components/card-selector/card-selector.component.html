@@ -12,7 +12,7 @@
         @if (card.type === CardSelectorType.Text) {
           <span slot="inside">{{ card.value }}</span>
         } @else {
-          <img slot="inside" [src]="card.value" />
+          <img slot="inside" [src]="card.value">
         }
       </app-poker-card>
     }

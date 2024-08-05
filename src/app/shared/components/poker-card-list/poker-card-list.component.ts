@@ -3,7 +3,7 @@ import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atom
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { DisplayModeEnum, PokerCard, RoleEnum } from '@shared/types';
+import { DisplayModeEnum, GameStatusEnum, PokerCard, RoleEnum } from '@shared/types';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -19,11 +19,13 @@ export class PokerCardListComponent implements OnInit, OnDestroy {
   DisplayModeEnum = DisplayModeEnum;
   AvatarFieldVariantEnum = AvatarFieldVariantEnum;
   AvatarFieldSizeEnum = AvatarFieldSizeEnum;
+  GameStatusEnum = GameStatusEnum;
 
   contextMenuVisible = false;
   contextMenuPosition = { x: 0, y: 0 };
   selectedPokerCard: PokerCard | null = null;
   canConvertToAdmin = false;
+  gameStatus: GameStatusEnum = GameStatusEnum.Reveal;
 
   constructor(
     private pokerTableService: PokerTableService,
@@ -58,6 +60,9 @@ export class PokerCardListComponent implements OnInit, OnDestroy {
       this.canConvertToAdmin = false;
     });
     this.subscription.add(meUserSubscription);
+
+    const gameStatusSubscription = this.pokerTableService.gameStatus$.subscribe((gameStatus) => (this.gameStatus = gameStatus));
+    this.subscription.add(gameStatusSubscription);
   }
 
   ngOnDestroy(): void {

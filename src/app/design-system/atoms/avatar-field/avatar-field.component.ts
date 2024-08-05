@@ -13,12 +13,18 @@ export class AvatarFieldComponent implements OnInit, OnChanges {
   @Input() urlImage = '/images/avatar.jpeg';
   @Input() text = 'LU';
 
+  classAvatar = '';
   classVariant = '';
   classSize = '';
   backgroundImageAvatar = '';
   backgroundImageIcon = '';
   isVariantText = false;
   isVariantIcon = false;
+
+  updateClassAvatar() {
+    const classesList = ['avatar', this.classSize, this.classVariant];
+    this.classAvatar = classesList.join(' ');
+  }
 
   updateClassVariant() {
     const classes = {
@@ -71,6 +77,7 @@ export class AvatarFieldComponent implements OnInit, OnChanges {
     this.updateIsVariantText();
     this.updateIsVariantIcon();
     this.updateClassVariant();
+    this.updateClassAvatar();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -90,6 +97,10 @@ export class AvatarFieldComponent implements OnInit, OnChanges {
 
     if (changes['variant'] || changes['urlImage']) {
       this.updateBackgroundImageAvatar();
+    }
+
+    if (changes['size'] || changes['variant']) {
+      this.updateClassAvatar();
     }
   }
 }

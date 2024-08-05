@@ -4,9 +4,9 @@
     [(value)]="gameName"
     [isValid]="isValidGameName"
     [isInvalid]="isInvalidGameName"
-  />
+  ></app-input-field>
   <app-button-field
-    [disabled]="!gameName || isLoading"
+    [disabled]="isDisabledButtonField"
     [color]="ButtonFieldColorEnum.DarkWhite"
     (click)="createGame()"
   >Crear partida</app-button-field>

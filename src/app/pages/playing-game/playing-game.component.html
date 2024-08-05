@@ -1,28 +1,12 @@
 <div class="container">
-  <app-poker-table />
+  <app-poker-table></app-poker-table>
 
-  @if (combinedObservable$ | async; as combinedObservable) {
-    @if (
-      combinedObservable.meUser?.displayMode === DisplayModeEnum.Player &&
-      [
-        GameStatusEnum.Reveal,
-        GameStatusEnum.Loading
-      ].includes(combinedObservable.gameStatus)
-    ) {
-      <app-card-selector
-        [style]="{
-          pointerEvents: (
-            combinedObservable.gameStatus === GameStatusEnum.Loading
-              ? 'none'
-              : 'auto'
-          ),
-        }"
-      />
-    }
+  @if (showCardSelector) {
+    <app-card-selector [ngStyle]="stylesCardSelector"></app-card-selector>
+  }
 
-    @if (combinedObservable.gameStatus === GameStatusEnum.Reset) {
-      <app-poker-score />
-    }
+  @if (gameStatus === GameStatusEnum.Reset) {
+    <app-poker-score></app-poker-score>
   }
 
 </div>

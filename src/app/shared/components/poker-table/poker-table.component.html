@@ -1,44 +1,40 @@
-@if (pokerTableService.tablePositionCard$ | async; as tablePositionCard) {
-  <div class="container">
-    <div class="top">
-      <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Top]" />
-    </div>
+<div class="container">
+  <div class="top">
+    <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Top]"></app-poker-card-list>
+  </div>
 
-    <div class="left">
-      <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Left]" />
-    </div>
+  <div class="left">
+    <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Left]"></app-poker-card-list>
+  </div>
 
-    <div class="right">
-      <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Right]" />
-    </div>
+  <div class="right">
+    <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Right]"></app-poker-card-list>
+  </div>
 
-    <div class="bottom">
-      <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Bottom]" />
-    </div>
+  <div class="bottom">
+    <app-poker-card-list [pokerCards]="tablePositionCard[TablePosition.Bottom]"></app-poker-card-list>
+  </div>
 
-    <div class="center">
-      <div class="container-poker-table">
-        <div class="poker-table">
-          @if (combinedObservable$ | async; as combinedObservable) {
-            @if (combinedObservable.gameStatus === GameStatusEnum.Loading) {
-              <div class="container-spinner">
-                <app-spinner-field></app-spinner-field>
-                <span class="text-spinner">Contando votos</span>
-              </div>
-            }
+  <div class="center">
+    <div class="container-poker-table">
+      <div class="poker-table">
+        @if (gameStatus === GameStatusEnum.Loading) {
+          <div class="container-spinner">
+            <app-spinner-field></app-spinner-field>
+            <span class="text-spinner">Contando votos</span>
+          </div>
+        }
 
-            @if (combinedObservable.meUser?.role === RoleEnum.Admin && combinedObservable.someUserHasSelectedCard) {
-              @if (combinedObservable.gameStatus === GameStatusEnum.Reveal) {
-                <app-button-field (click)="revealCards()">Revelar cartas</app-button-field>
-              }
-
-              @if (combinedObservable.gameStatus === GameStatusEnum.Reset) {
-                <app-button-field (click)="resetGame()">Nueva Votacion</app-button-field>
-              }
-            }
+        @if (meUser?.role === RoleEnum.Admin && someUserHasSelectedOnePokerCard) {
+          @if (gameStatus === GameStatusEnum.Reveal) {
+            <app-button-field (click)="revealCards()">Revelar cartas</app-button-field>
           }
-        </div>
+
+          @if (gameStatus === GameStatusEnum.Reset) {
+            <app-button-field (click)="resetGame()">Nueva Votacion</app-button-field>
+          }
+        }
       </div>
     </div>
   </div>
-}
+</div>

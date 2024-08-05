@@ -36,6 +36,10 @@ export class JoinGameComponent implements OnInit, OnDestroy {
   DisplayModeEnum = DisplayModeEnum;
   ButtonFieldColorEnum = ButtonFieldColorEnum;
 
+  get isDisabledButtonField() {
+    return !this.playerName || !this.currentDisplayMode || this.isLoading;
+  }
+
   get validatePlayerName() {
     return isValidName(this.playerName);
   }

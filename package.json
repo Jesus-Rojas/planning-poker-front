@@ -38,6 +38,7 @@
     "@types/uuid": "^10.0.0",
     "jasmine-core": "~5.1.0",
     "jest": "^29.7.0",
+    "jest-mock-extended": "^3.0.7",
     "jest-preset-angular": "^14.2.2",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -48,7 +49,9 @@
   },
   "jest": {
     "preset": "jest-preset-angular",
-    "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-jest.ts"
+    ],
     "globalSetup": "jest-preset-angular/global-setup",
     "moduleNameMapper": {
       "^@core/(.*)$": "<rootDir>/src/app/core/$1",
@@ -57,10 +60,12 @@
       "^@auth/(.*)$": "<rootDir>/src/app/auth/$1",
       "^@environments/(.*)$": "<rootDir>/src/environments/$1"
     },
-
-    "collectCoverage": true,
+    "collectCoverage": false,
     "coverageDirectory": "coverage",
-    "coverageReporters": ["html", "text"],
+    "coverageReporters": [
+      "html",
+      "text"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,ts}",
       "!src/**/*.d.ts"

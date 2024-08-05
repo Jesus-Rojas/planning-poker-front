@@ -17,3 +17,4 @@ export * from './player.interface';
 export * from './game-status.enum';
 export * from './score-card.interface';
 export * from './response-reveal-cards.interface';
+export * from './feather-icon-name.type';

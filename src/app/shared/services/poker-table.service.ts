@@ -117,16 +117,15 @@ export class PokerTableService {
 
   toggleDisplayMode() {
     const meUser = this.meUserSubject.value;
-    if (meUser) {
-      const displayMode = meUser.displayMode === DisplayModeEnum.Player
-        ? DisplayModeEnum.Spectator
-        : DisplayModeEnum.Player;
+    if (!meUser) return;
+    const displayMode = meUser.displayMode === DisplayModeEnum.Player
+      ? DisplayModeEnum.Spectator
+      : DisplayModeEnum.Player;
 
-      this.updateMeUser({ ...meUser, displayMode });
-      const gameUuid = this.localStorageService.getGame() ?? '';
-      this.gameService.updateDisplayMode(gameUuid, meUser.id).subscribe();
-      this.organizeTablePositionCard();
-    }
+    this.updateMeUser({ ...meUser, displayMode });
+    const gameUuid = this.localStorageService.getGame() ?? '';
+    this.gameService.updateDisplayMode(gameUuid, meUser.id).subscribe();
+    this.organizeTablePositionCard();
   }
 
   convertToAdmin(userUuid: string) {

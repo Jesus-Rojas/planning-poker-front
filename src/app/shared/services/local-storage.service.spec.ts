@@ -1,6 +1,7 @@
+import { TestBed } from '@angular/core/testing';
 import { LocalStorageService } from './local-storage.service';
 
-fdescribe('LocalStorageService', () => {
+describe('LocalStorageService', () => {
   let service: LocalStorageService;
   let store: Record<string, unknown> = {};
 
@@ -18,15 +19,18 @@ fdescribe('LocalStorageService', () => {
     key: jest.fn((index: number) => Object.keys(store)[index] || null),
     get length() {
       return Object.keys(store).length;
-    }
+    },
   };
 
   beforeEach(() => {
-    service = new LocalStorageService();
+    TestBed.configureTestingModule({
+      providers: [LocalStorageService],
+    });
+    service = TestBed.inject(LocalStorageService);
     store = {};
     Object.defineProperty(window, 'localStorage', {
       value: mockLocalStorage,
-      writable: true
+      writable: true,
     });
     jest.clearAllMocks();
   });
@@ -40,7 +44,10 @@ fdescribe('LocalStorageService', () => {
 
   it('should update the game in localStorage', () => {
     service.updateGame('newGame');
-    expect(mockLocalStorage.setItem).toHaveBeenCalledWith(service.keyGame, 'newGame');
+    expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
+      service.keyGame,
+      'newGame'
+    );
     expect(store[service.keyGame]).toEqual('newGame');
   });
 
@@ -59,7 +66,10 @@ fdescribe('LocalStorageService', () => {
 
   it('should update the user in localStorage', () => {
     service.updateUser('newUser');
-    expect(mockLocalStorage.setItem).toHaveBeenCalledWith(service.keyUser, 'newUser');
+    expect(mockLocalStorage.setItem).toHaveBeenCalledWith(
+      service.keyUser,
+      'newUser'
+    );
     expect(store[service.keyUser]).toEqual('newUser');
   });
 
@@ -69,7 +79,6 @@ fdescribe('LocalStorageService', () => {
     expect(mockLocalStorage.getItem).toHaveBeenCalledWith(service.keyUser);
   });
 
-  // Pruebas adicionales para los métodos clear y key
   it('should clear all items in localStorage', () => {
     store[service.keyUser] = 'exampleUser';
     store[service.keyGame] = 'exampleGame';

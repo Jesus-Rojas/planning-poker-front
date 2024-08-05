@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '@environments/environment.development';
+import { environment } from '@environments/environment';
 import { DisplayModeEnum, Game, GameStatusEnum, RequestCreateGame, ResponseCreateGame, ResponseRevealCards, RoutePathEnum } from '@shared/types';
 import { RequestJoinGame } from '@shared/types/request-join-game.interface';
 import { ResponseJoinGame } from '@shared/types/response-join-game.interface';

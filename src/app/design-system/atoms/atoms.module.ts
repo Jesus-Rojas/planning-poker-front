@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { AvatarFieldComponent } from './avatar-field/avatar-field.component';
 import { ButtonFieldComponent } from './button-field/button-field.component';
-import { SelectFieldComponent } from './select-field/select-field.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { RadioButtonFieldComponent } from './radio-button-field/radio-button-field.component';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +16,6 @@ import { DropdownFieldComponent } from './dropdown-field/dropdown-field.componen
     ButtonFieldComponent,
     InputFieldComponent,
     RadioButtonFieldComponent,
-    SelectFieldComponent,
     SpinnerFieldComponent,
     DropdownFieldComponent,
   ],
@@ -31,7 +29,6 @@ import { DropdownFieldComponent } from './dropdown-field/dropdown-field.componen
     ButtonFieldComponent,
     InputFieldComponent,
     RadioButtonFieldComponent,
-    SelectFieldComponent,
     SpinnerFieldComponent,
     DropdownFieldComponent,
   ],

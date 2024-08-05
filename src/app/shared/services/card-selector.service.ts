@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CardSelectorService {
-  private cardsSubject = new BehaviorSubject<CardSelector[]>([]);
+  cardsSubject = new BehaviorSubject<CardSelector[]>([]);
   cards$ = this.cardsSubject.asObservable();
 
   updateCards(cards: CardSelector[]) {

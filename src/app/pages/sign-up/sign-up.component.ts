@@ -12,9 +12,7 @@ export class SignUpComponent {
   password = '';
   ButtonFieldColorEnum = ButtonFieldColorEnum;
 
-  constructor (
-    private authService: AuthService
-  ) { }
+  constructor (private authService: AuthService) { }
 
   get isDisabledButtonField() {
     return !this.email || !this.password;
@@ -22,5 +20,6 @@ export class SignUpComponent {
 
   async signUp() {
     if (this.isDisabledButtonField) return;
+    this.authService.signUp(this.email, this.password);
   }
 }

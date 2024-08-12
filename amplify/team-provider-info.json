@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-planningpokerfront-dev-f6e12-authRole",
+      "UnauthRoleArn": "arn:aws:iam::050752607749:role/amplify-planningpokerfront-dev-f6e12-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::050752607749:role/amplify-planningpokerfront-dev-f6e12-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-planningpokerfront-dev-f6e12-deployment",
+      "UnauthRoleName": "amplify-planningpokerfront-dev-f6e12-unauthRole",
+      "StackName": "amplify-planningpokerfront-dev-f6e12",
+      "StackId": "arn:aws:cloudformation:us-east-1:050752607749:stack/amplify-planningpokerfront-dev-f6e12/e60062f0-58b3-11ef-9280-1215f04e2039",
+      "AmplifyAppId": "d231zsr10mrgsx"
+    },
+    "categories": {
+      "auth": {
+        "planningpokerfront827b5e39": {}
+      }
+    }
+  }
+}

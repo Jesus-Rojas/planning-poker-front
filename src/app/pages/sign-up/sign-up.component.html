@@ -1,0 +1,21 @@
+<div class="container">
+  <app-input-field
+    headerText=""
+    placeholder="Email"
+    [(value)]="email"
+    type="email"
+  ></app-input-field>
+
+  <app-input-field
+    headerText=""
+    [(value)]="password"
+    placeholder="Password"
+    type="password"
+  ></app-input-field>
+
+  <app-button-field
+    [disabled]="isDisabledButtonField"
+    [color]="ButtonFieldColorEnum.DarkWhite"
+    (click)="signUp()"
+  >Sign Up</app-button-field>
+</div>

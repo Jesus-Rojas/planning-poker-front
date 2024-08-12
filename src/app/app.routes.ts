@@ -20,6 +20,14 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/playing-game/playing-game.module').then(m => m.PlayingGameModule)
       },
       {
+        path: RoutePathEnum.SignIn,
+        loadChildren: () => import('./pages/sign-in/sign-in.module').then(m => m.SignInModule)
+      },
+      {
+        path: RoutePathEnum.SignUp,
+        loadChildren: () => import('./pages/sign-up/sign-up.module').then(m => m.SignUpModule)
+      },
+      {
         path: '**',
         redirectTo: RoutePathEnum.CreateGame,
       },

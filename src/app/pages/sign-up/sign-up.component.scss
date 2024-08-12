@@ -1,0 +1,29 @@
+@use 'typographies' as typographies;
+@use 'colors' as colors;
+
+$height-header: 126px;
+
+.container {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  margin: calc($height-header * -1) auto 0 auto;
+  width: fit-content;
+  row-gap: 16px;
+
+  p {
+    margin: 0;
+    @include typographies.pds-font-paragraph-03-bold;
+    color: colors.$pds-color-white-50;
+  }
+
+  app-button-field {
+    justify-self: center;
+    margin-top: 10px;
+  }
+
+  input {
+    margin-top: 8px;
+    width: 292px;
+  }
+}

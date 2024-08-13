@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoaderService } from '@core/services/loader.service';
 import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './create-game.component.html',
   styleUrl: './create-game.component.scss'
 })
-export class CreateGameComponent implements OnDestroy {
+export class CreateGameComponent implements OnDestroy, OnInit {
   constructor(
     private loaderService: LoaderService,
     private gameService: GameService,

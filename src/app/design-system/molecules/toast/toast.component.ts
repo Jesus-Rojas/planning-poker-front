@@ -1,18 +1,26 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 import { ToastType, ToastVariant } from './types';
 
 @Component({
   selector: 'app-toast',
   templateUrl: './toast.component.html',
-  styleUrl: './toast.component.scss'
+  styleUrl: './toast.component.scss',
 })
 export class ToastComponent implements OnInit, OnChanges {
   @Input() variant = ToastVariant.Success;
   @Input() type = ToastType.Standard;
   @Input() body = '';
   @Input() title = '';
-  @Output() close = new EventEmitter<void>();
+  @Output() closeToast = new EventEmitter<void>();
 
   classIconClose = '';
   classBodyText = '';
@@ -82,11 +90,12 @@ export class ToastComponent implements OnInit, OnChanges {
   }
 
   updateIsTypeStandardWithActions() {
-    this.isTypeStandardWithActions = this.type === ToastType.StandardWithActions;
+    this.isTypeStandardWithActions =
+      this.type === ToastType.StandardWithActions;
   }
 
-  closeToast() {
-    this.close.emit();
+  handleClose() {
+    this.closeToast.emit();
   }
 
   ngOnInit(): void {

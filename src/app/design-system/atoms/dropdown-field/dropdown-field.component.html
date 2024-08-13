@@ -1,10 +1,22 @@
-<div class="select-wrapper" (click)="toggleDropdown($event)">
+<div
+  class="select-wrapper"
+  (click)="toggleDropdown($event)"
+  tabindex="0"
+  (keydown)="handleKeydownDropdown($event)"
+>
   <div class="select-placeholder">
     <input [placeholder]="placeholder" [value]="selectedOption || ''" readonly>
     <span class="arrow">&#9662;</span>
   </div>
+
   <ul [class.open]="dropdownOpen">
-    <li *ngFor="let option of options" (click)="selectOption(option)" [class.selected]="option === selectedOption">
+    <li
+      *ngFor="let option of options"
+      (click)="selectOption(option)"
+      [class.selected]="option === selectedOption"
+      tabindex="0"
+      (keydown)="handleKeydownOptionDropdown($event, option)"
+    >
       {{ option }}
     </li>
   </ul>

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RadioButtonFieldComponent } from './radio-button-field.component';
-import { By } from '@angular/platform-browser';
 
 describe('RadioButtonFieldComponent', () => {
   let component: RadioButtonFieldComponent;

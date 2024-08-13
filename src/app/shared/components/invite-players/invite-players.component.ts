@@ -12,7 +12,7 @@ export class InvitePlayersComponent implements OnInit {
     private toastService: ToastService,
   ) { }
 
-  @Output() close = new EventEmitter<void>();
+  @Output() closeModal = new EventEmitter<void>();
 
   ButtonFieldColorEnum = ButtonFieldColorEnum;
 
@@ -21,11 +21,11 @@ export class InvitePlayersComponent implements OnInit {
   copyLink() {
     navigator.clipboard.writeText(this.url);
     this.toastService.showSuccessToast('Enlace copiado al portapapeles');
-    this.onClose();
+    this.handleClose();
   }
 
-  onClose() {
-    this.close.emit();
+  handleClose(): void {
+    this.closeModal.emit();
   }
 
   ngOnInit(): void {

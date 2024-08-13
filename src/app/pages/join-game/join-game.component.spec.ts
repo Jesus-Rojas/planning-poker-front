@@ -27,21 +27,52 @@ describe('JoinGameComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         DesignSystemModule,
-        FeatherModule.pick(getFeatherIcons(
-          ['AlertTriangle', 'Check', 'X', 'Info']
-        )),
+        FeatherModule.pick(
+          getFeatherIcons(['AlertTriangle', 'Check', 'X', 'Info'])
+        ),
         SharedModule,
       ],
       declarations: [JoinGameComponent],
       providers: [
-        { provide: ActivatedRoute, useValue: { paramMap: of({ get: () => 'test-uuid' }) } },
-        { provide: LocalStorageService, useValue: { updateUser: jest.fn(), updateGame: jest.fn(), removeGame: jest.fn() } },
+        {
+          provide: ActivatedRoute,
+          useValue: { paramMap: of({ get: () => 'test-uuid' }) },
+        },
+        {
+          provide: LocalStorageService,
+          useValue: {
+            updateUser: jest.fn(),
+            updateGame: jest.fn(),
+            removeGame: jest.fn(),
+          },
+        },
         { provide: HeaderService, useValue: { updateHeaderStatus: jest.fn() } },
-        { provide: LoaderService, useValue: { showLoader: jest.fn(), hideLoader: jest.fn(), isLoading$: new Subject() } },
-        { provide: GameService, useValue: { joinGame: jest.fn(), getGame: jest.fn() } },
+        {
+          provide: LoaderService,
+          useValue: {
+            showLoader: jest.fn(),
+            hideLoader: jest.fn(),
+            isLoading$: new Subject(),
+          },
+        },
+        {
+          provide: GameService,
+          useValue: { joinGame: jest.fn(), getGame: jest.fn() },
+        },
         { provide: Router, useValue: { navigate: jest.fn() } },
-        { provide: PokerTableService, useValue: { updateUsers: jest.fn(), updateMeUser: jest.fn(), organizeTablePositionCard: jest.fn() } },
-      ]
+        {
+          provide: PokerTableService,
+          useValue: {
+            updateUsers: jest.fn(),
+            updateMeUser: jest.fn(),
+            organizeTablePositionCard: jest.fn(),
+            someUserHasSelectedOnePokerCard$: new Subject(),
+            meUser$: new Subject(),
+            gameStatus$: new Subject(),
+            tablePositionCard$: new Subject(),
+          },
+        },
+      ],
     }).compileComponents();
   });
 
@@ -71,7 +102,9 @@ describe('JoinGameComponent', () => {
     component.currentDisplayMode = DisplayModeEnum.Player;
     component.gameUuid = 'test-uuid';
 
-    const joinGameSpy = jest.spyOn(gameService, 'joinGame').mockReturnValue(of({ userUuid: 'user-uuid' }));
+    const joinGameSpy = jest
+      .spyOn(gameService, 'joinGame')
+      .mockReturnValue(of({ userUuid: 'user-uuid' }));
     const navigateSpy = jest.spyOn(router, 'navigate');
     const showLoaderSpy = jest.spyOn(loaderService, 'showLoader');
     const hideLoaderSpy = jest.spyOn(loaderService, 'hideLoader');
@@ -79,22 +112,43 @@ describe('JoinGameComponent', () => {
     component.handleContinue();
 
     expect(showLoaderSpy).toHaveBeenCalled();
-    expect(joinGameSpy).toHaveBeenCalledWith('test-uuid', 'ValidName', DisplayModeEnum.Player);
-    expect(navigateSpy).toHaveBeenCalledWith([RoutePathEnum.PlayingGame, 'test-uuid']);
+    expect(joinGameSpy).toHaveBeenCalledWith(
+      'test-uuid',
+      'ValidName',
+      DisplayModeEnum.Player
+    );
+    expect(navigateSpy).toHaveBeenCalledWith([
+      RoutePathEnum.PlayingGame,
+      'test-uuid',
+    ]);
     expect(hideLoaderSpy).toHaveBeenCalled();
   });
 
   it('should initialize correctly', () => {
-    const updateHeaderStatusSpy = jest.spyOn(TestBed.inject(HeaderService), 'updateHeaderStatus');
-    const updateUsersSpy = jest.spyOn(TestBed.inject(PokerTableService), 'updateUsers');
-    const updateMeUserSpy = jest.spyOn(TestBed.inject(PokerTableService), 'updateMeUser');
-    const organizeTablePositionCardSpy = jest.spyOn(TestBed.inject(PokerTableService), 'organizeTablePositionCard');
+    const updateHeaderStatusSpy = jest.spyOn(
+      TestBed.inject(HeaderService),
+      'updateHeaderStatus'
+    );
+    const updateUsersSpy = jest.spyOn(
+      TestBed.inject(PokerTableService),
+      'updateUsers'
+    );
+    const updateMeUserSpy = jest.spyOn(
+      TestBed.inject(PokerTableService),
+      'updateMeUser'
+    );
+    const organizeTablePositionCardSpy = jest.spyOn(
+      TestBed.inject(PokerTableService),
+      'organizeTablePositionCard'
+    );
     const removeGameSpy = jest.spyOn(localStorageService, 'removeGame');
     const updateGameSpy = jest.spyOn(localStorageService, 'updateGame');
 
     component.ngOnInit();
 
-    expect(updateHeaderStatusSpy).toHaveBeenCalledWith(HeaderStatusEnum.CreatePlayerOrViewGame);
+    expect(updateHeaderStatusSpy).toHaveBeenCalledWith(
+      HeaderStatusEnum.CreatePlayerOrViewGame
+    );
     expect(updateUsersSpy).toHaveBeenCalledWith([]);
     expect(updateMeUserSpy).toHaveBeenCalled();
     expect(organizeTablePositionCardSpy).toHaveBeenCalled();

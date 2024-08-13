@@ -34,7 +34,11 @@
     [style.left.px]="contextMenuPosition.x"
   >
     <ul>
-      <li (click)="convertToAdmin()">Convert to Admin</li>
+      <li
+        (click)="convertToAdmin()"
+        tabindex="0"
+        (keydown)="handleKeydown($event)"
+      >Convert to Admin</li>
     </ul>
   </div>
 }

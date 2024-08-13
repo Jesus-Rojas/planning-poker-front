@@ -4,7 +4,7 @@ import { CardSelectorService } from '@shared/services/card-selector.service';
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { CardSelectorTypeEnum, PokerCard, PokerCardSizeEnum, PokerCardVariantEnum } from '@shared/types';
+import { CardSelectorTypeEnum, PokerCard } from '@shared/types';
 import { of, Subject } from 'rxjs';
 
 describe('CardSelectorComponent', () => {
@@ -14,6 +14,7 @@ describe('CardSelectorComponent', () => {
   let pokerTableService: PokerTableService;
   let gameService: GameService;
   let localStorageService: LocalStorageService;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,6 +26,7 @@ describe('CardSelectorComponent', () => {
         { provide: LocalStorageService, useValue: { getGame: jest.fn(), getUser: jest.fn() } }
       ]
     }).compileComponents();
+    localStorageService = TestBed.inject(LocalStorageService);
   });
 
   beforeEach(() => {
@@ -33,7 +35,6 @@ describe('CardSelectorComponent', () => {
     cardSelectorService = TestBed.inject(CardSelectorService);
     pokerTableService = TestBed.inject(PokerTableService);
     gameService = TestBed.inject(GameService);
-    localStorageService = TestBed.inject(LocalStorageService);
     fixture.detectChanges();
   });
 
@@ -65,8 +66,8 @@ describe('CardSelectorComponent', () => {
 
     const updateMeUserSpy = jest.spyOn(pokerTableService, 'updateMeUser');
     const organizeTablePositionCardSpy = jest.spyOn(pokerTableService, 'organizeTablePositionCard');
-    const getGameSpy = jest.spyOn(localStorageService, 'getGame').mockReturnValue('game-uuid');
-    const getUserSpy = jest.spyOn(localStorageService, 'getUser').mockReturnValue('user-uuid');
+    jest.spyOn(localStorageService, 'getGame').mockReturnValue('game-uuid');
+    jest.spyOn(localStorageService, 'getUser').mockReturnValue('user-uuid');
     const updateMeCardSelectedSpy = jest.spyOn(gameService, 'updateMeCardSelected').mockReturnValue(of(undefined));
 
     component.handlePokerCard('1');

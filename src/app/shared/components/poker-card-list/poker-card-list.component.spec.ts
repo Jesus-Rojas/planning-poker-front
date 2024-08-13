@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PokerCardListComponent } from './poker-card-list.component';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { of } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { RoleEnum } from '@shared/types';
 import { generateOnePokerCard } from '@shared/utils';
 
@@ -14,6 +14,7 @@ describe('PokerCardListComponent', () => {
     const pokerTableServiceMock = {
       meUser$: of({ role: RoleEnum.Admin }),
       convertToAdmin: jest.fn(),
+      gameStatus$: new Subject(),
     };
 
     await TestBed.configureTestingModule({

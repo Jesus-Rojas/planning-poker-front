@@ -5,7 +5,7 @@ import { HeaderService } from '@core/services/header.service';
 import { LoaderService } from '@core/services/loader.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
 import { HeaderStatusEnum } from '@core/types/header-status.enum';
-import { of } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atoms/avatar-field/types';
 import { DisplayModeEnum } from '@shared/types';
 import { DesignSystemModule } from '@design-system/design-system.module';
@@ -22,8 +22,12 @@ describe('HeaderComponent', () => {
       headerStatus$: of(HeaderStatusEnum.CreateGame)
     };
 
-    const loaderServiceMock = {};
-    const pokerTableServiceMock = {};
+    const loaderServiceMock = {
+      isLoading$: new Subject(),
+    };
+    const pokerTableServiceMock = {
+      meUser$: new Subject(),
+    };
 
     await TestBed.configureTestingModule({
       imports: [

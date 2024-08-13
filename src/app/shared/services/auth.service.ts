@@ -23,8 +23,8 @@ export class AuthService {
       }
 
       this.toastService.showSuccessToast('The user signed in successfully.');
-    } catch (error: any) {
-      this.toastService.showErrorToast(error?.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) this.toastService.showErrorToast(error.message);
     }
   }
 
@@ -42,8 +42,8 @@ export class AuthService {
       });
 
       this.toastService.showSuccessToast('To confirm the email, contact the administrator.');
-    } catch (error: any) {
-      this.toastService.showErrorToast(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) this.toastService.showErrorToast(error.message);
     }
   }
 }

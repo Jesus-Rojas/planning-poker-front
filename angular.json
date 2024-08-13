@@ -32,7 +32,9 @@
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/app/core/styles"]
+              "includePaths": [
+                "src/app/core/styles"
+              ]
             },
             "styles": [
               "src/styles.scss"
@@ -104,11 +106,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

@@ -4,7 +4,7 @@ import { HeaderStatusEnum } from '@core/types/header-status.enum';
 import { GameService } from '@shared/services/game.service';
 import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { DisplayModeEnum, GameStatusEnum, Player, PokerCard, PokerCardSizeEnum, RoleEnum } from '@shared/types';
+import { DisplayModeEnum, GameStatusEnum, Player, PokerCard, RoleEnum } from '@shared/types';
 import { Subscription } from 'rxjs';
 
 @Component({

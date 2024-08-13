@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PokerCardComponent } from './poker-card.component';
 import { PokerCardSizeEnum, PokerCardVariantEnum } from '@shared/types';
-import { Component } from '@angular/core';
 
 describe('PokerCardComponent', () => {
   let component: PokerCardComponent;
@@ -32,6 +31,7 @@ describe('PokerCardComponent', () => {
 
   it('should render correct size classes', () => {
     component.size = PokerCardSizeEnum.Medium;
+    component.ngOnInit();
     fixture.detectChanges();
 
     const containerElement: HTMLElement = fixture.nativeElement.querySelector('.container');
@@ -42,6 +42,7 @@ describe('PokerCardComponent', () => {
 
   it('should render correct variant classes', () => {
     component.variant = PokerCardVariantEnum.Picker;
+    component.ngOnInit();
     fixture.detectChanges();
 
     const cardElement: HTMLElement = fixture.nativeElement.querySelector('.card');
@@ -50,6 +51,7 @@ describe('PokerCardComponent', () => {
 
   it('should handle visibility correctly', () => {
     component.isVisible = false;
+    component.ngOnInit();
     fixture.detectChanges();
 
     const containerElement: HTMLElement = fixture.nativeElement.querySelector('.container');
@@ -58,6 +60,7 @@ describe('PokerCardComponent', () => {
 
   it('should handle selection state correctly', () => {
     component.isSelected = true;
+    component.ngOnInit();
     fixture.detectChanges();
 
     const cardElement: HTMLElement = fixture.nativeElement.querySelector('.card');

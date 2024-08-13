@@ -9,7 +9,7 @@ import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
 import { RoutePathEnum, DisplayModeEnum } from '@shared/types';
 import { isValidName } from '@shared/utils';
-import { Subscription, switchMap, tap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-join-game',

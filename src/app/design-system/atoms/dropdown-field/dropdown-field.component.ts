@@ -1,9 +1,16 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-dropdown-field',
   templateUrl: './dropdown-field.component.html',
-  styleUrl: './dropdown-field.component.scss'
+  styleUrl: './dropdown-field.component.scss',
 })
 export class DropdownFieldComponent {
   @Input() placeholder = 'Selecciona una opción';
@@ -31,5 +38,13 @@ export class DropdownFieldComponent {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.dropdownOpen = false;
     }
+  }
+
+  handleKeydownDropdown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') this.toggleDropdown(event);
+  }
+
+  handleKeydownOptionDropdown(event: KeyboardEvent, option: string): void {
+    if (event.key === 'Enter' || event.key === ' ') this.selectOption(option);
   }
 }

@@ -1,7 +1,5 @@
 import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { AvatarFieldSizeEnum, AvatarFieldVariantEnum } from '@design-system/atoms/avatar-field/types';
-import { GameService } from '@shared/services/game.service';
-import { LocalStorageService } from '@shared/services/local-storage.service';
 import { PokerTableService } from '@shared/services/poker-table.service';
 import { DisplayModeEnum, GameStatusEnum, PokerCard, RoleEnum } from '@shared/types';
 import { Subscription } from 'rxjs';
@@ -63,6 +61,10 @@ export class PokerCardListComponent implements OnInit, OnDestroy {
 
     const gameStatusSubscription = this.pokerTableService.gameStatus$.subscribe((gameStatus) => (this.gameStatus = gameStatus));
     this.subscription.add(gameStatusSubscription);
+  }
+
+  handleKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') this.convertToAdmin();
   }
 
   ngOnDestroy(): void {

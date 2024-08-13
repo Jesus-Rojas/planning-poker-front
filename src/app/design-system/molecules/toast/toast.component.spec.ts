@@ -59,8 +59,8 @@ describe('ToastComponent', () => {
   });
 
   it('should emit close event on closeToast', () => {
-    const emitSpy = jest.spyOn(component.close, 'emit');
-    component.closeToast();
+    const emitSpy = jest.spyOn(component.closeToast, 'emit');
+    component.handleClose();
     expect(emitSpy).toHaveBeenCalled();
   });
 

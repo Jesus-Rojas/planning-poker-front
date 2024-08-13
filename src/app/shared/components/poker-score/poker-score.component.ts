@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PokerTableService } from '@shared/services/poker-table.service';
-import { PokerCardSizeEnum, ScoreCard } from '@shared/types';
+import { PokerCardSizeEnum } from '@shared/types';
 
 @Component({
   selector: 'app-poker-score',

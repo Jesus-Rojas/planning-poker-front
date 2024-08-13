@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InvitePlayersComponent } from './invite-players.component';
 import { ToastService } from '@shared/services/toast.service';
-import { ButtonFieldColorEnum } from '@design-system/atoms/button-field/types';
-import { EventEmitter } from '@angular/core';
 import { DesignSystemModule } from '@design-system/design-system.module';
 import { getFeatherIcons } from '@shared/utils';
 import { FeatherModule } from 'angular-feather';
@@ -27,7 +25,7 @@ describe('InvitePlayersComponent', () => {
     }).compileComponents();
 
     // Mock navigator.clipboard
-    (navigator as any).clipboard = {
+    (navigator as unknown as { clipboard: { writeText: () => void }}).clipboard = {
       writeText: jest.fn().mockResolvedValue(undefined)
     };
   });
@@ -52,19 +50,19 @@ describe('InvitePlayersComponent', () => {
   it('should copy link and show toast', () => {
     const writeTextSpy = jest.spyOn(navigator.clipboard, 'writeText');
     const showSuccessToastSpy = jest.spyOn(toastService, 'showSuccessToast');
-    const onCloseSpy = jest.spyOn(component, 'onClose');
+    const handleCloseSpy = jest.spyOn(component, 'handleClose');
 
     component.url = 'http://example.com/join';
     component.copyLink();
 
     expect(writeTextSpy).toHaveBeenCalledWith('http://example.com/join');
     expect(showSuccessToastSpy).toHaveBeenCalledWith('Enlace copiado al portapapeles');
-    expect(onCloseSpy).toHaveBeenCalled();
+    expect(handleCloseSpy).toHaveBeenCalled();
   });
 
-  it('should emit close event on onClose', () => {
-    jest.spyOn(component.close, 'emit');
-    component.onClose();
-    expect(component.close.emit).toHaveBeenCalled();
+  it('should emit closeModal event on handleClose', () => {
+    jest.spyOn(component.closeModal, 'emit');
+    component.handleClose();
+    expect(component.closeModal.emit).toHaveBeenCalled();
   });
 });
